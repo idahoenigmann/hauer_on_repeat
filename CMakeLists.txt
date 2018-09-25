@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.5)
+project(hauer_on_repeat)
+set(CMAKE_CXX_STANDARD 14)
+file(GLOB SOURCES "src/*.cpp")
+find_package(Threads)
+include_directories(include)
+add_executable(hauer_on_repeat ${SOURCES} src/main.cpp)
+target_link_libraries(hauer_on_repeat ${CMAKE_THREAD_LIBS_INIT})
