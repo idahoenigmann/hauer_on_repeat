@@ -6,6 +6,7 @@
 #define HAUER_ON_REPEAT_TORUS_H
 
 enum Pitch {
+    def = -1, //default
     low = 0,
     med,
     high
@@ -18,6 +19,8 @@ struct Node {
     Node* right;
 
     Pitch pitch;
+
+    Node();
 };
 
 
@@ -26,8 +29,6 @@ class Torus {
   public:
     Torus();
 
-
-  private:
     Node* start;
 };
 
