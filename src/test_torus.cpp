@@ -6,6 +6,8 @@
 #include "torus.h"
 
 bool test_move_random_path(int num_of_moves, Torus torus) {
+    /*moves along a random path to find nullptrs*/
+
     Node* curr = torus.start;
 
     for (int i = 0; i < num_of_moves; i++) {
@@ -23,23 +25,25 @@ bool test_move_random_path(int num_of_moves, Torus torus) {
 }
 
 bool test_continuity(Torus torus) {
+    /*checks if pointers on the "edges" are set correctly*/
+
     Node* curr = torus.start;
-    for (int i=0; i < 4; i++) {
+    for (int i=0; i < 4; i++) {     //test if after moving up 4 times start is reached again
         curr = curr->up;
     }
     if (curr != torus.start) return false;
 
-    for (int i=0; i < 4; i++) {
+    for (int i=0; i < 4; i++) {     //test if after moving down 4 times start is reached again
         curr = curr->down;
     }
     if (curr != torus.start) return false;
 
-    for (int i=0; i < 12; i++) {
+    for (int i=0; i < 12; i++) {    //test if after moving right 12 times start is reached again
         curr = curr->right;
     }
     if (curr != torus.start) return false;
 
-    for (int i=0; i < 12; i++) {
+    for (int i=0; i < 12; i++) {    //test if after moving left 12 times start is reached again
         curr = curr->left;
     }
     if (curr != torus.start) return false;
