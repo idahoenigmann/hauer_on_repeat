@@ -2,6 +2,7 @@
 // Created by ida on 25.09.18.
 //
 
+#include <list>
 #include "torus.h"
 
 Torus::Torus(int notes[]) {
@@ -15,6 +16,7 @@ Torus::Torus(int notes[]) {
         Node* leftNodePtr = nullptr;
         for (int x = 0; x < 12; x++) {
             Node* curr = new Node();
+            allNodes.push_back(curr);
 
             if (x == 0) {
                 //set pointer for first node -> connection last and first node
@@ -56,6 +58,12 @@ Torus::Torus(int notes[]) {
 void Torus::write_notes(int notes[]) {}
 
 Torus::Torus() : Torus(new int[12] {def, def, def, def, def, def, def, def, def, def, def, def}) {}
+
+Torus::~Torus() {
+    for (Node* node : allNodes) {
+        delete node;
+    }
+}
 
 Node::Node() {
     up = nullptr;

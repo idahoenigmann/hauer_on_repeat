@@ -5,6 +5,8 @@
 #ifndef HAUER_ON_REPEAT_TORUS_H
 #define HAUER_ON_REPEAT_TORUS_H
 
+#include <list>
+
 enum Pitch {
     def = -1, //default
     low = 0,
@@ -31,9 +33,14 @@ class Torus {
 
     Torus(int notes[]);
 
+    ~Torus();
+
     void write_notes(int notes[]);
 
     Node* start;
+
+  private:
+    std::list <Node*> allNodes;
 };
 
 #endif //HAUER_ON_REPEAT_TORUS_H
