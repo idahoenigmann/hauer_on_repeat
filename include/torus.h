@@ -29,6 +29,10 @@ class Torus {
   public:
     Torus();
 
+    Torus(int notes[]);
+
+    void write_notes(int notes[]);
+
     Node* start;
 };
 

@@ -4,7 +4,7 @@
 
 #include "torus.h"
 
-Torus::Torus() {
+Torus::Torus(int notes[]) {
 
     Node* firstNodeRowPtr = nullptr;
     Node* uppNodePtr = nullptr;
@@ -49,7 +49,13 @@ Torus::Torus() {
         }
         uppNodePtr = firstNodePtr;
     }
+
+    write_notes(notes);
 }
+
+void Torus::write_notes(int notes[]) {}
+
+Torus::Torus() : Torus(new int[12] {def, def, def, def, def, def, def, def, def, def, def, def}) {}
 
 Node::Node() {
     up = nullptr;
