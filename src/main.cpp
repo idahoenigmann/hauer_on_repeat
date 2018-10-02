@@ -6,9 +6,28 @@
 #include "torus.h"
 #include "test_torus.h"
 
+using namespace std;
 
-int main() {
-    Torus torus = Torus();
-    std::cout << test_move_random_path(100, torus.start) << std::endl;
-    std::cout << test_continuity(torus.start) << std::endl;
+int main(int argc, char* argv[]) {
+
+    //DEBUG
+    //cout << argc << endl;
+
+    
+    if (argc - 1 != 12) {
+        throw runtime_error("Needs 12 Numbers");
+    }
+
+
+    //save into new array (as integers)
+    int numbers[12];
+    for (int i{1}; i <= 12; i++) {
+        numbers[i - 1] = stoi((string)argv[i]);
+    }
+
+
+
+    Torus torus = Torus(numbers);
+    cout << test_move_random_path(1000, torus.start) << endl;
+    cout << test_continuity(torus.start) << endl;
 }
