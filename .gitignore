@@ -33,4 +33,5 @@
 
 .idea/*
 build
-test/CMakeLists
+test/exec
+*.cmake
