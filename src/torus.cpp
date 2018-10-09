@@ -3,7 +3,10 @@
 //
 
 #include <list>
+#include <iostream>
 #include "torus.h"
+
+using namespace std;
 
 Torus::Torus(int notes[]) {
 
@@ -52,10 +55,10 @@ Torus::Torus(int notes[]) {
         uppNodePtr = firstNodePtr;
     }
 
-    write_notes(notes);
+    if (!write_notes(notes)) {
+        cerr << "Only notes from 0 to 11 are allowed!" << endl;
+    }
 }
-
-void Torus::write_notes(int notes[]) {}
 
 Torus::Torus() : Torus(new int[12] {def, def, def, def, def, def, def, def, def, def, def, def}) {}
 
@@ -72,4 +75,33 @@ Node::Node() {
     right = nullptr;
 
     pitch = def;
+}
+
+
+bool Torus::write_notes(int notes[]) {
+
+    Node* curr{start};
+    int y = 0;
+
+    for (int i{0}; i < 12; i++) {
+        if (notes[i] < 0 || notes[i] > 11) {
+            return false;  //number out of range -> false
+        }
+    }
+
+    for (int x{0}; x < 12; x++) {
+        
+
+        while (y != (int) (notes[x] / 3)) {
+            curr = curr->down;
+            y++;
+            if (y == 4) y = 0;
+        }
+
+        curr->pitch = Pitch(notes[x] % 3);
+        cout << Pitch(notes[x] % 3) << " (x: " << x << "/group: " << y << ")" << endl;
+
+        curr = curr->right;
+    }
+    return true;
 }

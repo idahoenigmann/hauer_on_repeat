@@ -35,7 +35,7 @@ class Torus {
 
     ~Torus();
 
-    void write_notes(int notes[]);
+    bool write_notes(int notes[]);
 
     Node* start;
 

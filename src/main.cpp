@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "torus.h"
-#include "test_torus.h"
 
 using namespace std;
 
@@ -28,6 +27,4 @@ int main(int argc, char* argv[]) {
 
 
     Torus torus = Torus(numbers);
-    cout << test_move_random_path(1000, torus.start) << endl;
-    cout << test_continuity(torus.start) << endl;
 }
