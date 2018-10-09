@@ -27,7 +27,35 @@ TEST(torus_test, test_nullptr) {
 }
 
 TEST(torus_test, test_continuity) {
+    /*checks if pointers on the "edges" are set correctly*/
+    Torus torus = Torus();
 
+    Node* start = torus.start;
+    Node* curr = start;
+    for (int i=0; i < 4; i++) {     //test if after moving up 4 times start is reached again
+        curr = curr->up;
+    }
+    ASSERT_TRUE(curr == start);
+
+    for (int i=0; i < 4; i++) {     //test if after moving down 4 times start is reached again
+        curr = curr->down;
+    }
+    ASSERT_TRUE(curr == start);
+
+    for (int e = 0; e < 4; e++) {
+        start = curr;   //set start node to first node in row
+        for (int i=0; i < 12; i++) {    //test if after moving right 12 times start is reached again
+            curr = curr->right;
+        }
+        ASSERT_TRUE(curr == start);
+
+        for (int i=0; i < 12; i++) {    //test if after moving left 12 times start is reached again
+            curr = curr->left;
+        }
+        ASSERT_TRUE(curr == start);
+
+        curr = curr->down;  //test every row
+    }
 }
 
 TEST(torus_test, test_constructor) {
