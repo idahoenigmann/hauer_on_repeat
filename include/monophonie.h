@@ -5,4 +5,8 @@
 #ifndef HAUER_ON_REPEAT_MONOPHONIE_H
 #define HAUER_ON_REPEAT_MONOPHONIE_H
 
+#include "torus.h"
+
+void create_monophonie(Node* start);
+
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "torus.h"
+#include "monophonie.h"
 
 using namespace std;
 
@@ -27,4 +28,6 @@ int main(int argc, char* argv[]) {
 
 
     Torus torus = Torus(numbers);
+
+    create_monophonie(torus.start);
 }
