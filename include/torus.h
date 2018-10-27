@@ -6,6 +6,7 @@
 #define HAUER_ON_REPEAT_TORUS_H
 
 #include <list>
+#include <string>
 
 enum Pitch {
     def = -1, //default
@@ -21,6 +22,7 @@ struct Node {
     Node* right;
 
     Pitch pitch;
+    bool is_twelve_tone = false;
 
     Node();
 };
@@ -38,6 +40,10 @@ class Torus {
     bool write_notes(int notes[]);
 
     Node* start;
+
+    void fill_out_notes();
+
+     std::string to_string();
 
   private:
     std::list <Node*> allNodes;

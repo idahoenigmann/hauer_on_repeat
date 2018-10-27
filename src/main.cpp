@@ -29,5 +29,7 @@ int main(int argc, char* argv[]) {
 
     Torus torus = Torus(numbers);
 
+    //cout << torus.to_string() << endl;
+
     create_monophonie(torus.start);
 }

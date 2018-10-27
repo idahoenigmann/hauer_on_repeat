@@ -4,6 +4,7 @@
 
 #include <list>
 #include <iostream>
+#include <string>
 #include "torus.h"
 
 using namespace std;
@@ -58,6 +59,7 @@ Torus::Torus(int notes[]) {
     if (!write_notes(notes)) {
         cerr << "Only notes from 0 to 11 are allowed!" << endl;
     }
+    fill_out_notes();
 }
 
 Torus::Torus() : Torus(new int[12] {def, def, def, def, def, def, def, def, def, def, def, def}) {}
@@ -90,18 +92,63 @@ bool Torus::write_notes(int notes[]) {
     }
 
     for (int x{0}; x < 12; x++) {
-        
 
         while (y != (int) (notes[x] / 3)) {
-            curr = curr->down;
+            curr = curr->up;
             y++;
             if (y == 4) y = 0;
         }
 
         curr->pitch = Pitch(notes[x] % 3);
-        cout << Pitch(notes[x] % 3) << " (x: " << x << "/group: " << y << ")" << endl;
+        curr->is_twelve_tone = true;
+        //cout << Pitch(notes[x] % 3) << " (x: " << x << "/group: " << y << ")" << endl;
 
         curr = curr->right;
     }
     return true;
+}
+
+void Torus::fill_out_notes() {
+
+    Node* curr = start;
+
+    Pitch voices[] = {def, def, def, def};
+
+    for (int bar=0; bar < 24; bar++) {  //go through bars twice
+
+        for (int voice=0; voice < 4; voice++) {
+            if (curr->is_twelve_tone) {
+                voices[voice] = curr->pitch;    //store new pitch in array
+            } else {
+                curr->pitch = voices[voice];    //insert pitch of last twelve tone from voice
+            }
+            curr = curr->up;
+        }
+        curr = curr->right; //go back down again and change bar
+    }
+}
+
+string Torus::to_string() {
+
+    std::string str = "";
+
+    Node* curr = start;
+
+    for (int bar=0; bar < 12; bar++) {
+        for (int voice=0; voice < 4; voice++) {
+
+            if (curr->pitch == def) {
+                str += "-";
+            } else {
+                str += std::to_string(voice * 3 + curr->pitch);
+            }
+            //str += std::to_string(curr->pitch);
+            str += ", ";
+
+            curr = curr->up;    //change voice
+        }
+        str += "\n";
+        curr = curr->right; //go back down and change bar
+    }
+    return str;
 }
