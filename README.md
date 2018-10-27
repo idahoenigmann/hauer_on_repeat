@@ -4,6 +4,7 @@
 
 * googletest (gtest)
 * lilypond
+* firefox
 
 ## Additional ##
 
