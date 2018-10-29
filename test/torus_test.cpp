@@ -59,11 +59,30 @@ TEST(torus_test, test_continuity) {
 }
 
 TEST(torus_test, test_constructor) {
-    int notes[12] {0,1,2,3,4,5,6,7,8,9,10,11};
+    int notes[12] {4,7,2,9,0,11,3,6,1,10,5,8};
     Torus torus = Torus(notes);
+    int x{0};
 
-    for (int x{0}; x < 12; x++) {
-        
+    for (int note : notes) {
+        int y{0};
+        Node* curr = torus.start;
+
+        //set x
+        for (int i{0}; i < x; i++) {
+            curr = curr->right;
+        }
+
+        //set y
+        while (y != (int)(note/3)) {
+            y = (y < 3 ? y+1 : 0);
+            curr = curr->up;
+        }
+
+        //cout << "x: " << x << ", y: " << y << endl;
+        //cout << curr->pitch << ", " << note%3 << endl;
+
+        ASSERT_TRUE(curr->pitch == note%3);
+        x++;
     }
 }
 

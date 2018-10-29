@@ -86,7 +86,7 @@ bool Torus::write_notes(int notes[]) {
     int y = 0;
 
     for (int i{0}; i < 12; i++) {
-        if (notes[i] < 0 || notes[i] > 11) {
+        if ((notes[i] < 0 || notes[i] > 11) && notes[i] != def) {
             return false;  //number out of range -> false
         }
     }
