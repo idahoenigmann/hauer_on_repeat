@@ -66,10 +66,13 @@ void create_monophonie(Node* start) {   //to be tested
     /*create new file*/
     std::ofstream file;
     file.open("test.ly");
-    //file << "\\version \"2.18.2\"{\n\\score{\n{\\time 4/4\n";
-    file << "\\version \"2.18.2\"\n{\n";
 
-    //file << "\\tupletSpan 4\n";
+    std::ofstream file2;
+    file2.open("test_midi.ly"); //für das zweite .ly file für die midi erzeugung
+
+    //file << "\\version \"2.18.2\"{\n\\score{\n{\\time 4/4\n";
+    file << "\\version \"2.18.2\"\n{";
+    file2 << "\\version \"2.18.2\"\n\\score {\n\\relative{";
 
     bool up = true;
     int original_voice;
@@ -125,11 +128,13 @@ void create_monophonie(Node* start) {   //to be tested
         } else if (l.size()+1 == 3) {
             len = "4";
             file << "\\tuplet 3/2 4 { ";
+            file2 << "\\tuplet 3/2 4 { ";
         } else if (l.size()+1 == 4) {
             len = "4";
         }
 
         file << convert_int_to_note(voice*3+curr->pitch) + len + " ";
+        file2 << convert_int_to_note(voice*3+curr->pitch) + len + " ";
 
         bool first = true;
         for (int i : l) {
@@ -137,14 +142,17 @@ void create_monophonie(Node* start) {   //to be tested
 
             if (l.size()+1 == 3 and !first) {
                 file << convert_int_to_note(i) + " ";
+                file2 << convert_int_to_note(i) + " ";
             } else {
                 file << convert_int_to_note(i) + len + " ";
+                file2 << convert_int_to_note(i) + len + " ";
                 first = false;
             }
         }
 
         if (l.size()+1 == 3) {
             file << "}";
+            file2 << "}";
         }
 
         curr = curr->right; //go to next bar
@@ -153,15 +161,22 @@ void create_monophonie(Node* start) {   //to be tested
     }
     std::cout << voice*3+curr->pitch << std::endl;
     file << convert_int_to_note(voice*3+curr->pitch) + " ";
+    file2 << convert_int_to_note(voice*3+curr->pitch) + " ";
+    // file << "\n}\n\\midi {}\n\\layout {}";
 
-    //file << "\n}\n\\layout{}\n\\midi{}\n}}";
     file << "}\n";
+    file2 << "}\n";
+
     file.close();
+
+    file2  << "\\midi {}\n}";
+    file2.close();
     system("~/bin/lilypond test.ly");
+    system("~/bin/lilypond test_midi.ly");
+    system("timidity test_midi.midi -Ow -o test.mp3");
 
     std::string path = getexepath();
     path.erase(path.rfind('/'));
     std::string str = "firefox file://" + path + "/test.pdf";
     system(str.c_str());
 }
-
