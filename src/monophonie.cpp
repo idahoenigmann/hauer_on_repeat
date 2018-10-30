@@ -171,9 +171,10 @@ void create_monophonie(Node* start) {   //to be tested
 
     file2  << "\\midi {}\n}";
     file2.close();
-    system("~/bin/lilypond test.ly");
-    system("~/bin/lilypond test_midi.ly");
+    system("lilypond test.ly");
+    system("lilypond test_midi.ly");
     system("timidity test_midi.midi -Ow -o test.mp3");
+    system("vlc test.mp3 &");
 
     std::string path = getexepath();
     path.erase(path.rfind('/'));
