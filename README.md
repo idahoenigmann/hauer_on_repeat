@@ -5,21 +5,35 @@
 * googletest (gtest)
 * lilypond
 * firefox
+* timidity++
+* vlc
 
 ## Additional ##
 
+### Installation guides: ###
+
+#### gtest ####
 Installation guide to gtest on Ubuntu [here](https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
 
-LilyPond Download [here](http://lilypond.org/unix.html)
-    (lilypond should be located in ~/bin/lilypond)
+#### lilypond ####
 
-timidity
+LilyPond Download can be found [here](http://lilypond.org/unix.html)
+
+#### timidity++ ####
+
+If you are using Ubuntu:
 
 ```shell
 sudo apt-get install timidity
 ```
 
-vlc
+If you prefer Manjaro:
+
+```shell
+pacman -S timidity++
+```
+
+#### vlc ####
 
 ```shell
 sudo apt-get install vlc
