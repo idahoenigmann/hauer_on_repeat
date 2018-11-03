@@ -81,9 +81,9 @@ void create_monophonie(Node* start) {   //to be tested
         original_node = curr;
         l.clear();
 
-        std::cout << voice*3+curr->pitch << ", ";
+        std::cout << curr->get_int_representation(voice) << ", ";
 
-        int first_note = voice*3+curr->pitch;
+        int first_note = curr->get_int_representation(voice);
 
         while (curr->pitch == curr->right->pitch) {
             if (up) {
@@ -110,7 +110,7 @@ void create_monophonie(Node* start) {   //to be tested
                 }
             }
 
-            l.push_back(voice*3+curr->pitch);
+            l.push_back(curr->get_int_representation(voice));
 
         }
 
@@ -149,8 +149,8 @@ void create_monophonie(Node* start) {   //to be tested
         std::cout << std::endl;
 
     }
-    std::cout << voice*3+curr->pitch << std::endl;
-    file << convert_int_to_note(voice*3+curr->pitch) + " 2 ";
+    std::cout << curr->get_int_representation(voice) << std::endl;
+    file << convert_int_to_note(curr->get_int_representation(voice)) + " 2 ";
 
     file  << "}\\midi {}\\layout{}\n}";
     file.close();

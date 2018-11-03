@@ -25,6 +25,8 @@ struct Node {
     bool is_twelve_tone = false;
 
     Node();
+
+    int get_int_representation(int voice);
 };
 
 
@@ -42,6 +44,8 @@ class Torus {
     Node* start;
 
     void fill_out_notes();
+
+    void move_start();
 
      std::string to_string();
 

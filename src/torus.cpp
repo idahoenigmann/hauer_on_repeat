@@ -79,6 +79,9 @@ Node::Node() {
     pitch = def;
 }
 
+int Node::get_int_representation(int voice) {
+    return voice*3+pitch;
+}
 
 bool Torus::write_notes(int notes[]) {
 
@@ -126,6 +129,10 @@ void Torus::fill_out_notes() {
         }
         curr = curr->right; //go back down again and change bar
     }
+}
+
+void Torus::move_start() {
+
 }
 
 string Torus::to_string() {
