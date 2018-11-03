@@ -162,20 +162,22 @@ bool Torus::move_start() {
                 break;
             }
             cout << endl << "up, ";
-            shift++;
+            shift += 3;
             curr = curr->up;
         }
-        shift = 1;
+
+        if (found) {
+            break;
+        }
+
         for (int i=0; i < 12; i++) {
             numbers[i]++;
             if (numbers[i] < 0) {
                 numbers[i] = 11;
             }
         }
-        if (found) {
-            break;
-        }
 
+        shift = 1;
         cout << endl << "shift, ";
         write_notes(numbers);
         fill_out_notes();
