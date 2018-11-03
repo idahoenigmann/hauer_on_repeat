@@ -8,5 +8,6 @@
 #include "torus.h"
 
 void play_chords(Node* start, int shift);
+void play_notes(Node* start, int shift);
 
 #endif //HAUER_ON_REPEAT_CHORDS_H
