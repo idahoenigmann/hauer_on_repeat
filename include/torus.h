@@ -29,7 +29,9 @@ struct Node {
     int get_int_representation(int voice,int shift=0);
 };
 
+void get_four_chord(int* array, Node* node);
 
+std::string convert_int_to_note(int i);
 
 class Torus {
   public:

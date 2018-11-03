@@ -11,44 +11,6 @@
 #include "torus.h"
 #include "files.h"
 
-std::string convert_int_to_note(int i) {
-    i = i % 12;
-    std::string height = "";
-    while (i > 11) {
-        i = i - 12;
-        height += "'";
-    }
-
-    switch (i){
-        case 0:
-            return "c" + height;
-        case 1:
-            return "cis" + height;
-        case 2:
-            return "d" + height;
-        case 3:
-            return "dis" + height;
-        case 4:
-            return "e" + height;
-        case 5:
-            return "f" + height;
-        case 6:
-            return "fis" + height;
-        case 7:
-            return "g" + height;
-        case 8:
-            return "gis" + height;
-        case 9:
-            return "a" + height;
-        case 10:
-            return "ais" + height;
-        case 11:
-            return "b" + height;
-        default:
-            return "";
-    }
-}
-
 void create_monophonie(Node* start, int shift) {   //to be tested
 
     std::string input = "";

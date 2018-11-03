@@ -5,6 +5,7 @@
 #include <iostream>
 #include "torus.h"
 #include "monophonie.h"
+#include "chords.h"
 
 using namespace std;
 
@@ -42,5 +43,7 @@ int main(int argc, char* argv[]) {
 
     cout << torus.to_string() << endl;
 
-    create_monophonie(torus.start, torus.shift);
+    //create_monophonie(torus.start, torus.shift);
+
+    play_chords(torus.start, torus.shift);
 }

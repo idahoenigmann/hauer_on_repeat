@@ -4,15 +4,9 @@
 // Created by ida on 03.11.18.
 //
 
-#include <iostream>
-#include <fstream>
-#include <string.h>
 #include <limits.h>
 #include <unistd.h>
-#include <cstring>
-#include <list>
 
-#include "torus.h"
 #include "files.h"
 
 
