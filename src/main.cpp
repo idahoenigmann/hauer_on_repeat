@@ -29,7 +29,18 @@ int main(int argc, char* argv[]) {
 
     Torus torus = Torus(numbers);
 
-    //cout << torus.to_string() << endl;
+    cout << "torus move_start successfull: " << torus.move_start() << endl;
 
-    create_monophonie(torus.start);
+    cout << "  _______       _____ _        _             \n"
+            " |__   __|     / ____| |      (_)            \n"
+            "    | | ___   | (___ | |_ _ __ _ _ __   __ _ \n"
+            "    | |/ _ \\   \\___ \\| __| '__| | '_ \\ / _` |\n"
+            "    | | (_) |  ____) | |_| |  | | | | | (_| |\n"
+            "    |_|\\___/  |_____/ \\__|_|  |_|_| |_|\\__, |\n"
+            "                                        __/ |\n"
+            "                                       |___/ " << endl;
+
+    cout << torus.to_string() << endl;
+
+    create_monophonie(torus.start, torus.shift);
 }

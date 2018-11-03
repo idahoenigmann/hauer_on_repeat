@@ -20,37 +20,52 @@ std::string getexepath()
 
 std::string convert_int_to_note(int i) {
     i = i % 12;
+    std::string height = "";
+    while (i > 11) {
+        i = i - 12;
+        height += "'";
+    }
+
     switch (i){
         case 0:
-            return "c";
+            return "c" + height;
         case 1:
-            return "cis";
+            return "cis" + height;
         case 2:
-            return "d";
+            return "d" + height;
         case 3:
-            return "dis";
+            return "dis" + height;
         case 4:
-            return "e";
+            return "e" + height;
         case 5:
-            return "f";
+            return "f" + height;
         case 6:
-            return "fis";
+            return "fis" + height;
         case 7:
-            return "g";
+            return "g" + height;
         case 8:
-            return "gis";
+            return "gis" + height;
         case 9:
-            return "a";
+            return "a" + height;
         case 10:
-            return "ais";
+            return "ais" + height;
         case 11:
-            return "b";
+            return "b" + height;
         default:
             return "";
     }
 }
 
-void create_monophonie(Node* start) {   //to be tested
+void create_monophonie(Node* start, int shift) {   //to be tested
+
+    std::cout << "  __  __                         _                 _      \n"
+                 " |  \\/  |                       | |               (_)     \n"
+                 " | \\  / | ___  _ __   ___  _ __ | |__   ___  _ __  _  ___ \n"
+                 " | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\| '_ \\ / _ \\| '_ \\| |/ _ \\\n"
+                 " | |  | | (_) | | | | (_) | |_) | | | | (_) | | | | |  __/\n"
+                 " |_|  |_|\\___/|_| |_|\\___/| .__/|_| |_|\\___/|_| |_|_|\\___|\n"
+                 "                          | |                             \n"
+                 "                          |_|                             " << std::endl;
 
     Node* curr = start;
     int voice = 0;
@@ -67,7 +82,7 @@ void create_monophonie(Node* start) {   //to be tested
     std::ofstream file;
     file.open("test.ly");
 
-    file << "\\version \"2.18.2\"\n\\score {\n\\relative c' {\n\\time 4/8\n";
+    file << "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
 
     bool up = true;
     int original_voice;
@@ -81,9 +96,9 @@ void create_monophonie(Node* start) {   //to be tested
         original_node = curr;
         l.clear();
 
-        std::cout << curr->get_int_representation(voice) << ", ";
+        std::cout << curr->get_int_representation(voice, shift) << ", ";
 
-        int first_note = curr->get_int_representation(voice);
+        int first_note = curr->get_int_representation(voice, shift);
 
         while (curr->pitch == curr->right->pitch) {
             if (up) {
@@ -110,7 +125,7 @@ void create_monophonie(Node* start) {   //to be tested
                 }
             }
 
-            l.push_back(curr->get_int_representation(voice));
+            l.push_back(curr->get_int_representation(voice, shift));
 
         }
 
@@ -149,8 +164,8 @@ void create_monophonie(Node* start) {   //to be tested
         std::cout << std::endl;
 
     }
-    std::cout << curr->get_int_representation(voice) << std::endl;
-    file << convert_int_to_note(curr->get_int_representation(voice)) + " 2 ";
+    std::cout << curr->get_int_representation(voice, shift) << std::endl;
+    file << convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
     file  << "}\\midi {}\\layout{}\n}";
     file.close();

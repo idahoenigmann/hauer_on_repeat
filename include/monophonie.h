@@ -7,6 +7,6 @@
 
 #include "torus.h"
 
-void create_monophonie(Node* start);
+void create_monophonie(Node* start, int shift);
 
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

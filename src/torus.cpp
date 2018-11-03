@@ -5,11 +5,13 @@
 #include <list>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include "torus.h"
 
 using namespace std;
 
 Torus::Torus(int notes[]) {
+    memcpy(numbers, notes, sizeof(numbers));
 
     Node* firstNodeRowPtr = nullptr;
     Node* uppNodePtr = nullptr;
@@ -79,8 +81,8 @@ Node::Node() {
     pitch = def;
 }
 
-int Node::get_int_representation(int voice) {
-    return voice*3+pitch;
+int Node::get_int_representation(int voice, int shift) {
+    return voice*3+pitch+shift;
 }
 
 bool Torus::write_notes(int notes[]) {
@@ -131,8 +133,59 @@ void Torus::fill_out_notes() {
     }
 }
 
-void Torus::move_start() {
+void get_four_chord(int* array, Node* node) {
+    for (int i=0; i<4; i++) {
+        array[i] = node->pitch;
+        node = node->up;
+    }
+}
 
+bool Torus::move_start() {
+    int arr[4] = {0};
+    int compare[4] = {0, 1, 1, 2};
+    Node* curr = start;
+    bool found = false;
+
+    for (int k=0; k < 3; k++) {
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 12; i++) {
+                get_four_chord(arr, curr);
+                if (memcmp(arr, compare, sizeof(arr)) == 0) {
+                    found = true;
+                    break;
+                }
+                cout << "right, ";
+                curr = curr->right;
+
+            }
+            if (found) {
+                break;
+            }
+            cout << endl << "up, ";
+            shift++;
+            curr = curr->up;
+        }
+        shift = 1;
+        for (int i=0; i < 12; i++) {
+            numbers[i]++;
+            if (numbers[i] < 0) {
+                numbers[i] = 11;
+            }
+        }
+        if (found) {
+            break;
+        }
+
+        cout << endl << "shift, ";
+        write_notes(numbers);
+        fill_out_notes();
+    }
+
+    if (found) {
+        start = curr;
+        return true;
+    }
+    return false;
 }
 
 string Torus::to_string() {
@@ -147,7 +200,7 @@ string Torus::to_string() {
             if (curr->pitch == def) {
                 str += "-";
             } else {
-                str += std::to_string(voice * 3 + curr->pitch);
+                str += std::to_string(curr->get_int_representation(voice));
             }
             //str += std::to_string(curr->pitch);
             str += ", ";
