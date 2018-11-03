@@ -2,21 +2,14 @@
 // Created by ida on 09.10.18.
 //
 #include <iostream>
-#include <fstream>
-#include "torus.h"
-
 #include <string>
 #include <limits.h>
 #include <unistd.h>
 #include <cstring>
 #include <list>
 
-std::string getexepath()
-{
-    char result[ PATH_MAX ];
-    ssize_t count = readlink( "/proc/self/exe", result, PATH_MAX );
-    return std::string( result, (count > 0) ? count : 0 );
-}
+#include "torus.h"
+#include "files.h"
 
 std::string convert_int_to_note(int i) {
     i = i % 12;
@@ -58,6 +51,8 @@ std::string convert_int_to_note(int i) {
 
 void create_monophonie(Node* start, int shift) {   //to be tested
 
+    std::string input = "";
+
     std::cout << "  __  __                         _                 _      \n"
                  " |  \\/  |                       | |               (_)     \n"
                  " | \\  / | ___  _ __   ___  _ __ | |__   ___  _ __  _  ___ \n"
@@ -78,11 +73,8 @@ void create_monophonie(Node* start, int shift) {   //to be tested
         }
     }
 
-    /*create new file*/
-    std::ofstream file;
-    file.open("test.ly");
 
-    file << "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
+    input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
 
     bool up = true;
     int original_voice;
@@ -137,44 +129,39 @@ void create_monophonie(Node* start, int shift) {   //to be tested
             len = "4";
         } else if (l.size()+1 == 3) {
             len = "4";
-            file << "\\tuplet 3/2 { ";
+            input += "\\tuplet 3/2 { ";
         } else {
             len = "8";
         }
 
-        file << convert_int_to_note(first_note) + len + " ";
+        input += convert_int_to_note(first_note) + len + " ";
 
         for (int i : l) {
             std::cout << i << ", ";
             if (l.size()+1 == 3) {
-                file << convert_int_to_note(i) + " ";
+                input += convert_int_to_note(i) + " ";
             } else {
-                file << convert_int_to_note(i) + len + " ";
+                input += convert_int_to_note(i) + len + " ";
             }
 
         }
 
         if (l.size()+1 == 3) {
-            file << " }";
+            input += " }";
         }
 
-        file << "\n";
+        input += "\n";
 
         curr = curr->right; //go to next bar
         std::cout << std::endl;
 
     }
     std::cout << curr->get_int_representation(voice, shift) << std::endl;
-    file << convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
+    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
-    file  << "}\\midi {}\\layout{}\n}";
-    file.close();
-    system("lilypond test.ly");
-    system("timidity test.midi -Ow -o test.mp3");
-    system("vlc test.mp3 &");
+    input += "}\\midi {}\\layout{}\n}";
 
-    std::string path = getexepath();
-    path.erase(path.rfind('/'));
-    std::string str = "firefox file://" + path + "/test.pdf";
-    system(str.c_str());
+    File file = File("test");
+    file.write(input);
+    file.create_midi_pdf();
 }
