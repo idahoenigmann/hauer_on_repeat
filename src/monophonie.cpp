@@ -120,6 +120,9 @@ void create_monophonie(Node* start) {   //to be tested
             len = "2";
         } else if (l.size()+1 == 2) {
             len = "4";
+        } else if (l.size()+1 == 3) {
+            len = "4";
+            file << "\\tuplet 3/2 { ";
         } else {
             len = "8";
         }
@@ -128,13 +131,16 @@ void create_monophonie(Node* start) {   //to be tested
 
         for (int i : l) {
             std::cout << i << ", ";
-
-            file << convert_int_to_note(i) + len + " ";
+            if (l.size()+1 == 3) {
+                file << convert_int_to_note(i) + " ";
+            } else {
+                file << convert_int_to_note(i) + len + " ";
+            }
 
         }
 
         if (l.size()+1 == 3) {
-            file << "r ";
+            file << " }";
         }
 
         file << "\n";
