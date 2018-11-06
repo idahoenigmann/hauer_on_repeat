@@ -70,7 +70,7 @@ void play_notes(Node* start, int shift) {
     Node* curr;
     Node* lowerst_node = start;
 
-    input += "\\version \"2.18.2\"\n\\score {\n\\relative c' {\n\\time 4/8\n";
+    input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/8\n";
 
     for (int bar=0; bar < 12; bar++) {
         curr = lowerst_node;
@@ -78,7 +78,7 @@ void play_notes(Node* start, int shift) {
             if (curr->is_twelve_tone) {
                 std::cout << curr->get_int_representation(i, shift) << ", ";
                 std::cout << convert_int_to_note(curr->get_int_representation(i, shift)) << std::endl;
-                input += convert_int_to_note(curr->get_int_representation(i, shift)) + " ";
+                input += convert_int_to_note(curr->get_int_representation(i, shift)) + "' ";
                 break;
             }
             curr = curr->up;
