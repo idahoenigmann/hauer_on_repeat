@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
 
     
     if (argc - 1 != 12) {
-        throw runtime_error("Needs 12 Numbers");
+        throw runtime_error("Needs 12 Numbers (" + to_string(argc - 1) + " given)");
     }
 
 

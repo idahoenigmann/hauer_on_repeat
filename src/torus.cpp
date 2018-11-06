@@ -145,7 +145,7 @@ int count_diff(int* arr1, int* arr2, int len) {
     int cnt_diff{0};
 
     for (int i{0}; i < len; i++) {
-        if (arr1[i] == arr2[i]) {
+        if (arr1[i] != arr2[i]) {
             cnt_diff++;
         }
     }
@@ -166,6 +166,7 @@ bool Torus::move_start() {
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 12; i++) {
                     get_four_chord(arr, curr);
+                    //cout << endl << arr[0] << arr[1] << arr[2] << arr[3] << endl << count_diff(arr, compare, 4) << endl;
                     if (count_diff(arr, compare, 4) == diff) {
                         start = curr;
                         return true;
