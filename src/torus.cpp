@@ -151,23 +151,16 @@ bool Torus::move_start() {
             for (int i = 0; i < 12; i++) {
                 get_four_chord(arr, curr);
                 if (memcmp(arr, compare, sizeof(arr)) == 0) {
-                    found = true;
-                    break;
+                    start = curr;
+                    return true;
                 }
                 cout << "right, ";
                 curr = curr->right;
 
             }
-            if (found) {
-                break;
-            }
             cout << endl << "up, ";
             shift += 3;
             curr = curr->up;
-        }
-
-        if (found) {
-            break;
         }
 
         for (int i=0; i < 12; i++) {
@@ -183,10 +176,6 @@ bool Torus::move_start() {
         fill_out_notes();
     }
 
-    if (found) {
-        start = curr;
-        return true;
-    }
     return false;
 }
 
