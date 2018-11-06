@@ -140,40 +140,57 @@ void get_four_chord(int* array, Node* node) {
     }
 }
 
+
+int count_diff(int* arr1, int* arr2, int len) {
+    int cnt_diff{0};
+
+    for (int i{0}; i < len; i++) {
+        if (arr1[i] == arr2[i]) {
+            cnt_diff++;
+        }
+    }
+
+    return cnt_diff;
+}
+
+
+
 bool Torus::move_start() {
     int arr[4] = {0};
     int compare[4] = {0, 1, 1, 2};
     Node* curr = start;
     bool found = false;
 
-    for (int k=0; k < 3; k++) {
-        for (int j = 0; j < 4; j++) {
-            for (int i = 0; i < 12; i++) {
-                get_four_chord(arr, curr);
-                if (memcmp(arr, compare, sizeof(arr)) == 0) {
-                    start = curr;
-                    return true;
+    for (int diff{0}; diff < 3; diff++) {
+        for (int k=0; k < 3; k++) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 12; i++) {
+                    get_four_chord(arr, curr);
+                    if (count_diff(arr, compare, 4) == diff) {
+                        start = curr;
+                        return true;
+                    }
+                    cout << "right, ";
+                    curr = curr->right;
+
                 }
-                cout << "right, ";
-                curr = curr->right;
-
+                cout << endl << "up, ";
+                shift += 3;
+                curr = curr->up;
             }
-            cout << endl << "up, ";
-            shift += 3;
-            curr = curr->up;
-        }
 
-        for (int i=0; i < 12; i++) {
-            numbers[i]++;
-            if (numbers[i] < 0) {
-                numbers[i] = 11;
+            for (int i=0; i < 12; i++) {
+                numbers[i]++;
+                if (numbers[i] < 0) {
+                    numbers[i] = 11;
+                }
             }
-        }
 
-        shift = 1;
-        cout << endl << "shift, ";
-        write_notes(numbers);
-        fill_out_notes();
+            shift = 1;
+            cout << endl << "shift, ";
+            write_notes(numbers);
+            fill_out_notes();
+        }
     }
 
     return false;

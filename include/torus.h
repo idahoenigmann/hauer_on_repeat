@@ -49,9 +49,9 @@ class Torus {
 
     bool move_start();
 
-     std::string to_string();
+    std::string to_string();
 
-     int shift=0;
+    int shift=0;
   private:
     std::list <Node*> allNodes;
     int numbers[12];
