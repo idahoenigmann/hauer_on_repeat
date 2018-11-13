@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <gtest/gtest.h>
 #include <vector>
+#include <random>
 #include "monophonie.h"
 
 using namespace std;
@@ -33,4 +34,25 @@ TEST(monophonie_test, test_create_monophonie) {
 
         ASSERT_EQ(correct, monophonie);
     }
+}
+
+TEST(monophonie_test, test_random_monophonie) {
+    vector<int> randoms {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+    random_device rd;
+    default_random_engine e1(rd());
+
+    int nums[12] {};
+
+    while (randoms.size() > 0) {
+        uniform_int_distribution<int> uniform_dist(0, randoms.size()-1);
+
+        int idx{uniform_dist(e1)};
+
+        //cout << randoms[idx] << ", ";
+        nums[11-idx] = randoms[idx];
+        randoms.erase(randoms.begin()+idx);
+    }
+
+    Torus t = Torus(nums);
 }
