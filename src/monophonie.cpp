@@ -6,12 +6,12 @@
 #include <limits.h>
 #include <unistd.h>
 #include <cstring>
-#include <list>
+#include <vector>
 
 #include "torus.h"
 #include "files.h"
 
-std::list<std::list<int>> create_monophonie(Node* start, int shift, bool midi=true) {   //to be tested
+std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool midi=true) {   //to be tested
 
     std::string input = "";
 
@@ -40,12 +40,12 @@ std::list<std::list<int>> create_monophonie(Node* start, int shift, bool midi=tr
 
     bool up = true;
     int original_voice;
-    std::list<int> l;
-    std::list<std::list<int>> ret {};
+    std::vector<int> l;
+    std::vector<std::vector<int>> ret {};
     Node* original_node;
 
     for (int bar=0; bar < 12; bar++) {
-        std::list<int> beat{};
+        std::vector<int> beat{};
         up = true;
         original_voice = voice;
         original_node = curr;
@@ -123,7 +123,7 @@ std::list<std::list<int>> create_monophonie(Node* start, int shift, bool midi=tr
 
     }
     //std::cout << curr->get_int_representation(voice, shift) << std::endl;
-    ret.push_back(std::list<int> {curr->get_int_representation(voice, shift)});
+    ret.push_back(std::vector<int> {curr->get_int_representation(voice, shift)});
     input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
     input += "}\\midi {}\\layout{}\n}";
