@@ -1,4 +1,4 @@
-#include "../src/torus.cpp"
+#include "torus.h"
 #include <cstdlib>
 #include <gtest/gtest.h>
 

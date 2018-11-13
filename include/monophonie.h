@@ -7,6 +7,6 @@
 
 #include "torus.h"
 
-void create_monophonie(Node* start, int shift);
+std::list<std::list<int>> create_monophonie(Node* start, int shift, bool midi=true);
 
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

@@ -11,7 +11,7 @@
 #include "torus.h"
 #include "files.h"
 
-void create_monophonie(Node* start, int shift) {   //to be tested
+std::list<std::list<int>> create_monophonie(Node* start, int shift, bool midi=true) {   //to be tested
 
     std::string input = "";
 
@@ -41,16 +41,17 @@ void create_monophonie(Node* start, int shift) {   //to be tested
     bool up = true;
     int original_voice;
     std::list<int> l;
+    std::list<std::list<int>> ret {};
     Node* original_node;
 
     for (int bar=0; bar < 12; bar++) {
-
+        std::list<int> beat{};
         up = true;
         original_voice = voice;
         original_node = curr;
         l.clear();
 
-        std::cout << curr->get_int_representation(voice, shift) << ", ";
+        //std::cout << curr->get_int_representation(voice, shift) << ", ";
 
         int first_note = curr->get_int_representation(voice, shift);
 
@@ -97,16 +98,19 @@ void create_monophonie(Node* start, int shift) {   //to be tested
         }
 
         input += convert_int_to_note(first_note) + len + " ";
+        beat.push_back(first_note);
 
         for (int i : l) {
-            std::cout << i << ", ";
+            //std::cout << i << ", ";
             if (l.size()+1 == 3) {
                 input += convert_int_to_note(i) + " ";
             } else {
                 input += convert_int_to_note(i) + len + " ";
             }
-
+            beat.push_back(i);
         }
+
+        ret.push_back(beat);
 
         if (l.size()+1 == 3) {
             input += " }";
@@ -115,15 +119,19 @@ void create_monophonie(Node* start, int shift) {   //to be tested
         input += "\n";
 
         curr = curr->right; //go to next bar
-        std::cout << std::endl;
+        //std::cout << std::endl;
 
     }
-    std::cout << curr->get_int_representation(voice, shift) << std::endl;
+    //std::cout << curr->get_int_representation(voice, shift) << std::endl;
+    ret.push_back(std::list<int> {curr->get_int_representation(voice, shift)});
     input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
     input += "}\\midi {}\\layout{}\n}";
 
-    File file = File("test");
+    File file = File("monophonie");
     file.write(input);
-    file.create_midi_pdf();
+    if (midi)
+        file.create_midi_pdf();
+
+    return ret;
 }
