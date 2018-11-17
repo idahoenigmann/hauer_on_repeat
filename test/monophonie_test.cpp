@@ -44,15 +44,22 @@ TEST(monophonie_test, test_random_monophonie) {
 
     int nums[12] {};
 
+    int i{11};
     while (randoms.size() > 0) {
         uniform_int_distribution<int> uniform_dist(0, randoms.size()-1);
 
         int idx{uniform_dist(e1)};
 
         //cout << randoms[idx] << ", ";
-        nums[11-idx] = randoms[idx];
+        nums[11-i] = randoms[idx];
         randoms.erase(randoms.begin()+idx);
+        i--;
     }
 
     Torus t = Torus(nums);
+
+    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false)};
+    for (int i{0}; i < 12; i++) {
+        ASSERT_EQ(nums[i], monophonie[i][0]);
+    }
 }
