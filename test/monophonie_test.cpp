@@ -61,5 +61,6 @@ TEST(monophonie_test, test_random_monophonie) {
     vector<vector<int>> monophonie{create_monophonie(t.start, 0, false)};
     for (int i{0}; i < 12; i++) {
         ASSERT_EQ(nums[i], monophonie[i][0]);
+        ASSERT_LE(monophonie[i].size(), 4);
     }
 }
