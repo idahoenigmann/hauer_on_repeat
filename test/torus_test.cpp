@@ -115,6 +115,13 @@ TEST(torus_test, test_move_start) {
     }
 }
 
+TEST(torus_test, test_anschlussklang) {
+    int notes[12]{6, 10, 8, 4, 9, 11, 3, 1, 0, 7, 2, 5};
+    Torus torus = Torus(notes);
+
+    bool anschlussklang = !torus.move_start();
+    ASSERT_TRUE(anschlussklang);
+}
 
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
