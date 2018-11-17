@@ -86,6 +86,20 @@ TEST(torus_test, test_constructor) {
     }
 }
 
+TEST(torus_test, test_move_start) {
+    int notes[12] {2,11,1,8,5,3,10,0,7,6,4,9};
+    Torus torus = Torus(notes);
+
+    torus.move_start();
+
+    int arr[4] = {};
+    int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+    get_four_chord(arr, torus.start);
+    for (int i{0}; i < 4; i++) {
+        ASSERT_EQ(arr[i], correct_arr[i]);
+    }
+}
+
 
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);

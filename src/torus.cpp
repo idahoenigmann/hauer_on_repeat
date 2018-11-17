@@ -85,6 +85,18 @@ int Node::get_int_representation(int voice, int shift) {
     return voice*3+pitch+shift;
 }
 
+void Torus::clear_torus() {
+    Node* curr = start;
+    for (int x{0}; x < 4; x++) {
+        for (int y{0}; y < 12; y++) {
+            curr->pitch = def;
+            curr->is_twelve_tone = false;
+            curr = curr->right;
+        }
+        curr = curr->up;
+    }
+}
+
 bool Torus::write_notes(int notes[]) {
 
     Node* curr{start};
@@ -159,7 +171,6 @@ bool Torus::move_start() {
     int arr[4] = {0};
     int compare[4] = {0, 1, 1, 2};
     Node* curr = start;
-    bool found = false;
 
     for (int diff{0}; diff < 3; diff++) {
         for (int k=0; k < 3; k++) {
@@ -171,24 +182,25 @@ bool Torus::move_start() {
                         start = curr;
                         return true;
                     }
-                    cout << "right, ";
+                    //cout << "right, ";
                     curr = curr->right;
 
                 }
-                cout << endl << "up, ";
+                //cout << endl << "up, ";
                 shift += 3;
                 curr = curr->up;
             }
 
             for (int i=0; i < 12; i++) {
-                numbers[i]++;
+                numbers[i]--;
                 if (numbers[i] < 0) {
                     numbers[i] = 11;
                 }
             }
 
             shift = 1;
-            cout << endl << "shift, ";
+            //cout << endl << "shift, ";
+            clear_torus();
             write_notes(numbers);
             fill_out_notes();
         }

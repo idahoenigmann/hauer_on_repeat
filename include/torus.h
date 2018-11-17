@@ -45,6 +45,8 @@ class Torus {
 
     Node* start;
 
+    void clear_torus();
+
     void fill_out_notes();
 
     bool move_start();
