@@ -21,7 +21,7 @@ Torus::Torus(int notes[]) {
         Node* firstNodePtr = nullptr;
         Node* leftNodePtr = nullptr;
         for (int x = 0; x < 12; x++) {
-            Node* curr = new Node();
+            auto curr = new Node();
             allNodes.push_back(curr);
 
             if (x == 0) {
@@ -110,7 +110,7 @@ bool Torus::write_notes(int notes[]) {
 
     for (int x{0}; x < 12; x++) {
 
-        while (y != (int) (notes[x] / 3)) {
+        while (y != (notes[x] / 3)) {
             curr = curr->up;
             y++;
             if (y == 4) y = 0;
@@ -133,11 +133,11 @@ void Torus::fill_out_notes() {
 
     for (int bar=0; bar < 24; bar++) {  //go through bars twice
 
-        for (int voice=0; voice < 4; voice++) {
+        for (auto &voice : voices) {
             if (curr->is_twelve_tone) {
-                voices[voice] = curr->pitch;    //store new pitch in array
+                voice = curr->pitch;    //store new pitch in array
             } else {
-                curr->pitch = voices[voice];    //insert pitch of last twelve tone from voice
+                curr->pitch = voice;    //insert pitch of last twelve tone from voice
             }
             curr = curr->up;
         }
@@ -153,7 +153,7 @@ void get_four_chord(int* array, Node* node) {
 }
 
 
-int count_diff(int* arr1, int* arr2, int len) {
+int count_diff(const int* arr1, const int* arr2, int len) {
     int cnt_diff{0};
 
     for (int i{0}; i < len; i++) {
@@ -191,10 +191,10 @@ bool Torus::move_start() {
                 curr = curr->up;
             }
 
-            for (int i=0; i < 12; i++) {
-                numbers[i]--;
-                if (numbers[i] < 0) {
-                    numbers[i] = 11;
+            for (int &number : numbers) {
+                number--;
+                if (number < 0) {
+                    number = 11;
                 }
             }
 
@@ -211,7 +211,7 @@ bool Torus::move_start() {
 
 string Torus::to_string() {
 
-    std::string str = "";
+    std::string str;
 
     Node* curr = start;
 
@@ -236,7 +236,7 @@ string Torus::to_string() {
 
 std::string convert_int_to_note(int i) {
     i = i % 12;
-    std::string height = "";
+    std::string height;
     while (i > 11) {
         i = i - 12;
         height += "'";

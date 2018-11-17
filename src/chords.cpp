@@ -10,7 +10,7 @@
 
 void play_chords(Node* start, int shift) {
 
-    std::string input = "";
+    std::string input;
 
     std::cout << "   _____ _                   _     \n"
                  "  / ____| |                 | |    \n"
@@ -56,7 +56,7 @@ void play_chords(Node* start, int shift) {
 
 void play_notes(Node* start, int shift) {
 
-    std::string input = "";
+    std::string input;
 
     std::cout << "  _   _       _            \n"
                  " | \\ | |     | |           \n"

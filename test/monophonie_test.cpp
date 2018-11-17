@@ -45,8 +45,8 @@ TEST(monophonie_test, test_random_monophonie) {
     int nums[12] {};
 
     int i{11};
-    while (randoms.size() > 0) {
-        uniform_int_distribution<int> uniform_dist(0, randoms.size()-1);
+    while (!randoms.empty()) {
+        uniform_int_distribution<int> uniform_dist(0, static_cast<int>(randoms.size() - 1));
 
         int idx{uniform_dist(e1)};
 
@@ -59,8 +59,8 @@ TEST(monophonie_test, test_random_monophonie) {
     Torus t = Torus(nums);
 
     vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
-    for (int i{0}; i < 12; i++) {
-        ASSERT_EQ(nums[i], monophonie[i][0]);
-        ASSERT_LE(monophonie[i].size(), 4);
+    for (int j{0}; j < 12; j++) {
+        ASSERT_EQ(nums[j], monophonie[j][0]);
+        ASSERT_LE(monophonie[j].size(), 4);
     }
 }

@@ -13,7 +13,7 @@ class File {
 public:
     void write(std::string input);
 
-    File(std::string filename);
+    explicit File(std::string filename);
 
     void create_midi_pdf();
 private:

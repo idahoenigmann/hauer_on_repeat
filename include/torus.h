@@ -37,7 +37,7 @@ class Torus {
   public:
     Torus();
 
-    Torus(int notes[]);
+    explicit Torus(int notes[]);
 
     ~Torus();
 

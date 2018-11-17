@@ -13,7 +13,7 @@
 
 std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool anschlussklang, bool midi=true) {   //to be tested
 
-    std::string input = "";
+    std::string input;
 
     std::cout << "  __  __                         _                 _      \n"
                  " |  \\/  |                       | |               (_)     \n"
@@ -57,7 +57,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         l.push_back(great_four_chord[idx]);
         curr = original_node;
 
-        std::string len = "";
+        std::string len;
 
         if (l.size()+1 == 1) {
             len = "2";
@@ -126,7 +126,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
 
         }
 
-        std::string len = "";
+        std::string len;
 
         if (l.size()+1 == 1) {
             len = "2";
