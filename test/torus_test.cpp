@@ -87,16 +87,31 @@ TEST(torus_test, test_constructor) {
 }
 
 TEST(torus_test, test_move_start) {
-    int notes[12] {2,11,1,8,5,3,10,0,7,6,4,9};
-    Torus torus = Torus(notes);
+    {
+        int notes[12]{2, 11, 1, 8, 5, 3, 10, 0, 7, 6, 4, 9};
+        Torus torus = Torus(notes);
 
-    torus.move_start();
+        torus.move_start();
 
-    int arr[4] = {};
-    int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
-    get_four_chord(arr, torus.start);
-    for (int i{0}; i < 4; i++) {
-        ASSERT_EQ(arr[i], correct_arr[i]);
+        int arr[4] = {};
+        int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+        get_four_chord(arr, torus.start);
+        for (int i{0}; i < 4; i++) {
+            ASSERT_EQ(arr[i], correct_arr[i]);
+        }
+    }
+    {
+        int notes[12]{4, 1, 8, 6, 10, 9, 11, 5, 0, 7, 3, 2};
+        Torus torus = Torus(notes);
+
+        torus.move_start();
+
+        int arr[4] = {};
+        int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+        get_four_chord(arr, torus.start);
+        for (int i{0}; i < 4; i++) {
+            ASSERT_EQ(arr[i], correct_arr[i]);
+        }
     }
 }
 

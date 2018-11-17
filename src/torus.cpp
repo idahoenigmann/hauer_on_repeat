@@ -204,6 +204,7 @@ bool Torus::move_start() {
             write_notes(numbers);
             fill_out_notes();
         }
+        //cout << "diff+1";
     }
 
     return false;
