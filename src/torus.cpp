@@ -180,7 +180,7 @@ bool Torus::move_start() {
                     //cout << endl << arr[0] << arr[1] << arr[2] << arr[3] << endl << count_diff(arr, compare, 4) << endl;
                     if (count_diff(arr, compare, 4) == diff) {
                         start = curr;
-                        return true;
+                        return diff == 0;
                     }
                     //cout << "right, ";
                     curr = curr->right;
@@ -206,8 +206,7 @@ bool Torus::move_start() {
         }
         //cout << "diff+1";
     }
-
-    return false;
+    throw runtime_error("start not found.");
 }
 
 string Torus::to_string() {

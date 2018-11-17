@@ -49,6 +49,7 @@ class Torus {
 
     void fill_out_notes();
 
+    //returns true if great four chord is found in torus; false if anschlussklang needs to be added
     bool move_start();
 
     std::string to_string();

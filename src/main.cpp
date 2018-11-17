@@ -30,7 +30,12 @@ int main(int argc, char* argv[]) {
 
     Torus torus = Torus(numbers);
 
-    cout << "torus move_start successfull: " << torus.move_start() << endl;/*
+    bool anschlussklang = !torus.move_start();
+
+    create_monophonie(torus.start, torus.shift, anschlussklang);
+    //play_chords(torus.start, torus.shift);
+    //play_notes(torus.start, torus.shift);
+
 
     cout << "  _______       _____ _        _             \n"
             " |__   __|     / ____| |      (_)            \n"
@@ -41,9 +46,7 @@ int main(int argc, char* argv[]) {
             "                                        __/ |\n"
             "                                       |___/ " << endl;
 
-    cout << torus.to_string() << endl;*/
+    cout << torus.to_string() << endl;
 
-    create_monophonie(torus.start, torus.shift);
-    //play_chords(torus.start, torus.shift);
-    //play_notes(torus.start, torus.shift);
+
 }

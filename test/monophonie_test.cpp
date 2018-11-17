@@ -16,7 +16,7 @@ TEST(monophonie_test, test_create_monophonie) {
             vector<int>{2,5,6}, vector<int>{8,11}, vector<int>{9,8}, vector<int>{7, 5},
             vector<int>{3,2}, vector<int>{0}};
 
-    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false)};
+    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
 
     ASSERT_EQ(correct, monophonie);
     }
@@ -30,7 +30,7 @@ TEST(monophonie_test, test_create_monophonie) {
                 vector<int>{2,5,8}, vector<int>{6,10}, vector<int>{11}, vector<int>{9,6,5},
                 vector<int>{3,6}, vector<int>{7}};
 
-        vector<vector<int>> monophonie{create_monophonie(t.start, 0, false)};
+        vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
 
         ASSERT_EQ(correct, monophonie);
     }
@@ -58,7 +58,7 @@ TEST(monophonie_test, test_random_monophonie) {
 
     Torus t = Torus(nums);
 
-    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false)};
+    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
     for (int i{0}; i < 12; i++) {
         ASSERT_EQ(nums[i], monophonie[i][0]);
         ASSERT_LE(monophonie[i].size(), 4);

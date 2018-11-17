@@ -11,7 +11,7 @@
 #include "torus.h"
 #include "files.h"
 
-std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool midi=true) {   //to be tested
+std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool anschlussklang, bool midi=true) {   //to be tested
 
     std::string input = "";
 
@@ -38,11 +38,53 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool mid
 
     input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
 
-    bool up = true;
+    bool up;
     int original_voice;
     std::vector<int> l;
     std::vector<std::vector<int>> ret {};
-    Node* original_node;
+    Node* original_node = start;
+
+    if (anschlussklang) {
+        int idx = 0;
+        int great_four_chord[4] {0, 4, 7, 11};
+
+        while (curr->pitch == great_four_chord[idx]) {
+            l.push_back(great_four_chord[idx]);
+
+            curr = curr->up;
+            idx++;
+        }
+        l.push_back(great_four_chord[idx]);
+        curr = original_node;
+
+        std::string len = "";
+
+        if (l.size()+1 == 1) {
+            len = "2";
+        } else if (l.size()+1 == 2) {
+            len = "4";
+        } else if (l.size()+1 == 3) {
+            len = "4";
+            input += "\\tuplet 3/2 { ";
+        } else {
+            len = "8";
+        }
+
+
+        for (int i : l) {
+            if (l.size()+1 == 3) {
+                input += convert_int_to_note(i) + " ";
+            } else {
+                input += convert_int_to_note(i) + len + " ";
+            }
+        }
+
+        if (l.size()+1 == 3) {
+            input += " }";
+        }
+
+        input += "\n";
+    }
 
     for (int bar=0; bar < 12; bar++) {
         std::vector<int> beat{};
