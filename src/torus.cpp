@@ -228,12 +228,12 @@ string Torus::to_string() {
 }
 
 std::string convert_int_to_note(int i) {
-    i = i % 12;
     std::string height;
     while (i > 11) {
         i = i - 12;
         height += "'";
     }
+    i = i % 12;
 
     switch (i){
         case 0:

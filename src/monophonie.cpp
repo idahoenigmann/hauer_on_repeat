@@ -67,7 +67,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     std::vector<std::vector<int>> ret {};
     Node* original_node;
 
-    input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/4\n";
+    input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n";
 
     if (anschlussklang) {
         int great_four_chord[4] {0, 1, 1, 2};

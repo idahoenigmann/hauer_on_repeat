@@ -9,6 +9,6 @@
 #include "torus.h"
 
 std::vector<std::vector<int>> play_chords(Node* start, int shift, bool anschlussklang, bool midi=true);
-void play_notes(Node* start, int shift);
+std::vector<std::vector<int>> play_notes(Node* start, int shift, bool anschlussklang, bool midi=true);
 
 #endif //HAUER_ON_REPEAT_CHORDS_H
