@@ -27,13 +27,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     Node* curr = start;
     int voice = 0;
 
-    while(!curr->is_twelve_tone) {
-        curr = curr->up;
-        voice++;
-        if (voice > 3) {
-            voice = 0;
-        }
-    }
+
 
 
     input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
@@ -42,11 +36,11 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     int original_voice;
     std::vector<int> l;
     std::vector<std::vector<int>> ret {};
-    Node* original_node = start;
+    Node* original_node;
 
     if (anschlussklang) {
         int idx = 0;
-        int great_four_chord[4] {0, 4, 7, 11};
+        int great_four_chord[4] {0, 1, 1, 2};
 
         while (curr->pitch == great_four_chord[idx]) {
             l.push_back(great_four_chord[idx]);
@@ -55,9 +49,11 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
             idx++;
         }
         l.push_back(great_four_chord[idx]);
-        curr = original_node;
+        curr = curr->down;
 
         std::string len;
+
+        bool triad = false;
 
         if (l.size()+1 == 1) {
             len = "2";
@@ -66,24 +62,35 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         } else if (l.size()+1 == 3) {
             len = "4";
             input += "\\tuplet 3/2 { ";
+            triad = true;
         } else {
             len = "8";
         }
 
 
         for (int i : l) {
-            if (l.size()+1 == 3) {
+            if (l.size()+1 == 3 && !triad) {
                 input += convert_int_to_note(i) + " ";
             } else {
                 input += convert_int_to_note(i) + len + " ";
+                triad = false;
             }
         }
+        ret.push_back(l);
 
         if (l.size()+1 == 3) {
             input += " }";
         }
 
         input += "\n";
+    } else {
+        while(!curr->is_twelve_tone) {
+            curr = curr->up;
+            voice++;
+            if (voice > 3) {
+                voice = 0;
+            }
+        }
     }
 
     for (int bar=0; bar < 12; bar++) {

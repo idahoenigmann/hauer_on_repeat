@@ -198,7 +198,7 @@ bool Torus::move_start() {
                 }
             }
 
-            shift = 1;
+            shift = k + 1;
             //cout << endl << "shift, ";
             clear_torus();
             write_notes(numbers);
