@@ -18,15 +18,15 @@ std::string convert_notes_to_string(std::vector<int> l) {
     bool triad = false;
 
     if (l.size() == 1) {
-        len = "2";
+        len = "4";
     } else if (l.size() == 2) {
-        len = "4";
+        len = "8";
     } else if (l.size() == 3) {
-        len = "4";
+        len = "8";
         res += "\\tuplet 3/2 { ";
         triad = true;
     } else {
-        len = "8";
+        len = "16";
     }
 
     for (int i : l) {
@@ -67,7 +67,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     std::vector<std::vector<int>> ret {};
     Node* original_node;
 
-    input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
+    input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/4\n";
 
     if (anschlussklang) {
         int great_four_chord[4] {0, 1, 1, 2};
@@ -182,7 +182,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         curr->pitch = Pitch(great_four_chord[voice]);
     }
     ret.push_back(std::vector<int> {curr->get_int_representation(voice, shift)});
-    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
+    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 4 ";
 
     input += "}\\midi {}\\layout{}\n}";
 
