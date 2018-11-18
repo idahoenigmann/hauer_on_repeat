@@ -27,9 +27,6 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     Node* curr = start;
     int voice = 0;
 
-
-
-
     input += "\\version \"2.18.2\"\n\\score {\n\\relative c'' {\n\\time 4/8\n";
 
     bool up;
@@ -39,17 +36,15 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
     Node* original_node;
 
     if (anschlussklang) {
-        int idx = 0;
         int great_four_chord[4] {0, 1, 1, 2};
 
-        while (curr->pitch == great_four_chord[idx]) {
-            l.push_back(great_four_chord[idx]);
+        while (curr->pitch == great_four_chord[voice]) {
+            l.push_back(great_four_chord[voice] + 3 * voice + shift);
 
             curr = curr->up;
-            idx++;
+            voice++;
         }
-        l.push_back(great_four_chord[idx]);
-        curr = curr->down;
+        l.push_back(great_four_chord[voice] + 3 * voice + shift);
 
         std::string len;
 
@@ -170,6 +165,56 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         curr = curr->right; //go to next bar
         //std::cout << std::endl;
 
+    }
+
+    l.clear();
+
+    if (anschlussklang) {
+        int great_four_chord[4] {0, 1, 1, 2};
+
+        while (curr->pitch == great_four_chord[voice]) {
+            l.push_back(curr->get_int_representation(voice, shift));
+
+            curr = curr->down;
+            voice--;
+        }
+        l.push_back(curr->get_int_representation(voice, shift));
+
+        std::string len;
+
+        bool triad = false;
+
+        if (l.size()+1 == 1) {
+            len = "2";
+        } else if (l.size()+1 == 2) {
+            len = "4";
+        } else if (l.size()+1 == 3) {
+            len = "4";
+            input += "\\tuplet 3/2 { ";
+            triad = true;
+        } else {
+            len = "8";
+        }
+
+
+        for (int i : l) {
+            if (l.size()+1 == 3 && !triad) {
+                input += convert_int_to_note(i) + " ";
+            } else {
+                input += convert_int_to_note(i) + len + " ";
+                triad = false;
+            }
+        }
+        ret.push_back(l);
+
+        if (l.size()+1 == 3) {
+            input += " }";
+        }
+
+        curr = new Node();
+        curr->pitch = Pitch(great_four_chord[voice]);
+
+        input += "\n";
     }
     //std::cout << curr->get_int_representation(voice, shift) << std::endl;
     ret.push_back(std::vector<int> {curr->get_int_representation(voice, shift)});
