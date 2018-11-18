@@ -118,7 +118,6 @@ bool Torus::write_notes(int notes[]) {
 
         curr->pitch = Pitch(notes[x] % 3);
         curr->is_twelve_tone = true;
-        //cout << Pitch(notes[x] % 3) << " (x: " << x << "/group: " << y << ")" << endl;
 
         curr = curr->right;
     }
@@ -177,16 +176,13 @@ bool Torus::move_start() {
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 12; i++) {
                     get_four_chord(arr, curr);
-                    //cout << endl << arr[0] << arr[1] << arr[2] << arr[3] << endl << count_diff(arr, compare, 4) << endl;
                     if (count_diff(arr, compare, 4) == diff) {
                         start = curr;
                         return diff == 0;
                     }
-                    //cout << "right, ";
                     curr = curr->right;
 
                 }
-                //cout << endl << "up, ";
                 shift += 3;
                 curr = curr->up;
             }
@@ -199,12 +195,10 @@ bool Torus::move_start() {
             }
 
             shift = k + 1;
-            //cout << endl << "shift, ";
             clear_torus();
             write_notes(numbers);
             fill_out_notes();
         }
-        //cout << "diff+1";
     }
     throw runtime_error("start not found.");
 }
@@ -223,7 +217,6 @@ string Torus::to_string() {
             } else {
                 str += std::to_string(curr->get_int_representation(voice));
             }
-            //str += std::to_string(curr->pitch);
             str += ", ";
 
             curr = curr->up;    //change voice

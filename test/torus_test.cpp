@@ -78,9 +78,6 @@ TEST(torus_test, test_constructor) {
             curr = curr->up;
         }
 
-        //cout << "x: " << x << ", y: " << y << endl;
-        //cout << curr->pitch << ", " << note%3 << endl;
-
         ASSERT_TRUE(curr->pitch == note%3);
         x++;
     }
