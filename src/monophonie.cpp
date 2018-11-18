@@ -50,11 +50,11 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
 
         bool triad = false;
 
-        if (l.size()+1 == 1) {
+        if (l.size() == 1) {
             len = "2";
-        } else if (l.size()+1 == 2) {
+        } else if (l.size() == 2) {
             len = "4";
-        } else if (l.size()+1 == 3) {
+        } else if (l.size() == 3) {
             len = "4";
             input += "\\tuplet 3/2 { ";
             triad = true;
@@ -64,7 +64,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
 
 
         for (int i : l) {
-            if (l.size()+1 == 3 && !triad) {
+            if (l.size() == 3 && !triad) {
                 input += convert_int_to_note(i) + " ";
             } else {
                 input += convert_int_to_note(i) + len + " ";
@@ -73,7 +73,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         }
         ret.push_back(l);
 
-        if (l.size()+1 == 3) {
+        if (l.size() == 3) {
             input += " }";
         }
 
@@ -184,11 +184,11 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
 
         bool triad = false;
 
-        if (l.size()+1 == 1) {
+        if (l.size() == 1) {
             len = "2";
-        } else if (l.size()+1 == 2) {
+        } else if (l.size() == 2) {
             len = "4";
-        } else if (l.size()+1 == 3) {
+        } else if (l.size() == 3) {
             len = "4";
             input += "\\tuplet 3/2 { ";
             triad = true;
@@ -198,7 +198,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
 
 
         for (int i : l) {
-            if (l.size()+1 == 3 && !triad) {
+            if (l.size() == 3 && !triad) {
                 input += convert_int_to_note(i) + " ";
             } else {
                 input += convert_int_to_note(i) + len + " ";
@@ -207,7 +207,7 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         }
         ret.push_back(l);
 
-        if (l.size()+1 == 3) {
+        if (l.size() == 3) {
             input += " }";
         }
 
