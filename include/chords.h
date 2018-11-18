@@ -5,9 +5,10 @@
 #ifndef HAUER_ON_REPEAT_CHORDS_H
 #define HAUER_ON_REPEAT_CHORDS_H
 
+#include <vector>
 #include "torus.h"
 
-void play_chords(Node* start, int shift);
+std::vector<std::vector<int>> play_chords(Node* start, int shift);
 void play_notes(Node* start, int shift);
 
 #endif //HAUER_ON_REPEAT_CHORDS_H
