@@ -37,7 +37,7 @@ void File::create_midi_pdf() {
 
     system(temp.c_str());
 
-    temp = "vlc " + filename + ".mp3 &";
+    temp = "cvlc " + filename + ".mp3 &";   //cvlc does not display a interface, opposed to vlc
 
     system(temp.c_str());
 

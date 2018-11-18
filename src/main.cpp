@@ -31,7 +31,6 @@ int main(int argc, char* argv[]) {
     Torus torus = Torus(numbers);
 
     bool anschlussklang = !torus.move_start();
-    torus.shift = 0;
 
     vector<vector<int>> notes = create_monophonie(torus.start, torus.shift, anschlussklang);
 
