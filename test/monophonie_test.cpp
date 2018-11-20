@@ -89,9 +89,11 @@ TEST(monophonie_test, test_move_start_random_monophonie) {
         bool anschlussklang = !t.move_start();
         vector<vector<int>> monophonie{create_monophonie(t.start, t.shift, anschlussklang, false)};
 
-        for (int num : monophonie[0]) {
-            bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
-            ASSERT_TRUE(b);
+        if (!anschlussklang) {
+            for (int num : monophonie[0]) {
+                bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
+                ASSERT_TRUE(b);
+            }
         }
 
         for (int num : monophonie[monophonie.size() - 1]) {

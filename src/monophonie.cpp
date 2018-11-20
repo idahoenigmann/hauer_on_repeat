@@ -99,7 +99,6 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
                     curr = original_node;
                     up = false;
                     l.clear();
-                    continue;
                 }
             } else {
                 curr = curr->down;
@@ -110,7 +109,6 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
                     curr = original_node;
                     up = false;
                     l.clear();
-                    continue;
                 }
             }
             comp = curr->right->pitch;
