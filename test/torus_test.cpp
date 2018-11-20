@@ -1,6 +1,10 @@
-#include "torus.h"
+#include <vector>
+#include <random>
 #include <cstdlib>
 #include <gtest/gtest.h>
+#include "torus.h"
+
+using namespace std;
 
 TEST(torus_test, test_nullptr) {
     Torus torus = Torus();
@@ -108,6 +112,52 @@ TEST(torus_test, test_move_start) {
         get_four_chord(arr, torus.start);
         for (int i{0}; i < 4; i++) {
             ASSERT_EQ(arr[i], correct_arr[i]);
+        }
+    }
+}
+
+TEST(torus_test, test_move_start_random) {
+    for (int cnt_tries{0}; cnt_tries < 20; cnt_tries++){
+        vector<int> randoms {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+        random_device rd;
+        default_random_engine e1(rd());
+
+        int nums[12] {};
+
+        int i{11};
+        while (!randoms.empty()) {
+            uniform_int_distribution<int> uniform_dist(0, static_cast<int>(randoms.size() - 1));
+
+            int idx{uniform_dist(e1)};
+
+            //cout << randoms[idx] << ", ";
+            nums[11-i] = randoms[idx];
+            randoms.erase(randoms.begin()+idx);
+            i--;
+        }
+
+        Torus torus = Torus(nums);
+
+        bool anschlussklang = torus.move_start();
+        if (anschlussklang) {
+            int arr[4] = {};
+            int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+            get_four_chord(arr, torus.start);
+            for (int i{0}; i < 4; i++) {
+                ASSERT_EQ(arr[i], correct_arr[i]);
+            }
+        } else {
+            int cnt_diff = 0;
+            int arr[4] = {};
+            int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+            get_four_chord(arr, torus.start);
+            for (int i{0}; i < 4; i++) {
+                if (arr[i] != correct_arr[i]) {
+                    cnt_diff ++;
+                }
+            }
+            ASSERT_TRUE(cnt_diff == 1 || cnt_diff == 2);
         }
     }
 }
