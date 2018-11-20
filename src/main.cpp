@@ -25,19 +25,19 @@ int main(int argc, char* argv[]) {
 
     bool anschlussklang = !torus.move_start();
 
-    vector<vector<int>> notes;
+    //vector<vector<int>> notes;
     //notes = create_monophonie(torus.start, torus.shift, anschlussklang);
     //notes = play_chords(torus.start, torus.shift, anschlussklang);
-    notes = play_notes(torus.start, torus.shift, anschlussklang);
+    //notes = play_notes(torus.start, torus.shift, anschlussklang);
 
-    for (vector<int> bar : notes) {
+    /*for (vector<int> bar : notes) {
         for (int note : bar) {
             cout << note << ", ";
         }
         cout << endl;
-    }
+    }*/
 
-/*
+
     cout << "  _______       _____ _        _             \n"
             " |__   __|     / ____| |      (_)            \n"
             "    | | ___   | (___ | |_ _ __ _ _ __   __ _ \n"
@@ -49,5 +49,5 @@ int main(int argc, char* argv[]) {
 
     cout << torus.to_string() << endl;
 
-*/
+
 }
