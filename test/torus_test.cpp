@@ -77,7 +77,7 @@ TEST(torus_test, test_constructor) {
         }
 
         //set y
-        while (y != (int)(note/3)) {
+        while (y != note/3) {
             y = (y < 3 ? y+1 : 0);
             curr = curr->up;
         }
@@ -144,16 +144,16 @@ TEST(torus_test, test_move_start_random) {
             int arr[4] = {};
             int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
             get_four_chord(arr, torus.start);
-            for (int i{0}; i < 4; i++) {
-                ASSERT_EQ(arr[i], correct_arr[i]);
+            for (int j{0}; j < 4; j++) {
+                ASSERT_EQ(arr[j], correct_arr[j]);
             }
         } else {
             int cnt_diff = 0;
             int arr[4] = {};
             int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
             get_four_chord(arr, torus.start);
-            for (int i{0}; i < 4; i++) {
-                if (arr[i] != correct_arr[i]) {
+            for (int j{0}; j < 4; j++) {
+                if (arr[j] != correct_arr[j]) {
                     cnt_diff ++;
                 }
             }
