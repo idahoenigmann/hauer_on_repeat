@@ -31,18 +31,6 @@ vector<vector<int>> play_chords(Node* start, int shift, bool anschlussklang, boo
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\nr2\n";
 
-    if (anschlussklang) {
-        int great_four_chord[] {0, 1, 1, 2};
-        input += "<<";
-
-        for (int i=0; i<4; i++) {
-            input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) + "4 ";
-            l.push_back(great_four_chord[i] + 3 * i + shift);
-        }
-        ret.push_back(l);
-        input += ">>\n";
-    }
-
     for (int bar=0; bar < 12; bar++) {
         get_four_chord(arr, curr);
         l.clear();
@@ -58,44 +46,27 @@ vector<vector<int>> play_chords(Node* start, int shift, bool anschlussklang, boo
         curr = curr->right; //go to next bar
     }
 
+    l.clear();
+
     if (anschlussklang) {
-        get_four_chord(arr, curr);  //add great four chord at the end
-        l.clear();
-
-        input += "<<";
-
-        for (int i = 0; i < 4; i++) {
-            input += convert_int_to_note(arr[i] + i * 3 + shift) + "4 ";
-            l.push_back(arr[i] + i * 3 + shift);
-        }
-        ret.push_back(l);
-        input += ">>\n";
-
-        l.clear();
-
-        int great_four_chord[] {0, 1, 1, 2};
-        input += "<<";
-
-        for (int i=0; i<4; i++) {
-            input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) + "2 ";
-            l.push_back(great_four_chord[i] + 3 * i + shift);
-        }
-        ret.push_back(l);
-        input += ">>\n";
+        arr[0] = 0;
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 2;
 
     } else {
         get_four_chord(arr, curr);  //add great four chord at the end
-        l.clear();
 
-        input += "<<";
-
-        for (int i = 0; i < 4; i++) {
-            input += convert_int_to_note(arr[i] + i * 3 + shift) + "2 ";
-            l.push_back(arr[i] + 3 * i + shift);
-        }
-        ret.push_back(l);
-        input += ">>\n";
     }
+
+    input += "<<";
+
+    for (int i=0; i<4; i++) {
+        input += convert_int_to_note(arr[i] + 3 * i + shift) + "2 ";
+        l.push_back(arr[i] + 3 * i + shift);
+    }
+    ret.push_back(l);
+    input += ">>\n";
 
     input += "}\\midi {}\\layout{}\n}";
 

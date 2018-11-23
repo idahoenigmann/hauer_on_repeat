@@ -24,11 +24,12 @@ int main(int argc, char* argv[]) {
     Torus torus = Torus(numbers);
 
     bool anschlussklang = !torus.move_start();
-    torus.shift = 0;
+    //cout << "anschlussklang: " << anschlussklang << endl;
+    //torus.shift = 0;
 
     vector<vector<int>> notes;
-    notes = create_monophonie(torus.start, torus.shift, anschlussklang);
-    //notes = play_chords(torus.start, torus.shift, anschlussklang);
+    //notes = create_monophonie(torus.start, torus.shift, anschlussklang);
+    notes = play_chords(torus.start, torus.shift, anschlussklang);
     //notes = play_notes(torus.start, torus.shift, anschlussklang);
 
     for (vector<int> bar : notes) {
