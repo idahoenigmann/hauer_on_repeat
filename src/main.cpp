@@ -29,8 +29,8 @@ int main(int argc, char* argv[]) {
 
     vector<vector<int>> notes;
     //notes = create_monophonie(torus.start, torus.shift, anschlussklang);
-    notes = play_chords(torus.start, torus.shift, anschlussklang);
-    //notes = play_notes(torus.start, torus.shift, anschlussklang);
+    //notes = play_chords(torus.start, torus.shift, anschlussklang);
+    notes = play_notes(torus.start, torus.shift, anschlussklang);
 
     for (vector<int> bar : notes) {
         for (int note : bar) {

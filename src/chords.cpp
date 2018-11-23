@@ -96,12 +96,6 @@ std::vector<std::vector<int>> play_notes(Node* start, int shift, bool anschlussk
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n";
 
-    if (anschlussklang) {
-        input += convert_int_to_note(shift) + "'4 ";     //equals 0 + 3 * voice + shift, since voice = 0
-        l.push_back(shift);
-        ret.push_back(l);
-    }
-
     for (int bar=0; bar < 12; bar++) {
         curr = lowerst_node;
         l.clear();
@@ -116,25 +110,11 @@ std::vector<std::vector<int>> play_notes(Node* start, int shift, bool anschlussk
         lowerst_node = lowerst_node->right; //go to next bar
         ret.push_back(l);
     }
-    curr = lowerst_node;
-
     l.clear();
-    for (int i{0}; i<4; i++) {
-        if (curr->is_twelve_tone) {
-            input += convert_int_to_note(curr->get_int_representation(i, shift)) + "'4 ";
-            l.push_back(curr->get_int_representation(i, shift));
-            break;
-        }
-        curr = curr->up;
-    }
-    ret.push_back(l);
 
     if (anschlussklang) {
-        curr = lowerst_node;
-
-        l.clear();
+        curr = lowerst_node->left;
         int great_four_chord[] {0, 1, 1, 2};
-
         for (int i{0}; i<4; i++) {
             if (curr->pitch != great_four_chord[i]) {
                 input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) + "'4 ";     //equals 0 + 3 * voice + shift, since voice = 0
@@ -142,8 +122,18 @@ std::vector<std::vector<int>> play_notes(Node* start, int shift, bool anschlussk
             }
             curr = curr->up;
         }
-        ret.push_back(l);
+    } else {
+        curr = lowerst_node;
+        for (int i{0}; i<4; i++) {
+            if (curr->is_twelve_tone) {
+                input += convert_int_to_note(curr->get_int_representation(i, shift)) + "'4 ";
+                l.push_back(curr->get_int_representation(i, shift));
+                break;
+            }
+            curr = curr->up;
+        }
     }
+    ret.push_back(l);
 
     input += "}\\midi {}\\layout{}\n}";
 
