@@ -11,10 +11,13 @@ should now consist of one note.
 The next step is to fill in the segments, so that each segment is filled
 with four notes (a four chord). This is achieved by grouping the notes
 into four groups:
-* 1, 2, 3 or c, c#, d
-* 4, 5, 6 or d#, e, f
-* 7, 8, 9 or f#, g, g#
-* 10, 11, 12 or a, a#, b
+
+| group# | numbers    | notes      |
+| ------ | ---------- | ---------- |
+| 0      | 1,  2,  3  | c,  c#, d  |
+| 1      | 4,  5,  6  | d#, e,  f  |
+| 2      | 7,  8,  9  | f#, g,  g# |
+| 3      | 10, 11, 12 | a,  a#, b  |
 
 Each note is repeated / copied into each following segment, unless another
 note from the same group already is present in the segment, in which case
