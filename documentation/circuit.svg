@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Circuit Diagram, cdlibrary.dll 1.0.0.0 -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="320" height="400" xmlns="http://www.w3.org/2000/svg">
+	<line x1="150" y1="260" x2="170" y2="260" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<rect x="170" y="252" width="40" height="16" style="fill-opacity:0;stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="210" y1="260" x2="230" y2="260" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="190" y="243" style="font-family:Arial;font-size:11px;text-anchor:middle" dy=".3em">4.7 kΩ</text>
+	<line x1="230" y1="190" x2="230" y2="211" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="230" y1="239" x2="230" y2="260" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<ellipse cx="230" cy="214" rx="3" ry="3" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<ellipse cx="230" cy="236" rx="3" ry="3" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="222" y1="213" x2="222" y2="237" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="216" y1="219" x2="216" y2="231" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="216" y1="225" x2="222" y2="225" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="250" y1="30" x2="250" y2="23" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<ellipse cx="250" cy="35" rx="12" ry="12" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="250" y1="47" x2="250" y2="40" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<path d="M 250,35 M 242,35 A 4,4 180 1 1 250,35 A 4,4 180 1 0 258,35" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="250" y1="330" x2="250" y2="372" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<path d="M 242,372 L 258,372 L 250,380 L 242,372" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="290" y1="190" x2="290" y2="250" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<path d="M 290,227 M 282,227 L 298,227 M 290,227 L 298,212 L 282,212 L 290,227" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<path d="M 290,225 M 301,223 L 309,231 M 310,232 L 308,228 L 306,230 L 310,232 L 308,228" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<path d="M 290,225 M 294,229 L 302,237 M 303,238 L 301,234 L 299,236 L 303,238 L 301,234" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="250" y1="40" x2="250" y2="107" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="250" y1="133" x2="250" y2="190" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="210" y1="120" x2="236" y2="120" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="235.5" y1="112" x2="235.5" y2="128" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:3" />
+	<line x1="250" y1="107" x2="235.5" y2="116" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="235.5" y1="124" x2="250" y2="133" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<ellipse cx="240" cy="120" rx="16" ry="16" style="fill-opacity:0;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<path d="M 242,127 L 246,125 L 247,132 L 241,128 L 243,127" style="fill-opacity:1;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="290" y1="250" x2="290" y2="330" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="150" y1="330" x2="230" y2="330" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="150" y1="260" x2="150" y2="330" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="20" y1="260" x2="150" y2="260" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="230" y1="330" x2="290" y2="330" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="120" y1="120" x2="220" y2="120" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<line x1="230" y1="190" x2="290" y2="190" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<ellipse cx="150" cy="260" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<ellipse cx="250" cy="330" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+	<ellipse cx="250" cy="190" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0,0,0);stroke:rgb(0,0,0);stroke-width:2" />
+</svg>
