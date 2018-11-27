@@ -12,263 +12,73 @@
 
 \setcounter{tocdepth}{1}
 
+\title{Hauer On Repeat Documentation}
+
+
 \begin{document}
+	
+\maketitle
 
-\begin{titlepage}
-	\newgeometry{margin=0in}
-	\noindent
-	\begin{overpic}[height=\textheight,width=\textwidth]{Pictures/logo_hauer_on_repeat_w_background}
-		\put (13,85) {\fontsize{40}{48}\selectfont HAUER ON REPEAT\fontsize{15}{18}\selectfont }
-		\put (13,80) {\fontsize{15}{18}\selectfont Interaktives Exponat zur Generierung eines Zwölftonspiels}
-		\put (13,78) {\fontsize{15}{18}\selectfont nach Josef Matthias Hauer}
-		\put (13,20) {\fontsize{20}{24}\selectfont Autor: Ida Hönigmann}
-		\put (13,17) {\fontsize{20}{24}\selectfont 18.09.2018}
-		\put (13,12) {\fontsize{15}{18}\selectfont Auftraggeber: Robert Michael Weiß/J. M. Hauer Musikschule}
-	\end{overpic}
-\end{titlepage}
-
-\newgeometry{margin=1in}
 \newpage
+\newgeometry{margin=1in}
 \tableofcontents
 \newpage
 
-\section{Projektinformationen}
-
-\textbf{Projektbezeichnung: }Hauer on repeat 
-
-\noindent \textbf{Projektkurzbeschreibung: }Ziel dieses Projekts ist es ein interaktives Exponat zu Hauers Zwölftonspiel zu erschaffen, welches auf der Landesausstellung 2019 präsentiert wird.
-
-\noindent \textbf{Antragsteller: }Ida Hönigmann
-
-\noindent \textbf{Auftraggeber: }Robert Michael Weiß, Josef Matthias Hauer Musikschule
-
-\section{Projekthintergrund und Projektauslöser}
-%Die Josef Matthias Hauer Musikschule will auf der NÖ Landesausstellung 2019 anlässlich des 60.Todestages von Josef Matthias Hauer ein Hauer-Exponat ausstellen.
-%Josef Matthias Hauer ist vor allem für eine radikal neue Art der 12-Ton Musikerzeugung bekannt. Das Exponat soll es Besuchern ermöglichen, diese Musik zu erzeugen und so den Besuchern näher bringen.
-
-Robert Michael Weiß ist ein Schüler eines Schülers des österreichischen Zwölftonpioniers und geborenen Wiener Neustädters Josef Matthias Hauer (1883-1959) und unterrichtet an der Josef Matthias Hauer Musikschule der Stadt Wiener Neustadt Hauers Zwölftonspiel.
+\section{Idea}
+\subsection{September}
+plan: robot, alogorithm for Monophony and Polypony, Social Media output
 
 \noindent
-Aus Anlass des 100. Jahrestages der Komposition von Hauers erstem zwölftönigen Werk (\mbox{,,Nomos``} op. 19 aus dem Jahr 1919) und Hauers 60. Todestag hat R. M. Weiß beim Planungsteam der NÖ Landesausstellung ein interaktives Exponat zur Demonstration von Hauers Zwölftonmusik angeregt.
+done: design backend
+
+\section{Software}
+\subsection{September}
+plan: Monophony, Polypony, Torus
 
 \noindent
-Da das Motto der Landesausstellung ,,Welt in Bewegung`` lautet, soll das Exponat Zwölfmusik dynamisch darstellen.
+done: Torus
 
-\section{Projektidee}
-Der Besucher wird in die Erzeugung eines Zwölftonspieles eingebunden.
-Aus allen zwölf Tönen soll wahlfrei eine Zwölftonfolge zusammengestellt werden. Diese kann nach Hauers Spielregeln in klingende und visualisierte Musik umgesetzt werden.
-%So sollen die Zahlen von 1 bis 12 vom Benutzer zufällig generiert werden.
-%Weiters kann der Benutzer ein Geräusch erzeugen, welches aufgenommen und in der Musik als Instrument verwendet wird. Die entstandene Musik soll nicht nur von dem aufgenommenen Geräuch gespielt werden, sondern auch von einem einfachen Roboter, der auf einem Xylophon spielt.
-
-\section{Projektbeschreibung}
-Um diese Idee umzusetzen wird die Implementierung der Hauerschen Spielregeln als maschinennaher Algorithmus benötigt.
+\subsection{October}
+plan: Monophony, write tests, display notes, play notes, remove Polyphony, because there exists no algorithm
 
 \noindent
-Die Eingabe der zugrundeliegenden Zwölftonfolge erfolgt durch den Benutzer. Die Installation generiert daraus ein einfaches Zwöltonspiel, exakt wie bei Josef Matthias Hauer, in einer Visualisierung gemäß Hauers eigener zwölftöniger Notenschrift und den Visualisierungskonzepten aus dem Zwölftonunterricht von R. M. Weiß.
-Zusätzlich soll die Musik erklingen.
+done: Monophony, display notes, play notes
+
+\subsection{November}
+plan: write tests, move to great four chord, anschlussklang
 
 \noindent
-Schließlich soll das entstandene Musikstück öffentlich zugänglich gemacht werden:
+done: write tests, move to great four chord, anschlussklang, bug fix Monophony
 
-\begin{itemize}
-\item City Light Anzeigetafeln, die auf die Ausstellung aufmerksam machen sollen
-\item Bot, der das entstandene Stück auf eine Social-Media-Plattform hochlädt
-\end{itemize}
+\section{Input}
+\subsection{September}
+plan: sensors (ir, ...) mounted on a stone plate, microcontroller, no idea about cabeling
 
-\section{Projektziele}
-
-\subsection{Sinn und Zweck}
-Das Exponat wird als Teil der Landesausstellung 2019 in den Ausstellungsräumlichkeiten der Kasematten platziert. Dadurch soll Hauers Zwölftonspiel einem großen Publikum nahegebracht werden und auf die prinzipielle Erlernbarkeit sowie den speziellen Lehrgang in der Musikschule hingewiesen werden.
+\subsection{November}
+plan: buttons instead of other sensors, raspberry pi, cabeling
 
 \noindent
-Eine Dokumentation der Entwicklung kann ggf. im Rahmen eines Symposiums an der Musikschule erfolgen, jedenfalls aber im Rahmen eines von R. M. Weiß herausgegebenen Jahresprogrammes über die Aktivitäten zu ,,100 Jahre Zwölftonmusik; 60. Todestag J. M. Hauers``.
+done: order buttons
 
-%Das entstandene Exponat wird bei der Landesausstellung 2019 ausgestellt. Dadurch soll 12-Ton Musik einem großen Publikum vorgestellt werden. Zusätzlich wird auf die Musikschule aufmerksam gemacht.
+\section{Database}
+\subsection{November}
+plan: store input as is $\rightarrow$ store input, rotated to start at 0 $\rightarrow$ store intervals, sorted + x and y coordinates
 
-\subsection{Funktionale Ziele}
-Das Endergebnis des Projekts besteht aus den folgenden Teilzielen:
-\begin{itemize}
-	\item Eingabeverarbeitung\\
-	Der Benutzer soll bei dem Eingabegerät (Steintafel mit zwölf Sensoren und LEDs) nacheinander alle Sensoren tätigen um seine Eingabe festzulegen.
-	
-	\item Zwölfton Kontinuum\\
-	Die eingegebenen Zahlen werden in einen Torus, der aus 4 Zeilen (Stimmen) und zwölf Spalten (zwölf Vierklänge) besteht, geschrieben. Die leeren Zellen werden nun nach Hauers Regeln gefüllt.
-	
-	\item Finden eines großen Vierklangs\\
-	In dem entstandenen Kontinuums wird nach einem spezifischen Vierklang gesucht, der für den Anfang und das Ende des Zwölfton Stücks genutzt wird.
-	
-	\item Erzeugung Monophonie\\
-	Aus dem Zwölfton Kontinuum wird nun beginnend bei dem großen Vierklang eine Monophonie produziert.
-	
-	\item Abspielen der Musik\\
-	Die Noten der Monophonie werden in ein MIDI- und weiter in ein MP3-Format übertragen und aus diesem abgespielt.
-	
-	\item Darstellung der Musik\\
-	Die entstandenen Noten der Monophonie werden in eine PDF-Datei generiert und auf einem Bildschirm angezeigt.
-	
-	\item Werbematerial für City Lights\\
-	Es wird ein Plakat mit Informationen über das Projekt erstellt, welches auf den City Lights angeziegt wird.
-	
-	\item Social-Media-Bot, der die entstandenen Stücke veröffentlicht\\
-	Ein Programm, dass mittels der Twitter-API die erzeugten Musikstücke auf einem Twitter-Account
-	hochlädt und veröffentlicht.
-	
-	\item Dokumentation für das Jahresprogramm ,,100 Jahre Zwölftonmusik; 60. Todestag J. M. Hauers``\\
-	Es wird ein Abschnitt über unser Projekt verfasst, welcher im Jahresprogramm der Musikschule veröffentlicht wird.
-	
-	\item Anfertigung von Videos / Bilder / Prototypen für eine mögliche Ausstellung in Grünbach
-	usw., die während der Projektarbeit gemacht werden, um sie bei einer möglichen Ausstellung in
-	Grünbach vorzuzeigen.
-\end{itemize}
+\noindent
+done: store all of the above
 
+\section{Social Media Bot}
+\subsection{September}
+plan: Twitter, developer account, telephone number
 
+\noindent
+done: start get developer account
 
-\subsection{Qualitätskriterien / nicht-funktionale Ziele}
-Bei der Durchführung des Projekts muss auf folgende Kriterien geachtet werden:
-\begin{itemize}
-\item Exponat muss widerstandsfähig und damit dem rauen Ausstellungsbetrieb gewachsen sein
-\item Exponat muss leicht und schnell wartbar sein
-\item Exponat muss für alle Altersgruppen geeignet sein
-\item Bedienung muss einfach zu verstehen sein
+\section{Robot}
+\subsection{September}
+plan: plan components to be used
 
-\end{itemize}
-
-\section{Termine}
-
-\subsection{Projektstart}
-Das Projekt hat im September 2018, was dem Beginn des Schuljahres 2018/19 entspricht, begonnen.
-
-
-
-\subsection{Meilensteinliste}
-\begin{center}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		Nummer & Meilenstein & Soll & Ist\\
-		\hline
-		0 & Externe Koordination (Expertise-Treffen mit R. M. Weiß) & 2.10.2018 & 9.10.2018\\
-		1 & Design der Software & 6.11.2018 & 30.10.2018\\
-		2 & Zwölfton Kontinuum erstellen & 6.11.2018 & 27.10.2018\\
-		3 & großen Vierklang finden & 6.11.2018 & 27.10.2018\\
-		4 & Monophonie erzeugen & 6.11.2018 & 27.10.2018\\
-		5 & Abspielen der Musik & 6.11.2018 & 30.10.2018\\
-		6 & Darstellung der Musik & 6.11.2018 & 27.10.2018\\
-		7 & Materialbeschaffung & 27.11.2018 & keine Angaben\\
-		8 & Datenbankeinbindung & keine Angaben & keine Angaben\\
-		9 & Eingabeverarbeitung & 10.12.2018 & keine Angaben\\
-		10 & Schnittstelle Social Media & keine Angaben & keine Angaben\\
-		11 & Werbematerial & keine Angaben & keine Angaben\\
-		12 & Integration der Komponenten & 15.1.2019 & keine Angaben\\
-		13 & Installation des Exponats & 20.3.2019 & keine Angaben\\
-		
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Projektende}
-Das Projekt muss spätestens am 30. März 2019 fertig sein, da zu diesem Zeitpunkt die NÖ Landesausstellung 2019 eröffnet wird.
-
-
-\section{Projektressourcen}
-
-Es werden ungefähr 700 Personenstunden an Arbeit anfallen. Da das Projekt jedoch im Rahmen eines Schulprojekts durchgeführt wird, ist für diese Personenstunden nicht aufzukommen.
-
-%Die angegebenen Personalresourcen sind noch keine genauen Angaben und basieren vorübergehenst auf Schätzungen.
-
-%\begin{center}
-%	\begin{tabular}{|l|l|l|l|}
-%		\hline
-%		Personal & Menge & Euro pro Einheit & Betrag\\
-%		\hline
-%		Projektmanager & 10 & 26 & 260\\
-%		Programmierer & 40 & 21 & 840\\
-%		Designer & 30 & 29 & 870\\
-%		Konstruktor & 60 & 28 & 1680\\
-%		\hline
-%	\end{tabular}
-%\end{center}
-
-\begin{center}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		Material & Menge & Euro pro Einheit & Betrag\\
-		\hline
-		Microcontroller & 2 & 30 & 60\\
-		Eingabegerät & 15 & 5 & 75\\
-		Bildschirm für Ausgabe & 1 & 100 & 100 \\
-		Lautsprecher für Ausgabe & 2 & 50 & 100 \\
-		Gehäuse, Kleinmat., ... & - & 100 & 100\\
-		\hline
-	\end{tabular}
-\end{center}
-
-\hspace{8,2cm}
-Gesamt: ungefähr 450 Euro
-
-\vspace{0,5cm}
-
-\noindent Zur Zeit wird angenommen, dass das Eingabegerät, der Bildschirm sowie Lautsprecher von dem Team der Landesausstellung bereitgestellt werden.
-
-\section{Projektorganisation}
-\subsection{Kunden/Beteiligte}
-%Das Projekt wird für die Josef Matthias Hauer Musikschule durchgeführt. 
-Das Projekt wird für Robert M. Weiß/Josef Matthias Hauer Musikschule für die Landesausstellung 2019 durchgeführt.
-
-\noindent Die Durchführung wird von Ida Hönigmann, Mathias Eitler, Manuel Eiwen und Manuel Kubu vorgenommen.
-
-\noindent Benutzer des Exponats sind die Besucher der NÖ Landesaustellung 2019.
-
-
-\subsection{Projektteam}
-Projektleiter: Ida Hönigmann
-
-\begin{center}
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		Person & Projektmanagement & Konstruktion & Design & Programmieren \\
-		\hline
-		Ida Hönigmann & 2,5 & 15 & 7,5 & 10 \\
-		Mathias Eitler & 2,5 & 15 & 7,5 & 10 \\
-		Manuel Eiwen & 2,5 & 15 & 7,5 & 10 \\
-		Manuel Kubu & 2,5 & 15 & 7,5 & 10 \\
-		\hline
-	\end{tabular}
-\end{center}
-
-\section{Stakeholderanalyse}
-
-\begin{center}
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		Umfeldgruppe & Machteinfluss & Befürchtungen & Erwartungen & Vorkehrungen \\
-		\hline
-		Projektteam & viel Einfluss & Arbeitsüberforderung &  - & \\
-
-		Musikschule & viel Einfluss & - & hohe Erwartung auf & - \\
-		& & & das Projektergebnis &\\
-		
-		Landes- & viel Einfluss & Bürokratie & - & frühe Kontakt-\\
-		ausstellungs- & & & &aufnahme mit den\\
-		verantwortlicher& & & & Verantwortlichen\\
-		
-		Besucher & wenig Einfluss & Vandalismus, & Unterhaltung & leicht zu bedienen\\
-		& & Inkompetenz mit IT & &\\
-		
-		Herr Weiß & viel Einfluss & - & Unterstützung & -\\
-		
-		\hline
-	\end{tabular}
-\end{center}
-
-\section{Projektrisiken}
-Bei nicht erfolgreichem Projektabschluss muss entweder unter Zeitdruck ein anderes Exponat geschaffen werden oder es wird kein Exponat der Musikschule auf der Landesausstellung ausgestellt. Der Nachteil ist eine geringere Menschenmenge, die über Hauer, die Zwölftonmusik und die Musikschule informiert werden.
-
-
-\vspace{2cm}................................................................\hspace{2cm}................................................................
-
-Robert M. Weiß\hspace {6cm}Ida Hönigmann
-
-\vspace{1cm}................................................................
-
+\subsection{October}
+plan: decision to remove robot from exhibit
 
 \end{document}
