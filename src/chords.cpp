@@ -51,7 +51,7 @@ Notes create_chords(Node* start, int shift, bool anschlussklang) {
 
         input += "<<";
         for (int i=0; i<4; i++) {
-            input += convert_int_to_note(arr[i] + i * 3 + shift) + "4 ";
+            input += convert_int_to_note(arr[i] + i * 3 + shift) + "4\\ppp ";
             l.push_back(arr[i] + i * 3 + shift);
         }
         ret.push_back(l);

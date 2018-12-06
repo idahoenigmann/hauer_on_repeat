@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by ida on 09.10.18.
 //
@@ -13,7 +15,7 @@ struct Notes {
     std::vector<std::vector<int>> list;
 
     Notes(std::string input, std::vector<std::vector<int>> list) {
-        this->input = input;
+        this->input = std::move(input);
         this->list = list;
     }
 };
