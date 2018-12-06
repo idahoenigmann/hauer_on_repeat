@@ -10,6 +10,7 @@
 
 #include "torus.h"
 #include "files.h"
+#include "monophonie.h"
 
 std::string convert_notes_to_string(std::vector<int> l) {
     std::string res;
@@ -46,8 +47,7 @@ std::string convert_notes_to_string(std::vector<int> l) {
     return res;
 }
 
-std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool anschlussklang, bool midi=true) {
-
+void monophonie(Node* start, int shift, bool anschlussklang, bool midi) {
     if (midi) {
         std::cout << "  __  __                         _                 _      \n"
                      " |  \\/  |                       | |               (_)     \n"
@@ -58,17 +58,31 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
                      "                          | |                             \n"
                      "                          |_|                             " << std::endl;
     }
+
+    std::string input;
+
+    input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
+
+    input += create_monophonie(start, shift, anschlussklang);
+
+    input += "}>>}\\midi {}\\layout{}\n}";
+
+    File file = File("monophonie");
+    file.write(input);
+    if (midi)
+        file.create_midi_pdf();
+
+}
+
+std::string create_monophonie(Node* start, int shift, bool anschlussklang) {
     std::string input;
     Node *curr = start;
     int voice = 0;
     bool up;
     int original_voice;
     std::vector<int> l;
-    std::vector<std::vector<int>> ret{};
     Node *original_node;
     int great_four_chord[4]{0, 1, 1, 2};   //equals (0, 4, 7, 11)
-
-    input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n";
 
     while (!curr->is_twelve_tone) {
         curr = curr->up;
@@ -119,24 +133,14 @@ std::vector<std::vector<int>> create_monophonie(Node* start, int shift, bool ans
         l.push_back(curr->get_int_representation(voice, shift));
 
         input += convert_notes_to_string(l);
-        ret.push_back(l);
         curr = curr->right; //go to next bar
 
     }
     if (anschlussklang) {
-        ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
         input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 4 ";
     } else {
-        ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
         input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 4 ";
     }
 
-    input += "}\\midi {}\\layout{}\n}";
-
-    File file = File("monophonie");
-    file.write(input);
-    if (midi)
-        file.create_midi_pdf();
-
-    return ret;
+    return input;
 }

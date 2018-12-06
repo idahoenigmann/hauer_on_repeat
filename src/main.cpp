@@ -27,17 +27,9 @@ int main(int argc, char* argv[]) {
     //cout << "anschlussklang: " << anschlussklang << endl;
     //torus.shift = 0;
 
-    vector<vector<int>> notes;
-    notes = create_monophonie(torus.start, torus.shift, anschlussklang);
-    //notes = play_chords(torus.start, torus.shift, anschlussklang);
-    //notes = play_notes(torus.start, torus.shift, anschlussklang);
-
-    for (vector<int> bar : notes) {
-        for (int note : bar) {
-            cout << note << ", ";
-        }
-        cout << endl;
-    }
+    monophonie(torus.start, torus.shift, anschlussklang);
+    //play_chords(torus.start, torus.shift, anschlussklang);
+    //play_notes(torus.start, torus.shift, anschlussklang);
 
 
    /* cout << "  _______       _____ _        _             \n"
