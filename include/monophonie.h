@@ -8,8 +8,18 @@
 #include "torus.h"
 #include <vector>
 
-void monophonie(Node* start, int shift, bool anschlussklang, bool midi=true);
+struct Notes {
+    std::string input;
+    std::vector<std::vector<int>> list;
 
-std::string create_monophonie(Node* start, int shift, bool anschlussklang);
+    Notes(std::string input, std::vector<std::vector<int>> list) {
+        this->input = input;
+        this->list = list;
+    }
+};
+
+std::vector<std::vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool midi=true);
+
+Notes create_monophonie(Node* start, int shift, bool anschlussklang);
 
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

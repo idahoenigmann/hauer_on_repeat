@@ -27,9 +27,9 @@ int main(int argc, char* argv[]) {
     //cout << "anschlussklang: " << anschlussklang << endl;
     //torus.shift = 0;
 
-    //monophonie(torus.start, torus.shift, anschlussklang);
+    monophonie(torus.start, torus.shift, anschlussklang);
     //chords(torus.start, torus.shift, anschlussklang);
-    notes(torus.start, torus.shift, anschlussklang);
+    //notes(torus.start, torus.shift, anschlussklang);
 
 
    /* cout << "  _______       _____ _        _             \n"

@@ -12,9 +12,11 @@
 #include "files.h"
 #include "monophonie.h"
 
-std::string convert_notes_to_string(std::vector<int> l) {
-    std::string res;
-    std::string len;
+using namespace std;
+
+string convert_notes_to_string(vector<int> l) {
+    string res;
+    string len;
 
     bool triad = false;
 
@@ -47,23 +49,24 @@ std::string convert_notes_to_string(std::vector<int> l) {
     return res;
 }
 
-void monophonie(Node* start, int shift, bool anschlussklang, bool midi) {
+vector<vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool midi) {
     if (midi) {
-        std::cout << "  __  __                         _                 _      \n"
+        cout << "  __  __                         _                 _      \n"
                      " |  \\/  |                       | |               (_)     \n"
                      " | \\  / | ___  _ __   ___  _ __ | |__   ___  _ __  _  ___ \n"
                      " | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\| '_ \\ / _ \\| '_ \\| |/ _ \\\n"
                      " | |  | | (_) | | | | (_) | |_) | | | | (_) | | | | |  __/\n"
                      " |_|  |_|\\___/|_| |_|\\___/| .__/|_| |_|\\___/|_| |_|_|\\___|\n"
                      "                          | |                             \n"
-                     "                          |_|                             " << std::endl;
+                     "                          |_|                             " << endl;
     }
 
-    std::string input;
+    string input;
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
 
-    input += create_monophonie(start, shift, anschlussklang);
+    Notes notes = create_monophonie(start, shift, anschlussklang);
+    input += notes.input;
 
     input += "}>>}\\midi {}\\layout{}\n}";
 
@@ -71,16 +74,17 @@ void monophonie(Node* start, int shift, bool anschlussklang, bool midi) {
     file.write(input);
     if (midi)
         file.create_midi_pdf();
-
+    return notes.list;
 }
 
-std::string create_monophonie(Node* start, int shift, bool anschlussklang) {
-    std::string input;
+Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
+    string input;
     Node *curr = start;
     int voice = 0;
     bool up;
     int original_voice;
-    std::vector<int> l;
+    std::vector<std::vector<int>> ret{};
+    vector<int> l;
     Node *original_node;
     int great_four_chord[4]{0, 1, 1, 2};   //equals (0, 4, 7, 11)
 
@@ -133,14 +137,17 @@ std::string create_monophonie(Node* start, int shift, bool anschlussklang) {
         l.push_back(curr->get_int_representation(voice, shift));
 
         input += convert_notes_to_string(l);
+        ret.push_back(l);
         curr = curr->right; //go to next bar
 
     }
     if (anschlussklang) {
+        ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
         input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 4 ";
     } else {
+        ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
         input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 4 ";
     }
 
-    return input;
+    return Notes(input, ret);
 }
