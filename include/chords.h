@@ -8,7 +8,10 @@
 #include <vector>
 #include "torus.h"
 
-std::vector<std::vector<int>> play_chords(Node* start, int shift, bool anschlussklang, bool midi=true);
-std::vector<std::vector<int>> play_notes(Node* start, int shift, bool anschlussklang, bool midi=true);
+void chords(Node* start, int shift, bool anschlussklang, bool midi=true);
+std::string create_chords(Node* start, int shift, bool anschlussklang);
+
+void notes(Node* start, int shift, bool anschlussklang, bool midi=true);
+std::string create_notes(Node* start, int shift, bool anschlussklang);
 
 #endif //HAUER_ON_REPEAT_CHORDS_H
