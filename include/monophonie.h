@@ -5,8 +5,8 @@
 #ifndef HAUER_ON_REPEAT_MONOPHONIE_H
 #define HAUER_ON_REPEAT_MONOPHONIE_H
 
-#include "torus.h"
 #include <vector>
+#include "torus.h"
 
 struct Notes {
     std::string input;
@@ -21,5 +21,7 @@ struct Notes {
 std::vector<std::vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool midi=true);
 
 Notes create_monophonie(Node* start, int shift, bool anschlussklang);
+
+void monophonie_and_chords(Node* start, int shift, bool anschlussklang, bool midi=true);
 
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

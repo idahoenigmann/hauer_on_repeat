@@ -10,6 +10,7 @@
 
 #include "torus.h"
 #include "files.h"
+#include "chords.h"
 #include "monophonie.h"
 
 using namespace std;
@@ -75,6 +76,33 @@ vector<vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool
     if (midi)
         file.create_midi_pdf();
     return notes.list;
+}
+
+void monophonie_and_chords(Node* start, int shift, bool anschlussklang, bool midi) {
+    if (midi) {
+        cout << "  __  __                         _                 _                        _    _____ _                   _     \n"
+                " |  \\/  |                       | |               (_)                      | |  / ____| |                 | |    \n"
+                " | \\  / | ___  _ __   ___  _ __ | |__   ___  _ __  _  ___    __ _ _ __   __| | | |    | |__   ___  _ __ __| |___ \n"
+                " | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\| '_ \\ / _ \\| '_ \\| |/ _ \\  / _` | '_ \\ / _` | | |    | '_ \\ / _ \\| '__/ _` / __|\n"
+                " | |  | | (_) | | | | (_) | |_) | | | | (_) | | | | |  __/ | (_| | | | | (_| | | |____| | | | (_) | | | (_| \\__ \\\n"
+                " |_|  |_|\\___/|_| |_|\\___/| .__/|_| |_|\\___/|_| |_|_|\\___|  \\__,_|_| |_|\\__,_|  \\_____|_| |_|\\___/|_|  \\__,_|___/\n"
+                "                          | |                                                                                    \n"
+                "                          |_|                                                                                    " << endl;
+    }
+
+    string input;
+
+    input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
+
+    input += create_monophonie(start, shift+12, anschlussklang).input;
+    input += "}\n\\new Staff {\n\\clef bass\n";
+    input += create_chords(start, shift, anschlussklang).input;
+    input += "}>>}\\midi {}\\layout{}\n}";
+
+    File file = File("monophonie_and_chords");
+    file.write(input);
+    if (midi)
+        file.create_midi_pdf();
 }
 
 Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
@@ -143,10 +171,10 @@ Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
     }
     if (anschlussklang) {
         ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
-        input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 4 ";
+        input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 2 ";
     } else {
         ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
-        input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 4 ";
+        input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
     }
 
     return Notes(input, ret);
