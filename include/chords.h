@@ -7,11 +7,12 @@
 
 #include <vector>
 #include "torus.h"
+#include "monophonie.h"
 
-void chords(Node* start, int shift, bool anschlussklang, bool midi=true);
-std::string create_chords(Node* start, int shift, bool anschlussklang);
+std::vector<std::vector<int>> chords(Node* start, int shift, bool anschlussklang, bool midi);
+Notes create_chords(Node* start, int shift, bool anschlussklang);
 
-void notes(Node* start, int shift, bool anschlussklang, bool midi=true);
-std::string create_notes(Node* start, int shift, bool anschlussklang);
+std::vector<std::vector<int>> notes(Node* start, int shift, bool anschlussklang, bool midi=true);
+Notes create_notes(Node* start, int shift, bool anschlussklang);
 
 #endif //HAUER_ON_REPEAT_CHORDS_H
