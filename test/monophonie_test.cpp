@@ -6,7 +6,7 @@
 
 using namespace std;
 
-TEST(monophonie_test, test_create_monophonie) {
+TEST(monophonie_test, test_monophonie) {
     {
     int nums[12] {0, 4, 1, 5, 10, 11, 6, 2, 8, 9, 7, 3};
     Torus t = Torus(nums);
@@ -16,9 +16,9 @@ TEST(monophonie_test, test_create_monophonie) {
             vector<int>{2,5,6}, vector<int>{8,11}, vector<int>{9,8}, vector<int>{7, 5},
             vector<int>{3,2}, vector<int>{0}};
 
-    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
+    vector<vector<int>> m{monophonie(t.start, 0, false, false)};
 
-    ASSERT_EQ(correct, monophonie);
+    ASSERT_EQ(correct, m);
     }
 
     {
@@ -30,9 +30,9 @@ TEST(monophonie_test, test_create_monophonie) {
                 vector<int>{2,5,8}, vector<int>{6,10}, vector<int>{11}, vector<int>{9,6,5},
                 vector<int>{3,6}, vector<int>{7}};
 
-        vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
+        vector<vector<int>> m{monophonie(t.start, 0, false, false)};
 
-        ASSERT_EQ(correct, monophonie);
+        ASSERT_EQ(correct, m);
     }
 }
 
@@ -58,10 +58,10 @@ TEST(monophonie_test, test_random_monophonie) {
 
     Torus t = Torus(nums);
 
-    vector<vector<int>> monophonie{create_monophonie(t.start, 0, false, false)};
+    vector<vector<int>> m{monophonie(t.start, 0, false, false)};
     for (int j{0}; j < 12; j++) {
-        ASSERT_EQ(nums[j], monophonie[j][0]);
-        ASSERT_LE(monophonie[j].size(), 4);
+        ASSERT_EQ(nums[j], m[j][0]);
+        ASSERT_LE(m[j].size(), 4);
     }
 }
 
@@ -87,16 +87,16 @@ TEST(monophonie_test, test_move_start_random_monophonie) {
 
         Torus t = Torus(nums);
         bool anschlussklang = !t.move_start();
-        vector<vector<int>> monophonie{create_monophonie(t.start, t.shift, anschlussklang, false)};
+        vector<vector<int>> m{monophonie(t.start, t.shift, anschlussklang, false)};
 
         if (!anschlussklang) {
-            for (int num : monophonie[0]) {
+            for (int num : m[0]) {
                 bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
                 ASSERT_TRUE(b);
             }
         }
 
-        for (int num : monophonie[monophonie.size() - 1]) {
+        for (int num : m[m.size() - 1]) {
             bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
             ASSERT_TRUE(b);
         }
