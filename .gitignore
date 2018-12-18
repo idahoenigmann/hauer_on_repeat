@@ -35,6 +35,8 @@
 build
 test/exec
 *.cmake
+documentation/html
+documentation/latex
 
 *.aux
 *.glo
