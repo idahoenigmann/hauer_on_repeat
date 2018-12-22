@@ -8,6 +8,8 @@
 #include <list>
 #include <string>
 
+//! enum Pitch - The different heights of notes
+
 enum Pitch {
     def = -1, //default
     low = 0,
