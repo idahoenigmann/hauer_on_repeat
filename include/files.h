@@ -27,7 +27,7 @@ public:
     */
     explicit File(std::string filename);
 
-    //! Creates a .midi and .pdf file from a lilypad file (.ly) using lilypad
+    //! Creates a .midi and .pdf file from a lilypond file (.ly) using lilypond
     /*! \param None
     */
     void create_midi_pdf();
