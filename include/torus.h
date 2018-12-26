@@ -31,23 +31,23 @@ struct Node {
 
     //! returns integer corresponding to the note represented
     /*!
-     * \param voice group of the note (1 - 4)
-     * \param shift interval of lowest note from c
+     * @param voice group of the note (1 - 4)
+     * @param shift interval of lowest note from c
      */
     int get_int_representation(int voice,int shift=0);
 };
 
 //! stores the four notes that are played simultaneous into a given array
 /*!
- * \param array array into which the notes are stored
- * \param node pointer to the lowest note of the four notes
+ * @param array array into which the notes are stored
+ * @param node pointer to the lowest note of the four notes
  */
 void get_four_chord(int* array, Node* node);
 
 //! returns the name of the given integer
 /*!
- * \param i interger representing a note
- * \return string containing the note name (e.g. cis)
+ * @param i interger representing a note
+ * @return string containing the note name (e.g. cis)
  */
 std::string convert_int_to_note(int i);
 
@@ -93,7 +93,7 @@ class Torus {
 
     //! sets start pinter of torus to the lowest note of the correct four chord
     /*!
-     * \return true if great four chord is found in torus; false if anschlussklang needs to be added
+     * @return true if great four chord is found in torus; false if anschlussklang needs to be added
      */
     bool move_start();
 

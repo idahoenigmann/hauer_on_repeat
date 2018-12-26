@@ -19,16 +19,16 @@ class File {
 public:
 
     //! Writes content into the File
-    /*! \param input content which is to be written into the File
+    /*! @param input content which is to be written into the File
     */
     void write(std::string input);
 
-    /*! \param filename name of the file which is to be used
+    /*! @param filename name of the file which is to be used
     */
     explicit File(std::string filename);
 
     //! Creates a .midi and .pdf file from a lilypond file (.ly) using lilypond
-    /*! \param None
+    /*! @param None
     */
     void create_midi_pdf();
 private:
