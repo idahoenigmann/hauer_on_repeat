@@ -34,15 +34,13 @@ class DBWriter {
         String input = argv[0];
 
         check(input);
-        input = rotate(input);
-        System.out.println(input);
-        check(input);
+        input = calc(input);
 
-        conn.addEntry(input);
+        conn.addEntry(rotate(input).source, rotate(input).delta);
         System.exit(exitCode);
     }
 
-    //0,1,2,3,4,5,6,7,8,9,10,11
+    //11,7,6,3,10,5,2,1,8,9,4,0
 
     private static void check(String source) { //checks if the input is correct
 
@@ -85,46 +83,80 @@ class DBWriter {
         }
     }
 
-    private static String rotate(String source) { //rotates the input that it starts with a 0
-
+    private static String calc(String source) { //processes the input data
         String[] arr = source.split(",");
-        String[] ergArr = new String[12];
-        int zeroPos=0;
-        // [3, 0, 1, 2] [0,1,2,3]
+        Integer[] erg = new Integer[12];
 
-        if (arr[0] != "0") {
-            for (int i=0; i < 12; i++) {
-                if (arr[i].equals("0")) {
-                    zeroPos = i;
-                    break;
-                }
-            }
-            int arrInt=0;
-            for (int i=0; i < 12; i++) {
-                arrInt = i + zeroPos;
-                if (arrInt > 11) {
-                    arrInt = arrInt - 12;
-                }
-                ergArr[i] = arr[arrInt];
-            }
-            String toReturn="";
-            for (String e : ergArr) {
-                toReturn += e + ",";
+        int after;
+        for (int i=0; i<12; i++) {
+            if (i+1 > 11) {
+                after = 0;
+            } else {
+                after = i+1;
             }
 
-            toReturn = toReturn.substring(0, toReturn.length() - 1);
-            return toReturn;
-        } else {
-            String toReturn="";
-            for (String i : arr) {
-                toReturn += i + ",";
-            }
-            toReturn = toReturn.substring(0, toReturn.length() - 1);
-            return toReturn;
+        erg[i] = (Integer.parseInt(arr[after]) - Integer.parseInt(arr[i])) % 12;
+
         }
+
+        String toReturn="";
+        for (int e : erg) {
+            toReturn += e + ",";
+        }
+
+        toReturn = toReturn.substring(0, toReturn.length() - 1);
+        return toReturn;
+
     }
+
+    private static RestultTuple rotate(String source) {
+        int acc=12;
+        String[] arr = source.split(",");
+        RestultTuple res = new RestultTuple("", 12);
+        int pos=0;
+
+        for (int i=0; i<12; i++) {
+            if (Integer.parseInt(arr[i]) < acc) {
+                acc = Integer.parseInt(arr[i]);
+                pos = i;
+            }
+        }
+
+        String[] rotated = new String[12];
+        int newPos;
+
+        for (int i=0; i<12; i++) {
+            newPos = i - pos;
+            if (newPos < 0) {
+                newPos = 12 + newPos;
+            }
+
+            rotated[newPos] = arr[i];
+        }
+
+        String moved="";
+        for(String i : rotated) {
+            moved += i + ",";
+        }
+        moved = moved.substring(0, moved.length() - 1);
+        res.source = moved;
+        res.delta = pos;
+
+        return res;
+    }
+
 
     private static LinkedList<String> list = new LinkedList<String>();
     private static DBConn conn;
     private static int exitCode;
+}
+
+final class RestultTuple {
+    RestultTuple(String source, int delta) {
+        this.source = source;
+        this.delta = delta;
+    }
+
+    public String source;
+    public int delta;
 }

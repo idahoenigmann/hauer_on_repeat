@@ -35,13 +35,14 @@ class DBConn {
     }
 
 
-    boolean addEntry(String value) {
-        String sql = new String("insert into saves (inputDate, input) values (datetime(), ?)");
+    boolean addEntry(String value, int delta) {
+        String sql = new String("insert into saves (inputDate, input, delta) values (datetime(), ?, ?)");
 
         try {
             statement = connection.prepareStatement(sql);
             statement.setQueryTimeout(5);
             statement.setString(1, value);
+            statement.setInt(2, delta);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
