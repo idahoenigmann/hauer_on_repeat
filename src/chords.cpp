@@ -61,7 +61,7 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
 
     l.clear();
 
-    if (anschlussklang == 1) {
+    if (anschlussklang > 0) {
         arr[0] = 0;
         arr[1] = 1;
         arr[2] = 1;
@@ -129,7 +129,7 @@ Notes create_notes(Node* start, int shift, int anschlussklang) {
     }
     l.clear();
 
-    if (anschlussklang == 1) {
+    if (anschlussklang > 0) {
         curr = lowerst_node->left;
         int great_four_chord[] {0, 1, 1, 2};
         for (int i{0}; i<4; i++) {

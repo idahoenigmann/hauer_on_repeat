@@ -158,7 +158,7 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
                 }
             }
             comp = curr->right->pitch;
-            if (anschlussklang == 1 && bar == 11) {
+            if (anschlussklang > 0 && bar == 11) {
                 comp = great_four_chord[voice];
             }
         }
@@ -169,7 +169,7 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
         curr = curr->right; //go to next bar
 
     }
-    if (anschlussklang == 1) {
+    if (anschlussklang > 0) {
         ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
         input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 2 ";
     } else {
