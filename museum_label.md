@@ -1,7 +1,9 @@
-Auf zur österreichischen Klangwelt
+# Auf zur österreichischen Klangwelt
 
-Da die Musikwelt der 1910er Jahre von Weiterentwicklungen einiger Musikrichtungen (Blues, Jazz) angetrieben wurde, gab es wenig Eigenständiges und Besonders. Doch dann kam der in Wiener Neustadt geborene Josef Matthias Hauer (1883–1959) und erschuf die hauseigene Zwölftonmusik und sie bot in vielerlei Hinsichten eine analytische und tiefgründige Denkweise, welche die Musik im Westen revolutioniert hat.
+In der Musikwert entwickeln sich Musikformen immer weiter. Neues ist meist eine Weiterentwicklung von Altem.
+
+Eine Ausnahme macht der in Wiener Neustadt geborene Josef Matthias Hauer (1883–1959). Er erschuf mit der Zwölftonmusik eine neue Art Musik zu erzeugen. Zwölftonmusik bietet in vielerlei Hinsichten eine analytische und tiefgründige Denkweise.
    
-Mit einem Algorithmus sollten die Töne so kombiniert werden, dass keine bevorzugt werden. Das bedeutet, dass 479.001.600 einstimmige Melodien entstehen können, die durch weitere Kombinationen über 500 Millionen Varianten ergeben. Das kann man sich kaum vorstellen. 
+Mit einem Algorithmus werden Töne so kombiniert, dass keine bevorzugt werden. Dadurch können 479.001.600 einstimmige Melodien entstehen, die durch weitere Kombinationen über unstellbare 500 Millionen Varianten ergeben.
 
-Das weltweit erste Zwölftonwerk erschien erst im Jahr 1919 und trug den Namen Nomos op. 19, was mit seiner athematischen und tiefgründigen Bedeutung ein Meisterwerk wurde. Viele weitere Werke folgten sogleich und lagen dem diesen keines Wegs unterlegen.
+Das weltweit erste Zwölftonwerk erschien im Jahr 1919 und trug den Namen Nomos op. 19. Durch seine mathematische und tiefgründige Bedeutung wurde es ein Meisterwerk. Viele weitere Werke folgten und lagen dem ersten keines Wegs unterlegen.
