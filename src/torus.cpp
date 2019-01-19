@@ -163,7 +163,7 @@ int count_diff(const int* arr1, const int* arr2, int len) {
     return cnt_diff;
 }
 
-bool Torus::move_start() {
+int Torus::move_start() {
     int arr[4] = {0};
     int compare[4] = {0, 1, 1, 2};
     Node* curr = start;
@@ -179,7 +179,7 @@ bool Torus::move_start() {
                         } else {
                             start = curr->right;
                         }
-                        return diff == 0;
+                        return diff;
                     }
                     curr = curr->right;
 

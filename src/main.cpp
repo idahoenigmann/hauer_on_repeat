@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 
     Torus torus = Torus(numbers);
 
-    bool anschlussklang = !torus.move_start();
+    int anschlussklang = !torus.move_start();
     //cout << "anschlussklang: " << anschlussklang << endl;
     //torus.shift = 0;
 

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-vector<vector<int>> chords(Node* start, int shift, bool anschlussklang, bool midi) {
+vector<vector<int>> chords(Node* start, int shift, int anschlussklang, bool midi) {
     if (midi) {
         cout << "   _____ _                   _     \n"
                 "  / ____| |                 | |    \n"
@@ -38,7 +38,7 @@ vector<vector<int>> chords(Node* start, int shift, bool anschlussklang, bool mid
     return notes.list;
 }
 
-Notes create_chords(Node* start, int shift, bool anschlussklang) {
+Notes create_chords(Node* start, int shift, int anschlussklang) {
     string input;
     Node* curr = start;
     int arr[4] = {};
@@ -61,7 +61,7 @@ Notes create_chords(Node* start, int shift, bool anschlussklang) {
 
     l.clear();
 
-    if (anschlussklang) {
+    if (anschlussklang == 1) {
         arr[0] = 0;
         arr[1] = 1;
         arr[2] = 1;
@@ -82,7 +82,7 @@ Notes create_chords(Node* start, int shift, bool anschlussklang) {
     return Notes(input,ret);
 }
 
-vector<vector<int>> notes(Node* start, int shift, bool anschlussklang, bool midi) {
+vector<vector<int>> notes(Node* start, int shift, int anschlussklang, bool midi) {
     if (midi) {
         cout << "  _   _       _            \n"
                 " | \\ | |     | |           \n"
@@ -106,7 +106,7 @@ vector<vector<int>> notes(Node* start, int shift, bool anschlussklang, bool midi
     return notes.list;
 }
 
-Notes create_notes(Node* start, int shift, bool anschlussklang) {
+Notes create_notes(Node* start, int shift, int anschlussklang) {
     string input;
     Node* curr;
     Node* lowerst_node = start;
@@ -129,7 +129,7 @@ Notes create_notes(Node* start, int shift, bool anschlussklang) {
     }
     l.clear();
 
-    if (anschlussklang) {
+    if (anschlussklang == 1) {
         curr = lowerst_node->left;
         int great_four_chord[] {0, 1, 1, 2};
         for (int i{0}; i<4; i++) {

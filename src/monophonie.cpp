@@ -50,7 +50,7 @@ string convert_notes_to_string(vector<int> l) {
     return res;
 }
 
-vector<vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool midi) {
+vector<vector<int>> monophonie(Node* start, int shift, int anschlussklang, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _      \n"
                      " |  \\/  |                       | |               (_)     \n"
@@ -78,7 +78,7 @@ vector<vector<int>> monophonie(Node* start, int shift, bool anschlussklang, bool
     return notes.list;
 }
 
-void monophonie_and_chords(Node* start, int shift, bool anschlussklang, bool midi) {
+void monophonie_and_chords(Node* start, int shift, int anschlussklang, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _                        _    _____ _                   _     \n"
                 " |  \\/  |                       | |               (_)                      | |  / ____| |                 | |    \n"
@@ -105,7 +105,7 @@ void monophonie_and_chords(Node* start, int shift, bool anschlussklang, bool mid
         file.create_midi_pdf();
 }
 
-Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
+Notes create_monophonie(Node* start, int shift, int anschlussklang) {
     string input;
     Node *curr = start;
     int voice = 0;
@@ -158,7 +158,7 @@ Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
                 }
             }
             comp = curr->right->pitch;
-            if (anschlussklang && bar == 11) {
+            if (anschlussklang == 1 && bar == 11) {
                 comp = great_four_chord[voice];
             }
         }
@@ -169,7 +169,7 @@ Notes create_monophonie(Node* start, int shift, bool anschlussklang) {
         curr = curr->right; //go to next bar
 
     }
-    if (anschlussklang) {
+    if (anschlussklang == 1) {
         ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
         input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 2 ";
     } else {

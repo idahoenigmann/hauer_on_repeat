@@ -86,7 +86,7 @@ TEST(monophonie_test, test_move_start_random_monophonie) {
         }
 
         Torus t = Torus(nums);
-        bool anschlussklang = !t.move_start();
+        int anschlussklang = !t.move_start();
         vector<vector<int>> m{monophonie(t.start, t.shift, anschlussklang, false)};
 
         if (!anschlussklang) {

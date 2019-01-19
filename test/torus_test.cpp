@@ -139,26 +139,17 @@ TEST(torus_test, test_move_start_random) {
 
         Torus torus = Torus(nums);
 
-        bool anschlussklang = torus.move_start();
-        if (anschlussklang) {
-            int arr[4] = {};
-            int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
-            get_four_chord(arr, torus.start);
-            for (int j{0}; j < 4; j++) {
-                ASSERT_EQ(arr[j], correct_arr[j]);
+        int anschlussklang = torus.move_start();
+        int cnt_diff = 0;
+        int arr[4] = {};
+        int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
+        get_four_chord(arr, torus.start);
+        for (int j{0}; j < 4; j++) {
+            if (arr[j] != correct_arr[j]) {
+                cnt_diff ++;
             }
-        } else {
-            int cnt_diff = 0;
-            int arr[4] = {};
-            int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
-            get_four_chord(arr, torus.start);
-            for (int j{0}; j < 4; j++) {
-                if (arr[j] != correct_arr[j]) {
-                    cnt_diff ++;
-                }
-            }
-            ASSERT_TRUE(cnt_diff == 1 || cnt_diff == 2);
         }
+        ASSERT_TRUE(cnt_diff == anschlussklang);
     }
 }
 
@@ -166,8 +157,8 @@ TEST(torus_test, test_anschlussklang) {
     int notes[12]{6, 10, 8, 4, 9, 11, 3, 1, 0, 7, 2, 5};
     Torus torus = Torus(notes);
 
-    bool anschlussklang = !torus.move_start();
-    ASSERT_TRUE(anschlussklang);
+    int anschlussklang = torus.move_start();
+    ASSERT_TRUE(anschlussklang == 1);
 }
 
 int main(int argc, char* argv[]) {
