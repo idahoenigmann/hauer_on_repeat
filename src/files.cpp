@@ -43,6 +43,12 @@ void File::create_midi_pdf() {
 
     std::string path = getexepath();
     path.erase(path.rfind('/'));
+
+
+    std::string uploader_str = "bash ../Uploader/complete.sh " + filename + ".mp3 " + filename + ".pdf &";
+    system(uploader_str.c_str());
+
+
     std::string str = "firefox file://" + path + "/" + filename + ".pdf";
     system(str.c_str());
 }
