@@ -61,12 +61,36 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
 
     l.clear();
 
-    if (anschlussklang > 0) {
+    if (anschlussklang == 2) {
         arr[0] = 0;
         arr[1] = 1;
         arr[2] = 1;
         arr[3] = 2;
 
+        for (int &i : arr) {
+            if (curr->pitch != i) {
+                i = curr->pitch;
+                break;
+            }
+        }
+
+        l.clear();
+
+        input += "<<";
+        for (int i=0; i<4; i++) {
+            input += convert_int_to_note(arr[i] + i * 3 + shift) + "4 ";
+            l.push_back(arr[i] + i * 3 + shift);
+        }
+        ret.push_back(l);
+        input += ">>\n";
+
+    }
+
+    if (anschlussklang > 0) {
+        arr[0] = 0;
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 2;
     } else {
         get_four_chord(arr, curr);  //add great four chord at the end
     }
