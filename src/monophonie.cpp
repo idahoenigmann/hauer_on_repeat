@@ -115,6 +115,16 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
     vector<int> l;
     Node *original_node;
     int great_four_chord[4]{0, 1, 1, 2};   //equals (0, 4, 7, 11)
+    int nearly_great_four_chord[4]{0, 1, 1, 2};
+    if (anschlussklang == 2) {
+        Node* n = start->left;
+        for (int &i : nearly_great_four_chord) {
+            if (n->pitch != i) {
+                i = n->pitch;
+                break;
+            }
+        }
+    }
 
     while (!curr->is_twelve_tone) {
         curr = curr->up;
@@ -124,7 +134,7 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
         }
     }
 
-    for (int bar = 0; bar < 12; bar++) {
+    for (int bar = 0; bar < ((anschlussklang == 2) ? 13 : 12); bar++) {
         up = true;
         original_voice = voice;
         original_node = curr;
@@ -158,7 +168,12 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
                 }
             }
             comp = curr->right->pitch;
-            if (anschlussklang > 0 && bar == 11) {
+            if (anschlussklang == 2 && bar == 11) {
+                comp = nearly_great_four_chord[voice];
+                anschlussklang--;
+            }
+
+            if (anschlussklang == 1 && bar == 11) {
                 comp = great_four_chord[voice];
             }
         }

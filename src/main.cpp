@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <random>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
@@ -23,7 +24,7 @@ int main(int argc, char* argv[]) {
 
     Torus torus = Torus(numbers);
 
-    int anschlussklang = !torus.move_start();
+    int anschlussklang = torus.move_start();
     //cout << "anschlussklang: " << anschlussklang << endl;
     //torus.shift = 0;
 

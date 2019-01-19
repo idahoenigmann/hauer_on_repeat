@@ -47,6 +47,7 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
 
     for (int bar=0; bar < 12; bar++) {
         get_four_chord(arr, curr);
+
         l.clear();
 
         input += "<<";
@@ -58,8 +59,6 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
         input += ">>\n";
         curr = curr->right; //go to next bar
     }
-
-    l.clear();
 
     if (anschlussklang == 2) {
         arr[0] = 0;
@@ -73,7 +72,6 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
                 break;
             }
         }
-
         l.clear();
 
         input += "<<";
@@ -83,17 +81,16 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
         }
         ret.push_back(l);
         input += ">>\n";
-
     }
 
-    if (anschlussklang > 0) {
-        arr[0] = 0;
-        arr[1] = 1;
-        arr[2] = 1;
-        arr[3] = 2;
-    } else {
-        get_four_chord(arr, curr);  //add great four chord at the end
-    }
+
+
+    l.clear();
+
+    arr[0] = 0;
+    arr[1] = 1;
+    arr[2] = 1;
+    arr[3] = 2;
 
     input += "<<";
     for (int i=0; i<4; i++) {
@@ -154,14 +151,18 @@ Notes create_notes(Node* start, int shift, int anschlussklang) {
     l.clear();
 
     if (anschlussklang > 0) {
-        curr = lowerst_node->left;
-        int great_four_chord[] {0, 1, 1, 2};
-        for (int i{0}; i<4; i++) {
-            if (curr->pitch != great_four_chord[i]) {
-                input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) + "'4 ";     //equals 0 + 3 * voice + shift, since voice = 0
-                l.push_back(great_four_chord[i] + 3 * i + shift);
+        while (anschlussklang > 0) {
+            curr = lowerst_node->left;
+            int great_four_chord[]{0, 1, 1, 2};
+            for (int i{0}; i < 4; i++) {
+                if (curr->pitch != great_four_chord[i]) {
+                    input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) +
+                             "'4 ";     //equals 0 + 3 * voice + shift, since voice = 0
+                    l.push_back(great_four_chord[i] + 3 * i + shift);
+                    anschlussklang--;
+                }
+                curr = curr->up;
             }
-            curr = curr->up;
         }
     } else {
         curr = lowerst_node;
