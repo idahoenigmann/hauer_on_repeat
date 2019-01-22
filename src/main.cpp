@@ -17,6 +17,9 @@ int main(int argc, char* argv[]) {
     GPIOClass gpio4 = GPIOClass("4");
     GPIOClass gpio17 = GPIOClass("17");
 
+    gpio4.export_gpio();
+    gpio17.export_gpio();
+
     gpio4.setdir_gpio("in");
     gpio17.setdir_gpio("out");
 
