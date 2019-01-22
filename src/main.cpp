@@ -23,8 +23,9 @@ int main(int argc, char* argv[]) {
     gpio4.setdir_gpio("in");
     gpio17.setdir_gpio("out");
 
-    while (gpio17.setval_gpio("1"));
-    cout << "worked!" << endl;
+    system("echo \"1\" > /sys/class/gpio/gpio17/value");
+    //while (gpio17.setval_gpio("1"));
+    //cout << "worked!" << endl;
 
     string val{};
     gpio4.getval_gpio(val);
@@ -32,7 +33,8 @@ int main(int argc, char* argv[]) {
         gpio4.getval_gpio(val);
     }
 
-    gpio17.setval_gpio("0");
+    //gpio17.setval_gpio("0");
+    system("echo \"0\" > /sys/class/gpio/gpio17/value");
 
     gpio4.unexport_gpio();
     gpio17.unexport_gpio();
