@@ -30,6 +30,8 @@ int main(int argc, char* argv[]) {
 
     gpio17.setval_gpio("0");
 
+    gpio4.unexport_gpio();
+    gpio17.unexport_gpio();
 
     if (argc - 1 != 12) {
         throw runtime_error("Needs 12 Numbers (" + to_string(argc - 1) + " given)");
