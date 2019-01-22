@@ -4,9 +4,11 @@
 
 #include <iostream>
 #include <random>
+#include <utility>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
+#include "GPIOClass.h"
 
 using namespace std;
 
