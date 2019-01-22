@@ -23,7 +23,8 @@ int main(int argc, char* argv[]) {
     gpio4.setdir_gpio("in");
     gpio17.setdir_gpio("out");
 
-    gpio17.setval_gpio("1");
+    while (gpio17.setval_gpio("1"));
+    cout << "worked!" << endl;
 
     string val{};
     gpio4.getval_gpio(val);
