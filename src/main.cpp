@@ -14,9 +14,28 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
+    GPIOClass gpio4 = GPIOClass("4");
+    GPIOClass gpio17 = GPIOClass("17");
+
+    gpio4.setdir_gpio("in");
+    gpio17.setdir_gpio("out");
+
+    gpio17.setval_gpio("1");
+
+    string val{};
+    gpio4.getval_gpio(val);
+    while (val == "1") {
+        gpio4.getval_gpio(val);
+    }
+
+    gpio17.setval_gpio("0");
+
+
     if (argc - 1 != 12) {
         throw runtime_error("Needs 12 Numbers (" + to_string(argc - 1) + " given)");
     }
+
+
 
     //save into new array (as integers)
     int numbers[12];
