@@ -33,6 +33,11 @@ database.
 
 ## Additional ##
 
+### References ###
+
+#### GPIO Code from ####
+http://hertaville.com/introduction-to-accessing-the-raspberry-pis-gpio-in-c.html
+
 ### Installation guides: ###
 
 #### gtest ####

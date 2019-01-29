@@ -45,7 +45,7 @@ void File::create_midi_pdf() {
     path.erase(path.rfind('/'));
 
 
-    std::string uploader_str = "bash ../Uploader/complete.sh " + filename + ".mp3 " + filename + ".pdf &";
+    std::string uploader_str = "bash ../Uploader/complete.sh ../build/" + filename + ".mp3 ../build/" + filename + ".pdf &";
     system(uploader_str.c_str());
 
     //std::string uploader_str = "bash ../Uploader/complete.sh " + filename + ".mp3 " + filename + ".pdf &";

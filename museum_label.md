@@ -6,4 +6,4 @@ Eine Ausnahme macht der in Wiener Neustadt geborene Josef Matthias Hauer (1883�
    
 Mit einem Algorithmus werden Töne so kombiniert, dass keine bevorzugt werden. Dadurch können 479.001.600 einstimmige Melodien entstehen, die durch weitere Kombinationen über unvorstellbare 500 Millionen Varianten ergeben.
 
-Das weltweit erste Zwölftonwerk erschien im Jahr 1919 und trug den Namen Nomos op. 19. Durch seine mathematische und tiefgründige Bedeutung wurde es ein Meisterwerk. Viele weitere Werke folgten, welche dem Ersten keineswegs unterliegen.
+Das weltweit erste Zwölftonwerk erschien im Jahr 1919 und trug den Namen Nomos op. 19. Durch dessen mathematische und tiefgründige Bedeutung wurde es ein Meisterwerk. Viele weitere Werke folgten, welche dem Ersten keineswegs unterliegen.
