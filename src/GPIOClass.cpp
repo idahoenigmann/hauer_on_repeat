@@ -74,16 +74,15 @@ int GPIOClass::setval_gpio(string val)
     return 0;
 }
 
-int GPIOClass::getval_gpio(string& val){
-
+string GPIOClass::getval_gpio() {
+    string val{};
     string getval_str = "/sys/class/gpio/gpio" + this->gpionum + "/value";
     ifstream getvalgpio(getval_str.c_str());// open value file for gpio
     if (getvalgpio.bad()){
         cout << " OPERATION FAILED: Unable to get value of GPIO"<< this->gpionum <<" ."<< endl;
-        return -1;
     }
 
-    getvalgpio >> val ;  //read gpio value
+    getvalgpio >> val;  //read gpio value
 
     if(val != "0")
         val = "1";
@@ -91,7 +90,7 @@ int GPIOClass::getval_gpio(string& val){
         val = "0";
 
     getvalgpio.close(); //close the value file
-    return 0;
+    return val;
 }
 
 string GPIOClass::get_gpionum(){

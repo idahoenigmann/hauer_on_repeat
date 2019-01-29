@@ -5,6 +5,8 @@
 #include <iostream>
 #include <random>
 #include <utility>
+#include <array>
+#include <vector>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
@@ -30,32 +32,6 @@ void input(int* nums) {
     GPIOClass val10 = GPIOClass("6");
     GPIOClass val11 = GPIOClass("13");
 
-    val0.export_gpio();
-    val1.export_gpio();
-    val2.export_gpio();
-    val3.export_gpio();
-    val4.export_gpio();
-    val5.export_gpio();
-    val6.export_gpio();
-    val7.export_gpio();
-    val8.export_gpio();
-    val9.export_gpio();
-    val10.export_gpio();
-    val11.export_gpio();
-
-    val0.setdir_gpio("in");
-    val1.setdir_gpio("in");
-    val2.setdir_gpio("in");
-    val3.setdir_gpio("in");
-    val4.setdir_gpio("in");
-    val5.setdir_gpio("in");
-    val6.setdir_gpio("in");
-    val7.setdir_gpio("in");
-    val8.setdir_gpio("in");
-    val9.setdir_gpio("in");
-    val10.setdir_gpio("in");
-    val11.setdir_gpio("in");
-
     //  --- output
     GPIOClass led0 = GPIOClass("19");
     GPIOClass led1 = GPIOClass("26");
@@ -69,50 +45,66 @@ void input(int* nums) {
     GPIOClass led9 = GPIOClass("16");
     GPIOClass led10 = GPIOClass("20");
     GPIOClass led11 = GPIOClass("21");
-    
-    led0.export_gpio();
-    led1.export_gpio();
-    led2.export_gpio();
-    led3.export_gpio();
-    led4.export_gpio();
-    led5.export_gpio();
-    led6.export_gpio();
-    led7.export_gpio();
-    led8.export_gpio();
-    led9.export_gpio();
-    led10.export_gpio();
-    led11.export_gpio();
-
-    led0.setdir_gpio("out");
-    led1.setdir_gpio("out");
-    led2.setdir_gpio("out");
-    led3.setdir_gpio("out");
-    led4.setdir_gpio("out");
-    led5.setdir_gpio("out");
-    led6.setdir_gpio("out");
-    led7.setdir_gpio("out");
-    led8.setdir_gpio("out");
-    led9.setdir_gpio("out");
-    led10.setdir_gpio("out");
-    led11.setdir_gpio("out");
 
 
+    vector<array<GPIOClass, 2>> buttons {{val0, led0}, {val1, led1}, {val2, led2},
+                              {val3, led3}, {val4, led4}, {val5, led5},
+                              {val6, led6}, {val7, led7}, {val8, led8},
+                              {val9, led9}, {val10, led10}, {val11, led11}};
 
-    //system("echo \"1\" > /sys/class/gpio/gpio17/value");
-    //while (gpio17.setval_gpio("1"));
-    //cout << "worked!" << endl;
 
-    string val{};
-    val0.getval_gpio(val);
-    while (val == "1") {
-        val0.getval_gpio(val);
+    for (auto button : buttons) {
+        //INPUT
+        button[0].export_gpio();
+        button[0].setdir_gpio("in");
+
+        //OUTPUT
+        button[1].export_gpio();
+        button[1].setdir_gpio("out");
     }
 
-    //gpio17.setval_gpio("0");
-    system("echo \"0\" > /sys/class/gpio/gpio17/value");
 
+    //  WAIT FOR INPUT
+    vector<array<GPIOClass, 2>> cpy_buttons {buttons};
+    while (true) {
+        int idx{0};
+        for (auto button : cpy_buttons) {
+            if (button[0].getval_gpio() == "0") {
+                button[1].setval_gpio("0");
+                cpy_buttons.erase(cpy_buttons.begin() + idx);
+            } else {
+                idx++;
+            }
+        }
+    }
+
+
+    // UNEXPORT EVERYTHING
     val0.unexport_gpio();
+    val1.unexport_gpio();
+    val2.unexport_gpio();
+    val3.unexport_gpio();
+    val4.unexport_gpio();
+    val5.unexport_gpio();
+    val6.unexport_gpio();
+    val7.unexport_gpio();
+    val8.unexport_gpio();
+    val9.unexport_gpio();
+    val10.unexport_gpio();
+    val11.unexport_gpio();
+
     led0.unexport_gpio();
+    led1.unexport_gpio();
+    led2.unexport_gpio();
+    led3.unexport_gpio();
+    led4.unexport_gpio();
+    led5.unexport_gpio();
+    led6.unexport_gpio();
+    led7.unexport_gpio();
+    led8.unexport_gpio();
+    led9.unexport_gpio();
+    led10.unexport_gpio();
+    led11.unexport_gpio();
 }
 
 
