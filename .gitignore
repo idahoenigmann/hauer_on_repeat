@@ -61,3 +61,7 @@ documentation/latex
 *.mtc1
 *.out
 *.synctex.gz
+
+*.mp3
+*.pdf
+*.class
