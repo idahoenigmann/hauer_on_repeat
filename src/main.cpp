@@ -126,6 +126,16 @@ int main(int argc, char* argv[]) {
         numbers[i - 1] = stoi((string)argv[i]);
     }
 
+    string dbwriter = "";
+    dbwriter = (string)argv[1];
+    for (int i{2}; i <= 12; i++) {
+        dbwriter += "," + (string)argv[i];
+    }
+
+
+    string writer = "../database/DBWriter/build/bin/dbwriter " + dbwriter;
+    system(writer.c_str());
+
     Torus torus = Torus(numbers);
 
     int anschlussklang = torus.move_start();
