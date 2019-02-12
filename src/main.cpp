@@ -75,7 +75,9 @@ void input(int* nums) {
             } else {
                 idx++;
             }
+            if (cpy_buttons.empty()) break;
         }
+        if (cpy_buttons.empty()) break;
     }
 
 
