@@ -15,6 +15,14 @@
 using namespace std;
 
 
+bool in(int num, int* d) {
+    for (int i{0}; i < 12; i++) {
+        if (d[i] == num) return true; 
+    }
+    return false;
+}
+
+
 void input(int* nums) {
 
     //      GPIO SETUP
@@ -61,23 +69,19 @@ void input(int* nums) {
         //OUTPUT
         button[1].export_gpio();
         button[1].setdir_gpio("out");
+        button[1].setval_gpio("1");
     }
 
 
     //  WAIT FOR INPUT
-    vector<array<GPIOClass, 2>> cpy_buttons {buttons};
-    while (true) {
-        int idx{0};
-        for (auto button : cpy_buttons) {
-            if (button[0].getval_gpio() == "0") {
-                button[1].setval_gpio("0");
-                cpy_buttons.erase(cpy_buttons.begin() + idx);
-            } else {
-                idx++;
+    //vector<string> pressed {};
+    for (int idx{0}; idx < 12; idx++) {
+        for (int i{0}; i < buttons.size(); i++) {
+            if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
+                buttons[i][1].setval_gpio("0");
+                nums[idx] = i;
             }
-            if (cpy_buttons.empty()) break;
         }
-        if (cpy_buttons.empty()) break;
     }
 
 
@@ -120,7 +124,7 @@ int main(int argc, char* argv[]) {
 
 
     //save into new array (as integers)
-    int numbers[12]{};
+    int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
     input(numbers);
 
