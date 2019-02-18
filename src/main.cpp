@@ -24,6 +24,7 @@ bool in(int num, int* d) {
 
 
 void input(int* nums) {
+    cout << "GPIO Setup" << endl;
 
     //      GPIO SETUP
     //  --- input
@@ -73,13 +74,18 @@ void input(int* nums) {
     }
 
 
+    cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
     //  WAIT FOR INPUT
     //vector<string> pressed {};
-    for (int idx{0}; idx < 12; idx++) {
-        for (int i{0}; i < buttons.size(); i++) {
-            if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
-                buttons[i][1].setval_gpio("0");
-                nums[idx] = i;
+    while (in(-1, nums)) {
+        for (int idx{0}; idx < 12; idx++) {
+            for (int i{0}; i < buttons.size(); i++) {
+//              if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
+                if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
+                    buttons[i][1].setval_gpio("0");
+                    nums[idx] = i;
+                    cout << "Button " << i << " pressed!" << endl;
+                }
             }
         }
     }
@@ -128,14 +134,14 @@ int main(int argc, char* argv[]) {
 
     input(numbers);
 
-    for (int i{1}; i <= 12; i++) {
-        numbers[i - 1] = stoi((string)argv[i]);
-    }
+    //for (int i{1}; i <= 12; i++) {
+    //    numbers[i - 1] = stoi((string)argv[i]);
+    //}
 
     string dbwriter = "";
-    dbwriter = (string)argv[1];
-    for (int i{2}; i <= 12; i++) {
-        dbwriter += "," + (string)argv[i];
+    dbwriter = to_string(numbers[0]);
+    for (int i{1}; i < 12; i++) {
+        dbwriter += "," + to_string(numbers[i]);
     }
 
 
