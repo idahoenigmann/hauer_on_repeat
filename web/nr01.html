@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hauer On Repeat</title>
+  <meta charset="utf-8" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+
+    .center {
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
+    }
+
+    body {
+        text-align: center;
+    }
+
+    #Header {
+        font-size: 100px;
+        text-shadow: 2px 2px #ff0000;
+    }    
+
+    #Content {
+        margin-left: 25%;
+        width: 50%;
+        text-align: center;
+        
+    }
+
+    #ContentText {
+        font-size: 30px;
+    }
+
+  </style>
+
+  <script>
+  var text = true;
+  var el = document.getElementById('ContentText');
+  var keycode = "";
+
+  setTimeout(fadew, 5000);
+  setTimeout(change_page_to_nr0, 5500);
+
+  function change_page_to_nr0(){
+      window.location.href = "nr0.html";
+  } 
+/*
+  function fadew2() {
+    change_page_to_nr0.fadeIn();
+  }*/
+
+  function fadew() {
+      $("body").fadeOut();
+  }
+
+  function openTab(url) {
+      window.open(url, '_blank');
+      window.focus();
+  }
+
+  
+  function getKey(e) {
+    keycode = e.keyCode;
+    if (keycode >= 0 || keycode <= 223) {
+        openTab("nr1.html");
+    }
+  }
+
+  document.onkeyup = getKey;
+
+  </script>
+</head>
+<body>
+        <div id="KONTENT">
+                <h1 id="Header">Hauer On Repeat</h1>
+            <div id="Content">
+                <p id="ContentText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+                    since the 1500s, 
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
+                    the leap into elecy unchanged. It was popularised in the 1960s with the release of Letraset 
+                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+        </div>
+
+        
+</body>
+</html> 
