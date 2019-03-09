@@ -37,22 +37,16 @@ void File::create_midi_pdf() {
 
     system(temp.c_str());
 
-    temp = "cvlc " + filename + ".mp3 &";   //cvlc does not display a interface, opposed to vlc
-
-    system(temp.c_str());
+    //temp = "aplay " + filename + ".mp3 &";   //moved to javascript
+    //system(temp.c_str());
 
     std::string path = getexepath();
     path.erase(path.rfind('/'));
 
-
     std::string uploader_str = "bash ../Uploader/complete.sh ../build/" + filename + ".mp3 ../build/" + filename + ".pdf &";
     system(uploader_str.c_str());
 
-    //std::string uploader_str = "bash ../Uploader/complete.sh " + filename + ".mp3 " + filename + ".pdf &";
-    //system(uploader_str.c_str());
-
-
-    std::string str = "firefox file://" + path + "/" + filename + ".pdf";
+    std::string str = "firefox file://" + path + "/../web/nr1.html";
     system(str.c_str());
 }
 
