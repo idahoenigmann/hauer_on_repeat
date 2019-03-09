@@ -72,7 +72,7 @@ vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
     input += "}>>}\\midi {}\\layout{}\n}";
 
     File file = File("monophonie");
-    file.write(input);
+    file.write(input, "ly");
     if (midi)
         file.create_midi_pdf();
     return notes.list;
@@ -100,7 +100,7 @@ void monophonie_and_chords(Node* start, int shift, bool midi) {
     input += "}>>}\\midi {}\\layout{}\n}";
 
     File file = File("monophonie_and_chords");
-    file.write(input);
+    file.write(input, "ly");
     if (midi)
         file.create_midi_pdf();
 }
@@ -114,7 +114,6 @@ Notes create_monophonie(Node* start, int shift) {
     std::vector<std::vector<int>> ret{};
     vector<int> l;
     Node *original_node;
-    int great_four_chord[4]{0, 1, 1, 2};   //equals (0, 4, 7, 11)
 
     while (!curr->is_twelve_tone) {
         curr = curr->up;

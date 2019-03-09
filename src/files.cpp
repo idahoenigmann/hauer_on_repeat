@@ -17,10 +17,10 @@ std::string getexepath()
     return std::string(result, static_cast<unsigned long>((count > 0) ? count : 0));
 }
 
-void File::write(std::string input) {
+void File::write(std::string input, std::string filetype) {
     std::ofstream file;
 
-    std::string temp = filename + ".ly";
+    std::string temp = filename + "." + filetype;
     file.open(temp);
 
     file << input;

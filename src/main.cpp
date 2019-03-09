@@ -7,10 +7,13 @@
 #include <utility>
 #include <array>
 #include <vector>
+#include <limits.h>
+#include <unistd.h>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
 #include "GPIOClass.h"
+#include "files.h"
 
 using namespace std;
 
@@ -147,6 +150,9 @@ int main(int argc, char* argv[]) {
 
         Torus torus = Torus(numbers);
         torus.move_start();
+
+        File file = File("torus");
+        file.write(torus.to_string(), "xml");
 
         //monophonie(torus.start, torus.shift);
         //chords(torus.start, torus.shift);

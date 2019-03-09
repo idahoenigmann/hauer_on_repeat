@@ -21,7 +21,7 @@ public:
     //! Writes content into the File
     /*! @param input content which is to be written into the File
     */
-    void write(std::string input);
+    void write(std::string input, std::string filetype);
 
     /*! @param filename name of the file which is to be used
     */

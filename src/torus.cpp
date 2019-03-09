@@ -198,25 +198,29 @@ void Torus::move_start() {
 
 string Torus::to_string() {
 
-    std::string str;
-
     Node* curr = start;
+    std::string str = "<torus>\n";
 
     for (int bar=0; bar < 12; bar++) {
+        str += "<bar>\n";
         for (int voice=0; voice < 4; voice++) {
 
             if (curr->pitch == def) {
-                str += "-";
+                str += "<note/>\n";
             } else {
-                str += std::to_string(curr->get_int_representation(voice));
-            }
-            str += ", ";
+                str += "<note";
+                if (curr->is_twelve_tone) {
+                    str += " filled=\"filled\"";
+                }
 
+                str += ">" + std::to_string(curr->get_int_representation(voice)) + "</note>\n";
+            }
             curr = curr->up;    //change voice
         }
-        str += "\n";
+        str += "</bar>\n";
         curr = curr->right; //go back down and change bar
     }
+    str += "</torus>\n";
     return str;
 }
 
