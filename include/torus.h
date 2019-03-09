@@ -95,7 +95,7 @@ class Torus {
     /*!
      * @return true if great four chord is found in torus; false if anschlussklang needs to be added
      */
-    int move_start();
+    void move_start();
 
     //! returns string representation of torus
     /*!

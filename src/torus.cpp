@@ -163,23 +163,17 @@ int count_diff(const int* arr1, const int* arr2, int len) {
     return cnt_diff;
 }
 
-int Torus::move_start() {
+void Torus::move_start() {
     int arr[4] = {0};
     int compare[4] = {0, 1, 1, 2};
     Node* curr = start;
 
-    for (int diff{0}; diff < 3; diff++) {
         for (int k=0; k < 3; k++) {
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 12; i++) {
                     get_four_chord(arr, curr);
-                    if (count_diff(arr, compare, 4) == diff) {
-                        if (diff == 0) {
-                            start = curr;
-                        } else {
-                            start = curr->right;
-                        }
-                        return diff;
+                    if (count_diff(arr, compare, 4) == 0) {
+                        start = curr;
                     }
                     curr = curr->right;
 
@@ -200,8 +194,6 @@ int Torus::move_start() {
             write_notes(numbers);
             fill_out_notes();
         }
-    }
-    throw runtime_error("start not found.");
 }
 
 string Torus::to_string() {

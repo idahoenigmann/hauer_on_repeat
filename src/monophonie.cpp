@@ -50,7 +50,7 @@ string convert_notes_to_string(vector<int> l) {
     return res;
 }
 
-vector<vector<int>> monophonie(Node* start, int shift, int anschlussklang, bool midi) {
+vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _      \n"
                      " |  \\/  |                       | |               (_)     \n"
@@ -66,7 +66,7 @@ vector<vector<int>> monophonie(Node* start, int shift, int anschlussklang, bool 
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
 
-    Notes notes = create_monophonie(start, shift, anschlussklang);
+    Notes notes = create_monophonie(start, shift);
     input += notes.input;
 
     input += "}>>}\\midi {}\\layout{}\n}";
@@ -78,7 +78,7 @@ vector<vector<int>> monophonie(Node* start, int shift, int anschlussklang, bool 
     return notes.list;
 }
 
-void monophonie_and_chords(Node* start, int shift, int anschlussklang, bool midi) {
+void monophonie_and_chords(Node* start, int shift, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _                        _    _____ _                   _     \n"
                 " |  \\/  |                       | |               (_)                      | |  / ____| |                 | |    \n"
@@ -94,9 +94,9 @@ void monophonie_and_chords(Node* start, int shift, int anschlussklang, bool midi
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
 
-    input += create_monophonie(start, shift+12, anschlussklang).input;
+    input += create_monophonie(start, shift+12).input;
     input += "}\n\\new Staff {\n\\clef bass\n";
-    input += create_chords(start, shift, anschlussklang).input;
+    input += create_chords(start, shift).input;
     input += "}>>}\\midi {}\\layout{}\n}";
 
     File file = File("monophonie_and_chords");
@@ -105,7 +105,7 @@ void monophonie_and_chords(Node* start, int shift, int anschlussklang, bool midi
         file.create_midi_pdf();
 }
 
-Notes create_monophonie(Node* start, int shift, int anschlussklang) {
+Notes create_monophonie(Node* start, int shift) {
     string input;
     Node *curr = start;
     int voice = 0;
@@ -115,16 +115,6 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
     vector<int> l;
     Node *original_node;
     int great_four_chord[4]{0, 1, 1, 2};   //equals (0, 4, 7, 11)
-    int nearly_great_four_chord[4]{0, 1, 1, 2};
-    if (anschlussklang == 2) {
-        Node* n = start->left;
-        for (int &i : nearly_great_four_chord) {
-            if (n->pitch != i) {
-                i = n->pitch;
-                break;
-            }
-        }
-    }
 
     while (!curr->is_twelve_tone) {
         curr = curr->up;
@@ -134,7 +124,7 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
         }
     }
 
-    for (int bar = 0; bar < ((anschlussklang == 2) ? 13 : 12); bar++) {
+    for (int bar = 0; bar < 12; bar++) {
         up = true;
         original_voice = voice;
         original_node = curr;
@@ -168,14 +158,6 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
                 }
             }
             comp = curr->right->pitch;
-            if (anschlussklang == 2 && bar == 11) {
-                comp = nearly_great_four_chord[voice];
-                anschlussklang--;
-            }
-
-            if (anschlussklang == 1 && bar == 11) {
-                comp = great_four_chord[voice];
-            }
         }
         l.push_back(curr->get_int_representation(voice, shift));
 
@@ -184,13 +166,9 @@ Notes create_monophonie(Node* start, int shift, int anschlussklang) {
         curr = curr->right; //go to next bar
 
     }
-    if (anschlussklang > 0) {
-        ret.push_back(std::vector<int>{great_four_chord[voice] + 3 * voice + shift});
-        input += convert_int_to_note(great_four_chord[voice] + 3 * voice + shift) + " 2 ";
-    } else {
-        ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
-        input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
-    }
+
+    ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
+    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
     return Notes(input, ret);
 }

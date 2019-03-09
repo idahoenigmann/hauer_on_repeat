@@ -12,7 +12,7 @@
 
 using namespace std;
 
-vector<vector<int>> chords(Node* start, int shift, int anschlussklang, bool midi) {
+vector<vector<int>> chords(Node* start, int shift, bool midi) {
     if (midi) {
         cout << "   _____ _                   _     \n"
                 "  / ____| |                 | |    \n"
@@ -25,7 +25,7 @@ vector<vector<int>> chords(Node* start, int shift, int anschlussklang, bool midi
 
     string input;
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {\n\\clef bass\n";
-    Notes notes = create_chords(start, shift, anschlussklang);
+    Notes notes = create_chords(start, shift);
 
     input += notes.input;
     input += "}>>}\\midi {}\\layout{}\n}";
@@ -38,7 +38,7 @@ vector<vector<int>> chords(Node* start, int shift, int anschlussklang, bool midi
     return notes.list;
 }
 
-Notes create_chords(Node* start, int shift, int anschlussklang) {
+Notes create_chords(Node* start, int shift) {
     string input;
     Node* curr = start;
     int arr[4] = {};
@@ -60,31 +60,6 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
         curr = curr->right; //go to next bar
     }
 
-    if (anschlussklang == 2) {
-        arr[0] = 0;
-        arr[1] = 1;
-        arr[2] = 1;
-        arr[3] = 2;
-
-        for (int &i : arr) {
-            if (curr->pitch != i) {
-                i = curr->pitch;
-                break;
-            }
-        }
-        l.clear();
-
-        input += "<<";
-        for (int i=0; i<4; i++) {
-            input += convert_int_to_note(arr[i] + i * 3 + shift) + "4 ";
-            l.push_back(arr[i] + i * 3 + shift);
-        }
-        ret.push_back(l);
-        input += ">>\n";
-    }
-
-
-
     l.clear();
 
     arr[0] = 0;
@@ -103,7 +78,7 @@ Notes create_chords(Node* start, int shift, int anschlussklang) {
     return Notes(input,ret);
 }
 
-vector<vector<int>> notes(Node* start, int shift, int anschlussklang, bool midi) {
+vector<vector<int>> notes(Node* start, int shift, bool midi) {
     if (midi) {
         cout << "  _   _       _            \n"
                 " | \\ | |     | |           \n"
@@ -115,7 +90,7 @@ vector<vector<int>> notes(Node* start, int shift, int anschlussklang, bool midi)
     }
     string input;
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {\n";
-    Notes notes = create_notes(start, shift, anschlussklang);
+    Notes notes = create_notes(start, shift);
     input += notes.input;
     input += "}>>}\\midi {}\\layout{}\n}";
 
@@ -127,7 +102,7 @@ vector<vector<int>> notes(Node* start, int shift, int anschlussklang, bool midi)
     return notes.list;
 }
 
-Notes create_notes(Node* start, int shift, int anschlussklang) {
+Notes create_notes(Node* start, int shift) {
     string input;
     Node* curr;
     Node* lowerst_node = start;
@@ -150,30 +125,15 @@ Notes create_notes(Node* start, int shift, int anschlussklang) {
     }
     l.clear();
 
-    if (anschlussklang > 0) {
-        while (anschlussklang > 0) {
-            curr = lowerst_node->left;
-            int great_four_chord[]{0, 1, 1, 2};
-            for (int i{0}; i < 4; i++) {
-                if (curr->pitch != great_four_chord[i]) {
-                    input += convert_int_to_note(great_four_chord[i] + 3 * i + shift) +
-                             "'4 ";     //equals 0 + 3 * voice + shift, since voice = 0
-                    l.push_back(great_four_chord[i] + 3 * i + shift);
-                    anschlussklang--;
-                }
-                curr = curr->up;
-            }
+
+    curr = lowerst_node;
+    for (int i{0}; i<4; i++) {
+        if (curr->is_twelve_tone) {
+            input += convert_int_to_note(curr->get_int_representation(i, shift)) + "'4 ";
+            l.push_back(curr->get_int_representation(i, shift));
+            break;
         }
-    } else {
-        curr = lowerst_node;
-        for (int i{0}; i<4; i++) {
-            if (curr->is_twelve_tone) {
-                input += convert_int_to_note(curr->get_int_representation(i, shift)) + "'4 ";
-                l.push_back(curr->get_int_representation(i, shift));
-                break;
-            }
-            curr = curr->up;
-        }
+        curr = curr->up;
     }
     ret.push_back(l);
 

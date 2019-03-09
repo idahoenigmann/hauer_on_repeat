@@ -16,7 +16,7 @@ TEST(monophonie_test, test_monophonie) {
             vector<int>{2,5,6}, vector<int>{8,11}, vector<int>{9,8}, vector<int>{7, 5},
             vector<int>{3,2}, vector<int>{0}};
 
-    vector<vector<int>> m{monophonie(t.start, 0, false, false)};
+    vector<vector<int>> m{monophonie(t.start, 0, false)};
 
     ASSERT_EQ(correct, m);
     }
@@ -30,7 +30,7 @@ TEST(monophonie_test, test_monophonie) {
                 vector<int>{2,5,8}, vector<int>{6,10}, vector<int>{11}, vector<int>{9,6,5},
                 vector<int>{3,6}, vector<int>{7}};
 
-        vector<vector<int>> m{monophonie(t.start, 0, false, false)};
+        vector<vector<int>> m{monophonie(t.start, 0, false)};
 
         ASSERT_EQ(correct, m);
     }
@@ -58,47 +58,9 @@ TEST(monophonie_test, test_random_monophonie) {
 
     Torus t = Torus(nums);
 
-    vector<vector<int>> m{monophonie(t.start, 0, false, false)};
+    vector<vector<int>> m{monophonie(t.start, 0, false)};
     for (int j{0}; j < 12; j++) {
         ASSERT_EQ(nums[j], m[j][0]);
         ASSERT_LE(m[j].size(), 4);
-    }
-}
-
-TEST(monophonie_test, test_move_start_random_monophonie) {
-    for (int cnt_tries{0}; cnt_tries < 20; cnt_tries++) {
-        vector<int> randoms{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-
-        random_device rd;
-        default_random_engine e1(rd());
-
-        int nums[12]{};
-
-        int i{11};
-        while (!randoms.empty()) {
-            uniform_int_distribution<int> uniform_dist(0, static_cast<int>(randoms.size() - 1));
-
-            int idx{uniform_dist(e1)};
-
-            nums[11 - i] = randoms[idx];
-            randoms.erase(randoms.begin() + idx);
-            i--;
-        }
-
-        Torus t = Torus(nums);
-        int anschlussklang = !t.move_start();
-        vector<vector<int>> m{monophonie(t.start, t.shift, anschlussklang, false)};
-
-        if (!anschlussklang) {
-            for (int num : m[0]) {
-                bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
-                ASSERT_TRUE(b);
-            }
-        }
-
-        for (int num : m[m.size() - 1]) {
-            bool b = num == 0 + t.shift || num == 4 + t.shift || num == 7 + t.shift || num == 11 + t.shift;
-            ASSERT_TRUE(b);
-        }
     }
 }

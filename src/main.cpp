@@ -120,25 +120,20 @@ void input(int* nums) {
 }
 
 int main(int argc, char* argv[]) {
-    /*
-    if (argc - 1 != 12) {
-        throw runtime_error("Needs 12 Numbers (" + to_string(argc - 1) + " given)");
-    }
-    */
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
 
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        input(numbers);
+        //input(numbers);
 
-        /*
-        for (int i{1}; i <= 12; i++) {
-            numbers[i - 1] = stoi((string)argv[i]);
+        //use terminal to input numbers
+        for (int i{0}; i < 12; i++) {
+            cin >> numbers[i];
         }
-        */
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
@@ -151,12 +146,15 @@ int main(int argc, char* argv[]) {
         system(writer.c_str());
 
         Torus torus = Torus(numbers);
-        int anschlussklang = torus.move_start();
+        torus.move_start();
 
-        //monophonie(torus.start, torus.shift, anschlussklang);
-        //chords(torus.start, torus.shift, anschlussklang);
-        //notes(torus.start, torus.shift, anschlussklang);
-        monophonie_and_chords(torus.start, torus.shift, anschlussklang);
+        //monophonie(torus.start, torus.shift);
+        //chords(torus.start, torus.shift);
+        //notes(torus.start, torus.shift);
+        monophonie_and_chords(torus.start, torus.shift);
+
+
     }
+#pragma clang diagnostic pop
 
 }

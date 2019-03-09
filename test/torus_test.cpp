@@ -116,51 +116,6 @@ TEST(torus_test, test_move_start) {
     }
 }
 
-TEST(torus_test, test_move_start_random) {
-    for (int cnt_tries{0}; cnt_tries < 20; cnt_tries++){
-        vector<int> randoms {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-
-        random_device rd;
-        default_random_engine e1(rd());
-
-        int nums[12] {};
-
-        int i{11};
-        while (!randoms.empty()) {
-            uniform_int_distribution<int> uniform_dist(0, static_cast<int>(randoms.size() - 1));
-
-            int idx{uniform_dist(e1)};
-
-            //cout << randoms[idx] << ", ";
-            nums[11-i] = randoms[idx];
-            randoms.erase(randoms.begin()+idx);
-            i--;
-        }
-
-        Torus torus = Torus(nums);
-
-        int anschlussklang = torus.move_start();
-        int cnt_diff = 0;
-        int arr[4] = {};
-        int correct_arr[4] = {0, 1, 1, 2};  //is equal to 0, 4, 7, 11 without voices
-        get_four_chord(arr, torus.start);
-        for (int j{0}; j < 4; j++) {
-            if (arr[j] != correct_arr[j]) {
-                cnt_diff ++;
-            }
-        }
-        ASSERT_TRUE(cnt_diff == anschlussklang);
-    }
-}
-
-TEST(torus_test, test_anschlussklang) {
-    int notes[12]{6, 10, 8, 4, 9, 11, 3, 1, 0, 7, 2, 5};
-    Torus torus = Torus(notes);
-
-    int anschlussklang = torus.move_start();
-    ASSERT_TRUE(anschlussklang == 1);
-}
-
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
