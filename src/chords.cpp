@@ -59,7 +59,7 @@ Notes create_chords(Node* start, int shift) {
         input += ">>\n";
         curr = curr->right; //go to next bar
     }
-
+/*
     l.clear();
 
     arr[0] = 0;
@@ -69,12 +69,12 @@ Notes create_chords(Node* start, int shift) {
 
     input += "<<";
     for (int i=0; i<4; i++) {
-        input += convert_int_to_note(arr[i] + 3 * i + shift) + "2 ";
+        input += convert_int_to_note(arr[i] + 3 * i + shift) + "4 ";
         l.push_back(arr[i] + 3 * i + shift);
     }
     ret.push_back(l);
     input += ">>\n";
-
+*/
     return Notes(input,ret);
 }
 
