@@ -99,14 +99,14 @@
             for(var i=1; i<13; i++) {
                 //console.log(125 * i);
                 ctx.beginPath();
-                ctx.arc((125 * i)+10,0+10,10,0,2*Math.PI)
+                ctx.arc((125 * i)+10,10,10,0,2*Math.PI);
                 ctx.fillStyle = "black";
                 ctx.fill();
             }
 
 
             ctx.beginPath();
-            ctx.arc(0+10,0+10,10,0,2*Math.PI)
+            ctx.arc(10,10,10,0,2*Math.PI);
             ctx.fillStyle = "black";
             ctx.fill();
 
@@ -130,15 +130,19 @@
                 //console.log(childs)
 
                 for (var e=0; e<childs.length; e++) {
-                    if (childs[e].nodeName == "note") {
-                        var note = childs[e].attributes["filled"]
+                    if (childs[e].nodeName === "note") {
+                        var note = childs[e].attributes["filled"];
+                        var number = parseInt(childs[e].innerHTML);
                         if (note !== undefined) {
-                            var number = parseInt(note.ownerElement.innerHTML);
                             console.log(number * 10);
 
                             ctx.beginPath();
-                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI)
-                            ctx.fillStyle = "black";
+                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.stroke();
+
+                        } else {
+                            ctx.beginPath();
+                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
                             ctx.fill();
                         }
                     }
@@ -150,7 +154,7 @@
 
         fetch('example.xml')
           .then(response => response.text())
-          .then(text => parseAndDraw(text))
+          .then(text => parseAndDraw(text));
 
 
         setupLines();

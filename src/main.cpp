@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
         Torus torus = Torus(numbers);
         torus.move_start();
 
-        File file = File("torus");
+        File file = File("../web/example");
         file.write(torus.to_string(), "xml");
 
         //monophonie(torus.start, torus.shift);
