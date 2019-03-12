@@ -30,7 +30,7 @@ public:
     //! Creates a .midi and .pdf file from a lilypond file (.ly) using lilypond
     /*! @param None
     */
-    void create_midi_pdf();
+    void create_midi_pdf(bool upload=true);
 private:
     std::string filename;
 };
