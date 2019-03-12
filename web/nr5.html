@@ -52,20 +52,32 @@
 20  #9
 --
 */
+<<<<<<< HEAD
         setTimeout(fadew, 5000);
         setTimeout(cl, 5500);
+=======
+>>>>>>> e5bd7272fe045feef0ebb75803824507f34388dc
 
         function change_page_to() {
             window.location.href = "nr0.html";
         } 
 
+<<<<<<< HEAD
         function cl() {
             window.open('','_self').focus();
             window.close();
         }
+=======
+        function closeWindow() {
+            window.open('','_parent','');
+            window.close();
+            
+        }
+
+>>>>>>> e5bd7272fe045feef0ebb75803824507f34388dc
 
         function fadew() {
-            $("body").fadeOut();
+            $("html").fadeOut();
         }
 
         function setupLines() {

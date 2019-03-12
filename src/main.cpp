@@ -155,8 +155,8 @@ int main(int argc, char* argv[]) {
         file.write(torus.to_string(), "xml");
 
         //monophonie(torus.start, torus.shift);
-        //chords(torus.start, torus.shift);
-        //notes(torus.start, torus.shift);
+        notes(torus.start, torus.shift);
+        chords(torus.start, torus.shift);
         monophonie_and_chords(torus.start, torus.shift);
 
 

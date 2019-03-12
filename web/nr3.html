@@ -20,11 +20,6 @@
     <body>
          <img id="bild" src="12eck.jpg" alt="12-Eck">
          <canvas id="notenschrift" width="1500px" height="200px"></canvas>
-
-         <audio src="../build/monophonie_and_chords.mp3" autoplay loop>
-             <p>If you are reading this, it is because your browser does not support the audio element.     </p>
-             <embed src="../build/monophonie_and_chords.mp3" width="180" height="90" hidden="true" />
-         </audio>
     </body>
 
     <script>
@@ -61,7 +56,7 @@
 
 
         function fadew() {
-            $("body").fadeOut();
+            $("html").fadeOut();
         }
 
         function setupLines() {

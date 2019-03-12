@@ -33,7 +33,7 @@ vector<vector<int>> chords(Node* start, int shift, bool midi) {
     if (midi) {
         File file = File("chords");
         file.write(input, "ly");
-        file.create_midi_pdf();
+        file.create_midi_pdf(false);
     }
     return notes.list;
 }
@@ -97,7 +97,7 @@ vector<vector<int>> notes(Node* start, int shift, bool midi) {
     if (midi) {
         File file = File("notes");
         file.write(input, "ly");
-        file.create_midi_pdf();
+        file.create_midi_pdf(false);
     }
     return notes.list;
 }
