@@ -147,21 +147,24 @@
 
                 var pre_number = 11;
                 var color = "black";
-                var color2 = "black"
+                var moveBeside = 0;
 
                 for (var e=0; e<childs.length; e++) {
                     if (childs[e].nodeName === "note") {
                         var note = childs[e].attributes["filled"];
                         var number = parseInt(childs[e].innerHTML);
 
-                        var next_number = parseInt(childs[e+1].innerHTML);
-
-                        console.log(number - pre_number);
+                        if (e+2 < childs.length) {
+                            var next_number = parseInt(childs[e+2].innerHTML);
+                            //console.log(next_number - number);
+                        }
+                        //console.log(childs);
                         if ((number - pre_number) == 1 || (next_number - number) == 1) {
-                            color = "red";
-                            color2 = "green";
+                            //color = "red";
+                            moveBeside += 1;;
                         } else {
-                            color = "black"
+                            //color = "black"
+                            moveBeside = 0;
                         }
                         pre_number = number;
                         if (note !== undefined) {
@@ -172,7 +175,18 @@
                             ctx.arc((125 * i)+9,180 - (number * 10),7,0,2*Math.PI);
                             ctx.stroke();
 */
-                            var x = ((125 * i)+9) + 20;
+                            console.log(moveBeside);
+                            if (moveBeside == 1) {
+                                var x = ((125 * i)+9) + 3;
+                                moveBeside += 1;
+                            } else if (moveBeside == 2){
+                                var x = ((125 * i)+9) + 37;
+                            }
+                            else {
+                                var x = ((125 * i)+9) + 20;
+                            }
+
+
                             var y = 180 - (number * 10) + 20;
                             var scale = 5.2;
 
@@ -189,7 +203,19 @@
 
 
                         } else {
-                            var x = ((125 * i)+9) + 20;
+
+
+                            console.log(moveBeside);
+                            if (moveBeside == 1) {
+                                var x = ((125 * i)+9) + 3;
+                                moveBeside += 1;
+                            } else if (moveBeside == 2){
+                                var x = ((125 * i)+9) + 37;
+                            }
+                            else {
+                                var x = ((125 * i)+9) + 20;
+                            }
+
                             var y = 180 - (number * 10) + 20;
                             var scale = 5.2;
 
@@ -198,7 +224,6 @@
                             ctx.arc(x,y,7,0,2*Math.PI);
                             ctx.fill();
 
-                            color2 = "black";
                             console.log("black");
 
                         }
