@@ -66,6 +66,14 @@
   var el = document.getElementById('ContentText');
   var keycode = "";
 
+  fetch('cnt.txt')
+      .then(response => response.text())
+      .then(text => {if (text == "1") {
+          document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Taster gedrückt werden."
+      } else {
+          document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Taster gedrückt werden."
+      }});
+
   setTimeout(fadew, 5000);
   setTimeout(change_page_to_nr0, 5500);
 
@@ -110,7 +118,7 @@
         </p>
     </div>
     <div class="Bottom Content">
-        <p>Sie müssen noch 6 von 12 Taster drücken.</p>
+        <p id="cntButtons">Es müssen noch 12 von 12 Taster gedrückt werden.</p>
     </div>
         
 </body>

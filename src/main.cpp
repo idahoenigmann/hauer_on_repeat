@@ -133,12 +133,13 @@ int main(int argc, char* argv[]) {
 
         //input(numbers);
 
-        File file = File("../web/example");
+        File cntfile = File("../web/cnt");
+        cntfile.write(std::to_string(12), "txt");
 
         //use terminal to input numbers
         for (int i{0}; i < 12; i++) {
             cin >> numbers[i];
-            file.write(std::to_string(i), "xml");
+            cntfile.write(std::to_string(11 - i), "txt");
         }
 
         string dbwriter = "";
@@ -154,7 +155,7 @@ int main(int argc, char* argv[]) {
         Torus torus = Torus(numbers);
         torus.move_start();
 
-
+        File file = File("../web/example");
         file.write(torus.to_string(), "xml");
 
         //monophonie(torus.start, torus.shift);
