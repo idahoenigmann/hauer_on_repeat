@@ -166,8 +166,8 @@ Notes create_monophonie(Node* start, int shift) {
 
     }
 
-    //ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
-    //input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 4 ";
+    ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
+    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
 
     return Notes(input, ret);
 }
