@@ -19,7 +19,7 @@
 
     <body>
          <img id="bild" src="12eck.jpg" alt="12-Eck">
-         <canvas id="notenschrift" width="1500px" height="200px"></canvas>
+         <canvas id="notenschrift" width="1500px" height="300px"></canvas>
 
          <audio src="../build/chords.mp3" autoplay>
              <p>If you are reading this, it is because your browser does not support the audio element.     </p>
@@ -53,11 +53,11 @@
 --
 */
         setTimeout(fadew, 15000);
-        setTimeout(change_page_to, 15500);
+        //setTimeout(change_page_to, 15500); //commented-out for testing
 
         function change_page_to() {
             window.location.href = "nr4.html";
-        } 
+        }
 
 
         function fadew() {
@@ -144,22 +144,64 @@
                 console.log("Bar #" + i);
                 //console.log(childs)
 
+                var pre_number = 11;
+                var color = "black";
+                var color2 = "black"
+
                 for (var e=0; e<childs.length; e++) {
                     if (childs[e].nodeName === "note") {
                         var note = childs[e].attributes["filled"];
                         var number = parseInt(childs[e].innerHTML);
+
+                        var next_number = parseInt(childs[e+1].innerHTML);
+
+                        console.log(number - pre_number);
+                        if ((number - pre_number) == 1 || (next_number - number) == 1) {
+                            color = "red";
+                            color2 = "green";
+                        } else {
+                            color = "black"
+                        }
+                        pre_number = number;
                         if (note !== undefined) {
-                            console.log(number * 10);
+
+
+/*
+                            ctx.beginPath();
+                            ctx.arc((125 * i)+9,180 - (number * 10),7,0,2*Math.PI);
+                            ctx.stroke();
+*/
+                            var x = ((125 * i)+9) + 20;
+                            var y = 180 - (number * 10) + 20;
+                            var scale = 5.2;
 
                             ctx.beginPath();
-                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
-                            ctx.stroke();
+                            ctx.fillStyle = color;
+                            ctx.ellipse(x, y, 50 / scale, 75 / scale, Math.PI / 2, 0, 2 * Math.PI);
+                            ctx.fill();
+                            ctx.beginPath();
+                            ctx.ellipse(x, y, 33 / scale, 47 / scale, Math.PI * -1.15, 0, 2 * Math.PI);
+                            ctx.fillStyle = "white"
+                            ctx.fill();
+
+                            console.log("white");
+
 
                         } else {
+                            var x = ((125 * i)+9) + 20;
+                            var y = 180 - (number * 10) + 20;
+                            var scale = 5.2;
+
                             ctx.beginPath();
-                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.fillStyle = color;
+                            ctx.arc(x,y,7,0,2*Math.PI);
                             ctx.fill();
+
+                            color2 = "black";
+                            console.log("black");
+
                         }
+
                     }
                 }
 
