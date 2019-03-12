@@ -34,11 +34,10 @@ void File::create_midi_pdf(bool upload) {
     system(temp.c_str());
 
     temp = "timidity " + filename + ".midi -Ow -o " + filename + ".mp3";
+    
+    system(temp.c_str());
 
     if (upload) {
-
-        system(temp.c_str());
-
         //temp = "aplay " + filename + ".mp3 &";   //moved to javascript
         //system(temp.c_str());
 
