@@ -133,9 +133,12 @@ int main(int argc, char* argv[]) {
 
         //input(numbers);
 
+        File file = File("../web/example");
+
         //use terminal to input numbers
         for (int i{0}; i < 12; i++) {
             cin >> numbers[i];
+            file.write(std::to_string(i), "xml");
         }
 
         string dbwriter = "";
@@ -151,7 +154,7 @@ int main(int argc, char* argv[]) {
         Torus torus = Torus(numbers);
         torus.move_start();
 
-        File file = File("../web/example");
+
         file.write(torus.to_string(), "xml");
 
         //monophonie(torus.start, torus.shift);

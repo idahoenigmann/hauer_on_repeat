@@ -36,22 +36,27 @@
         text-align: center;
     }
 
-    #Header {
+    h1 {
         font-size: 100px;
         /*text-shadow: 2px 2px #ff0000;*/
         font-family: myFirstFontLight;
     }    
 
-    #Content {
+    .Content {
         margin-left: 25%;
         width: 50%;
         text-align: center;
         
     }
 
-    #ContentText {
+    p {
         font-size: 30px;
         font-family: myFirstFontRegular;
+    }
+
+    .Bottom {
+        position: absolute;
+        bottom: 100px;
     }
 
   </style>
@@ -93,14 +98,18 @@
 </head>
 <body>
     <div id="KONTENT">
-        <h1 id="Header">Hauer On Repeat</h1>
-    <div id="Content">
-        <p id="ContentText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+        <h1>Hauer On Repeat</h1>
+    <div class="Content">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
             since the 1500s, 
             when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
             the leap into elecy unchanged. It was popularised in the 1960s with the release of Letraset 
-                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
     </div>
+        <div class="Bottom Content">
+            <p>Sie müssen noch 6 von 12 Taster drücken.</p>
+        </div>
 </div>
 
 </body>
