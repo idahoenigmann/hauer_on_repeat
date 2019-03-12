@@ -53,15 +53,21 @@
 --
 */
         setTimeout(fadew, 5000);
-        setTimeout(change_page_to, 5500);
+        setTimeout(closeWindow, 5500);
 
         function change_page_to() {
             window.location.href = "nr0.html";
         } 
 
+        function closeWindow() {
+            window.open('','_parent','');
+            window.close();
+            
+        }
+
 
         function fadew() {
-            $("body").fadeOut();
+            $("html").fadeOut();
         }
 
         function setupLines() {
