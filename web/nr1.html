@@ -141,13 +141,32 @@
                         if (note !== undefined) {
                             console.log(number * 10);
 
+/*
                             ctx.beginPath();
-                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.arc((125 * i)+9,180 - (number * 10),7,0,2*Math.PI);
                             ctx.stroke();
+*/
+                            var x = ((125 * i)+9) + 20;
+                            var y = 180 - (number * 10);
+                            var scale = 5.2;
+
+                            ctx.beginPath();
+                            ctx.fillStyle = "black"
+                            ctx.ellipse(x, y, 50 / scale, 75 / scale, Math.PI / 2, 0, 2 * Math.PI);
+                            ctx.fill();
+                            ctx.beginPath();
+                            ctx.ellipse(x, y, 33 / scale, 47 / scale, Math.PI * -1.15, 0, 2 * Math.PI);
+                            ctx.fillStyle = "white"
+                            ctx.fill();
+
 
                         } else {
+
+                            var x = ((125 * i)+9) + 20;
+                            var y = 180 - (number * 10);
                             ctx.beginPath();
-                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.fillStyle = "black";
+                            ctx.arc(x,y,7,0,2*Math.PI);
                             ctx.fill();
                         }
                     }
