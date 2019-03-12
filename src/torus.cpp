@@ -174,6 +174,7 @@ void Torus::move_start() {
                     get_four_chord(arr, curr);
                     if (count_diff(arr, compare, 4) == 0) {
                         start = curr;
+                        return;
                     }
                     curr = curr->right;
 
