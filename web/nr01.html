@@ -7,10 +7,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style>
 
+    @font-face {
+        font-family: myFirstFontRegular;
+        src: url(gt-pressura-regular.woff);
+    }
+
+    @font-face {
+        font-family: myFirstFontBold;
+        src: url(gt-pressura-bold.woff);
+    }
+
+    /* {
+        font-family: myFirstFont;
+    }*/
+
     .center {
         margin: auto;
         width: 50%;
-        border: 3px solid green;
         padding: 10px;
     }
 
@@ -20,7 +33,8 @@
 
     #Header {
         font-size: 100px;
-        text-shadow: 2px 2px #ff0000;
+        /*text-shadow: 2px 2px #ff0000;*/
+        font-family: myFirstFontBold;
     }    
 
     #Content {
@@ -32,6 +46,7 @@
 
     #ContentText {
         font-size: 30px;
+        font-family: myFirstFontRegular;
     }
 
   </style>
