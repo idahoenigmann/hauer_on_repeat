@@ -1,0 +1,178 @@
+<html>
+    <head>
+        <title> Hauer On Repeat </title>
+        <meta charset="utf-8" />
+    </head>
+    <style>
+        #bild {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 70%;
+        }
+        #notenschrift {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <body>
+         <img id="bild" src="12eck.jpg" alt="12-Eck">
+         <canvas id="notenschrift" width="1500px" height="200px"></canvas>
+
+         <audio src="../build/monophonie_and_chords.mp3" autoplay loop>
+             <p>If you are reading this, it is because your browser does not support the audio element.     </p>
+             <embed src="../build/monophonie_and_chords.mp3" width="180" height="90" hidden="true" />
+         </audio>
+    </body>
+
+    <script>
+
+
+
+/*
+--
+20  #1
+--
+20  #2
+--
+30  #3
+--
+20  #4
+--
+30  #5
+--
+20  #6
+--
+20  #7
+--
+30  #8
+--
+20  #9
+--
+*/
+        setTimeout(fadew, 5000);
+        setTimeout(change_page_to, 5500);
+
+        function change_page_to() {
+            window.location.href = "nr0.html";
+        } 
+
+
+        function fadew() {
+            $("body").fadeOut();
+        }
+
+        function setupLines() {
+            var c = document.getElementById("notenschrift");
+            var ctx = c.getContext("2d");
+
+            //#1
+            ctx.moveTo(0,0);
+            ctx.lineTo(c.width, 0);
+
+            //#2
+            ctx.moveTo(0,20);
+            ctx.lineTo(c.width, 20);
+
+            //#3
+            ctx.moveTo(0,50);
+            ctx.lineTo(c.width, 50);
+
+            //#4
+            ctx.moveTo(0,70);
+            ctx.lineTo(c.width, 70);
+
+            //#5
+            ctx.moveTo(0,100);
+            ctx.lineTo(c.width, 100);
+
+            //#6
+            ctx.moveTo(0,120);
+            ctx.lineTo(c.width, 120);
+
+            //#7
+            ctx.moveTo(0,140);
+            ctx.lineTo(c.width, 140);
+
+            //#8
+            ctx.moveTo(0,170);
+            ctx.lineTo(c.width, 170);
+
+            //#9
+            ctx.moveTo(0,190);
+            ctx.lineTo(c.width, 190);
+
+            ctx.stroke();
+        }
+
+        function drawTones() {
+            var c = document.getElementById("notenschrift");
+            var ctx = c.getContext("2d");
+
+            for(var i=1; i<13; i++) {
+                //console.log(125 * i);
+                ctx.beginPath();
+                ctx.arc((125 * i)+10,10,10,0,2*Math.PI);
+                ctx.fillStyle = "black";
+                ctx.fill();
+            }
+
+
+            ctx.beginPath();
+            ctx.arc(10,10,10,0,2*Math.PI);
+            ctx.fillStyle = "black";
+            ctx.fill();
+
+        }
+
+        function parseAndDraw(XMLContent) {
+
+            var c = document.getElementById("notenschrift");
+            var ctx = c.getContext("2d");
+
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(XMLContent,"text/xml");
+
+            var erg = xmlDoc.getElementsByTagName("bar");
+
+            //console.log(erg);
+            for (var i=0; i<erg.length; i++) {
+                var childs = erg[i].childNodes;
+
+                console.log("Bar #" + i);
+                //console.log(childs)
+
+                for (var e=0; e<childs.length; e++) {
+                    if (childs[e].nodeName === "note") {
+                        var note = childs[e].attributes["filled"];
+                        var number = parseInt(childs[e].innerHTML);
+                        if (note !== undefined) {
+                            console.log(number * 10);
+
+                            ctx.beginPath();
+                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.stroke();
+
+                        } else {
+                            ctx.beginPath();
+                            ctx.arc((125 * i)+10,180 - (number * 10),10,0,2*Math.PI);
+                            ctx.fill();
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        fetch('example.xml')
+          .then(response => response.text())
+          .then(text => parseAndDraw(text));
+
+
+        setupLines();
+        //drawTones();
+    </script>
+</html>

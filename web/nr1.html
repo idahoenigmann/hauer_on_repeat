@@ -52,7 +52,17 @@
 20  #9
 --
 */
+        setTimeout(fadew, 5000);
+        setTimeout(change_page_to, 5500);
 
+        function change_page_to() {
+            window.location.href = "nr2.html";
+        } 
+
+
+        function fadew() {
+            $("body").fadeOut();
+        }
 
         function setupLines() {
             var c = document.getElementById("notenschrift");
