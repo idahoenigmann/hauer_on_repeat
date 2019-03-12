@@ -1,99 +1,74 @@
 <torus>
-<!-- 0 4 7 11 1 5 6 3 8 9 10 2 -->
-
-    <!-- Spalte 01 -->
-    <bar>
-        <note filled="filled">0</note>
-        <note> </note>
-        <note> </note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 02 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">4</note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 03 -->
-    <bar>
-        <note> </note>
-        <note filled="filled">7</note>
-        <note> </note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 04 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">11</note>
-    </bar>
-
-    <!-- Spalte 05 -->
-    <bar>
-        <note> </note>
-        <note filled="filled">1</note>
-        <note> </note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 06 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">5</note>
-    </bar>
-
-    <!-- Spalte 07 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">6</note>
-        <note> </note>
-    </bar>
-    <!-- Spalte 08 -->
-
-    <bar>
-        <note> </note>
-        <note filled="filled">3</note>
-        <note> </note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 9 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">8</note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 10 -->
-    <bar>
-        <note> </note>
-        <note> </note>
-        <note filled="filled">9</note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 11 -->
-    <bar>
-        <note> </note>
-        <note filled="filled">10</note>
-        <note> </note>
-        <note> </note>
-    </bar>
-
-    <!-- Spalte 12 -->
-    <bar>
-        <note filled="filled">2</note>
-        <note> </note>
-        <note> </note>
-        <note> </note>
-    </bar>
+<bar>
+<note>0</note>
+<note>4</note>
+<note filled="filled">7</note>
+<note>11</note>
+</bar>
+<bar>
+<note filled="filled">2</note>
+<note>4</note>
+<note>7</note>
+<note>11</note>
+</bar>
+<bar>
+<note>2</note>
+<note filled="filled">3</note>
+<note>7</note>
+<note>11</note>
+</bar>
+<bar>
+<note filled="filled">1</note>
+<note>3</note>
+<note>7</note>
+<note>11</note>
+</bar>
+<bar>
+<note>1</note>
+<note>3</note>
+<note>7</note>
+<note filled="filled">10</note>
+</bar>
+<bar>
+<note>1</note>
+<note>3</note>
+<note>7</note>
+<note filled="filled">9</note>
+</bar>
+<bar>
+<note>1</note>
+<note>3</note>
+<note>7</note>
+<note filled="filled">11</note>
+</bar>
+<bar>
+<note>1</note>
+<note filled="filled">5</note>
+<note>7</note>
+<note>11</note>
+</bar>
+<bar>
+<note>1</note>
+<note filled="filled">4</note>
+<note>7</note>
+<note>11</note>
+</bar>
+<bar>
+<note>1</note>
+<note>4</note>
+<note filled="filled">6</note>
+<note>11</note>
+</bar>
+<bar>
+<note filled="filled">0</note>
+<note>4</note>
+<note>6</note>
+<note>11</note>
+</bar>
+<bar>
+<note>0</note>
+<note>4</note>
+<note filled="filled">8</note>
+<note>11</note>
+</bar>
 </torus>
