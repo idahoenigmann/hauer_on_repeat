@@ -28,26 +28,29 @@ void File::write(std::string input, std::string filetype) {
     file.close();
 }
 
-void File::create_midi_pdf() {
+void File::create_midi_pdf(bool upload) {
     std::string temp = "lilypond " + filename + ".ly";
 
     system(temp.c_str());
 
     temp = "timidity " + filename + ".midi -Ow -o " + filename + ".mp3";
-
+    
     system(temp.c_str());
 
-    //temp = "aplay " + filename + ".mp3 &";   //moved to javascript
-    //system(temp.c_str());
+    if (upload) {
+        //temp = "aplay " + filename + ".mp3 &";   //moved to javascript
+        //system(temp.c_str());
 
-    std::string path = getexepath();
-    path.erase(path.rfind('/'));
+        std::string path = getexepath();
+        path.erase(path.rfind('/'));
 
-    std::string uploader_str = "bash ../Uploader/complete.sh ../build/" + filename + ".mp3 ../build/" + filename + ".pdf &";
-    system(uploader_str.c_str());
+        std::string uploader_str =
+                "bash ../Uploader/complete.sh ../build/" + filename + ".mp3 ../build/" + filename + ".pdf &";
+        system(uploader_str.c_str());
 
-    std::string str = "firefox file://" + path + "/../web/nr1.html";
-    system(str.c_str());
+        std::string str = "firefox file://" + path + "/../web/nr1.html";
+        system(str.c_str());
+    }
 }
 
 

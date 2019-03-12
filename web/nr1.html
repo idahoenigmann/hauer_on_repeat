@@ -21,9 +21,9 @@
          <img id="bild" src="12eck.jpg" alt="12-Eck">
          <canvas id="notenschrift" width="1500px" height="200px"></canvas>
 
-         <audio src="../build/monophonie_and_chords.mp3" autoplay loop>
+         <audio src="../build/monophonie_and_chords.mp3" autoplay>
              <p>If you are reading this, it is because your browser does not support the audio element.     </p>
-             <embed src="../build/monophonie_and_chords.mp3" width="180" height="90" hidden="true" />
+             <embed src="../build/notes.mp3" width="180" height="90" hidden="true" />
          </audio>
     </body>
 
@@ -52,7 +52,17 @@
 20  #9
 --
 */
+        setTimeout(fadew, 5000);
+        setTimeout(change_page_to, 5500);
 
+        function change_page_to() {
+            window.location.href = "nr2.html";
+        } 
+
+
+        function fadew() {
+            $("html").fadeOut();
+        }
 
         function setupLines() {
             var c = document.getElementById("notenschrift");
@@ -160,14 +170,7 @@
                             ctx.fill();
 
 
-                        } else {
 
-                            var x = ((125 * i)+9) + 20;
-                            var y = 180 - (number * 10);
-                            ctx.beginPath();
-                            ctx.fillStyle = "black";
-                            ctx.arc(x,y,7,0,2*Math.PI);
-                            ctx.fill();
                         }
                     }
                 }
