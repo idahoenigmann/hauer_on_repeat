@@ -4,23 +4,81 @@
         <meta charset="utf-8" />
     </head>
     <style>
+        @font-face {
+            font-family: myFirstFontRegular;
+            src: url(gt-pressura-regular.woff);
+        }
+
+        @font-face {
+            font-family: myFirstFontBold;
+            src: url(gt-pressura-bold.woff);
+        }
+
+        @font-face {
+            font-family: myFirstFontLight;
+            src: url(gt-pressura-light.woff);
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 100px;
+            /*text-shadow: 2px 2px #ff0000;*/
+            font-family: myFirstFontLight;
+        }
+
+        .Content {
+            margin-left: 25%;
+            width: 50%;
+            text-align: center;
+
+        }
+
+        p {
+            font-size: 30px;
+            font-family: myFirstFontRegular;
+        }
+
+        .Bottom {
+            position: absolute;
+            bottom: 100px;
+        }
+
+
         #bild {
             display: block;
             margin-left: auto;
             margin-right: auto;
             height: 70%;
         }
+
         #notenschrift {
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
+
+        p {
+            font-size: 30px;
+            font-family: myFirstFontRegular;
+        }
     </style>
 
     <body>
-         <img id="bild" src="12eck.jpg" alt="12-Eck">
-         <canvas id="notenschrift" width="1500px" height="200px"></canvas>
-
+         <!--img id="bild" src="12eck.jpg" alt="12-Eck"-->
+         <div id="KONTENT">
+            <h1>Josef Matthias Hauer</h1>
+            <p>... die eingegebenen zwölf Töne. <br> Eine von 479 001 600 verschiedenen Möglichkeiten ...</p>
+            <canvas id="notenschrift" width="1500px" height="200px"></canvas>
+         </div>
          <audio src="../build/notes.mp3" autoplay>
              <p>If you are reading this, it is because your browser does not support the audio element.     </p>
              <embed src="../build/notes.mp3" width="180" height="90" hidden="true" />
