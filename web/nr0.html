@@ -60,16 +60,18 @@
     }
 
     #htllogo {
-        position: absolute;
-        bottom: 100px;
         left: 100px;
     }
 
     #musikschulelogo {
-        position: absolute;
-        bottom: 100px;
         right: 100px;
     }
+
+      .logo{
+          position: absolute;
+          bottom: 100px;
+          width: 300px;
+      }
 
   </style>
 
@@ -105,11 +107,9 @@
         <h1>Josef Matthias Hauer<br>Das Zwölftonspiel</h1>
     <div class="Content">
         <img src="12eck.jpg" height="300px">
-        <p>Logo HTL Logo Musikschule
-        </p>
     </div>
-        <img id="htllogo" src="htllogo" alt="htl logo">
-        <img id="musikschulelogo" src="musikschulelogo" alt="musikschule logo">
+        <img class="logo" id="htllogo" src="htllogo.png" alt="htl logo">
+        <img class="logo" id="musikschulelogo" src="musischullogo.png" alt="musikschule logo">
         <div class="Bottom Content">
             <p id="cntButtons">Es müssen noch 12 von 12 Taster gedrückt werden.</p>
         </div>
