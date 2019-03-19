@@ -40,14 +40,13 @@
         font-size: 100px;
         /*text-shadow: 2px 2px #ff0000;*/
         font-family: myFirstFontLight;
-        
+        margin-bottom: -50px;
     } 
 
     h2 {
         font-size: 60px;
         /*text-shadow: 2px 2px #ff0000;*/
         font-family: myFirstFontLight;
-        
     }   
 
     .Content {
@@ -89,11 +88,11 @@
   var keycode = "";
 
   fetch('cnt.txt')
-      .then(response => response.text())
+      .then(response => response.text()) 
       .then(text => {if (text == "1") {
-          document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden."
+          document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " buttons still to be pressed."
       } else {
-          document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden."
+          document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons still to be pressed."
       }});
 
   setTimeout(fadew, 5000);
@@ -119,7 +118,12 @@
         <img class="logo" id="htllogo" src="htllogo.png" alt="htl logo">
         <img class="logo" id="musikschulelogo" src="musischullogo.png" alt="musikschule logo">
         <div class="Bottom Content">
-            <p id="cntButtons">Es müssen noch 12 von 12 Taster gedrückt werden.</p>
+            <p id="cntButtons">
+                Es müssen noch 12 von 12 Taster gedrückt werden.
+                <br>
+                12 out of 12 buttons still to be pressed.
+            </p>
+            
         </div>
 </div>
 
