@@ -1,6 +1,11 @@
 #!/bash/bin
 
 
+### This is the script to start the hauer_on_repeat program on startup
+### to add to startup routine, do:
+### 	1) sudo crontab -e
+###	2) add line "@reboot <path-to-dir>/startupH0R.sh
+
 ### export GPIO ###
 #button GPIO
 echo "2" > /sys/class/gpio/export
