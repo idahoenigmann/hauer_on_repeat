@@ -6,38 +6,21 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" type="application/javascript"></script>
 
+    <style>
+        h1 {
+            margin-bottom: -20px;
+        }
+    </style>
   <script>
-  var text = true;
-  var el = document.getElementById('ContentText');
-  var keycode = "";
-
-  fetch('cnt.txt')
-      .then(response => response.text())
-      .then(text => {
-      if (text === "") {
-          document.getElementById("cntButtons").innerHTML = "Es muss noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons still to be pressed."
-      } else if (text === "1") {
-          document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br> " + text + " out of 12 button still to be pressed."
-      } else {
-          document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden.<br> " + text + " out of 12 buttons still to be pressed."
-      }});
 
   setTimeout(fadew, 5000);
   setTimeout(change_page_to_nr0, 5500);
 
   function change_page_to_nr0(){
       window.location.href = "nr0.html";
-  } 
-/*
-  function fadew2() {
-    change_page_to_nr0.fadeIn();
-  }*/
-
-  function fadew() {
-      $("body").fadeOut();
   }
-
 
   function setupLines() {
       var c = document.getElementById("notenschrift");
