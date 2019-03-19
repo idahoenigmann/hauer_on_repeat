@@ -40,6 +40,7 @@
         font-size: 100px;
         /*text-shadow: 2px 2px #ff0000;*/
         font-family: myFirstFontLight;
+        margin-bottom: -20px;
     }    
 
     #Content {
@@ -54,51 +55,251 @@
         font-family: myFirstFontRegular;
     }
 
+    #notenschrift {
+        position: absolute;
+        left: 200px; 
+        top: 370px;
+    }
+
   </style>
 
-  <script>
-  var text = true;
-  var el = document.getElementById('ContentText');
-  var keycode = "";
-
-  setTimeout(fadew, 5000);
-  setTimeout(change_page_to, 5500);
-
-
-  function change_page_to() {
-      window.location.href = "nr3.html";
-  } 
-
-
-  function fadew() {
-      $("body").fadeOut();
-  }
-
-/*
-  function openTab(url) {
-      window.open(url, '_blank');
-      window.focus();
-  }
-
-
-  function getKey(e) {
-    keycode = e.keyCode;
-    if (keycode >= 0 || keycode <= 223) {
-        openTab("nr1.html");
-    }
-  }
-
-  document.onkeyup = getKey;*/
-
-  </script>
+  
 </head>
 <body>
     <div id="KONTENT">
         <h1 id="Header">Hauer On Repeat</h1>
+        
     <div id="Content">
-        <p id="ContentText">... daraus entstehen 12 Vierklänge ...</p>
+        <p id="ContentText">
+            ... daraus entstehen 12 Vierklänge ... 
+            <br>
+            ... yieliding 12 four-part-chords ...
+        </p>
+        <canvas id="notenschrift" width="1500px" height="300px"></canvas>
     </div>
+    
+
+    <audio src="../build/chords.mp3" autoplay>
+        <p>If you are reading this, it is because your browser does not support the audio element.     </p>
+        <embed src="../build/chords.mp3" width="180" height="90" hidden="true" />
+    </audio>
 </div>
 
 </body>
+<script>
+        var text = true;
+        var el = document.getElementById('ContentText');
+        var keycode = "";
+      
+        setTimeout(fadew, 5000);
+        setTimeout(change_page_to, 5500);
+      
+      
+        function change_page_to() {
+            window.location.href = "nr4.html";
+        } 
+      
+      
+        function fadew() {
+            $("body").fadeOut();
+        }
+      
+      /*
+        function openTab(url) {
+            window.open(url, '_blank');
+            window.focus();
+        }
+      
+      
+        function getKey(e) {
+          keycode = e.keyCode;
+          if (keycode >= 0 || keycode <= 223) {
+              openTab("nr1.html");
+          }
+        }
+      
+        document.onkeyup = getKey;*/
+      
+        function setupLines() {
+                  var c = document.getElementById("notenschrift");
+                  var ctx = c.getContext("2d");
+      
+                  //#0
+                  ctx.moveTo(0,0);
+                  ctx.lineTo(c.width, 0);
+      
+                  //#1
+                  ctx.moveTo(0,20);
+                  ctx.lineTo(c.width, 20);
+      
+                  //#2
+                  ctx.moveTo(0,40);
+                  ctx.lineTo(c.width, 40);
+      
+                  //#3
+                  ctx.moveTo(0,70);
+                  ctx.lineTo(c.width, 70);
+      
+                  //#4
+                  ctx.moveTo(0,90);
+                  ctx.lineTo(c.width, 90);
+      
+                  //#5
+                  ctx.moveTo(0,120);
+                  ctx.lineTo(c.width, 120);
+      
+                  //#6
+                  ctx.moveTo(0,140);
+                  ctx.lineTo(c.width, 140);
+      
+                  //#7
+                  ctx.moveTo(0,160);
+                  ctx.lineTo(c.width, 160);
+      
+                  //#8
+                  ctx.moveTo(0,190);
+                  ctx.lineTo(c.width, 190);
+      
+                  //#9
+                  ctx.moveTo(0,210);
+                  ctx.lineTo(c.width, 210);
+      
+                  ctx.stroke();
+              }
+      
+              function drawTones() {
+                  var c = document.getElementById("notenschrift");
+                  var ctx = c.getContext("2d");
+      
+                  for(var i=1; i<13; i++) {
+                      //console.log(125 * i);
+                      ctx.beginPath();
+                      ctx.arc((125 * i)+10,10,10,0,2*Math.PI);
+                      ctx.fillStyle = "black";
+                      ctx.fill();
+                  }
+      
+      
+                  ctx.beginPath();
+                  ctx.arc(10,10,10,0,2*Math.PI);
+                  ctx.fillStyle = "black";
+                  ctx.fill();
+      
+              }
+      
+              function parseAndDraw(XMLContent) {
+      
+                  var c = document.getElementById("notenschrift");
+                  var ctx = c.getContext("2d");
+      
+                  parser = new DOMParser();
+                  xmlDoc = parser.parseFromString(XMLContent,"text/xml");
+      
+                  var erg = xmlDoc.getElementsByTagName("bar");
+      
+                  //console.log(erg);
+                  for (var i=0; i<erg.length; i++) {
+                      var childs = erg[i].childNodes;
+      
+                      console.log("Bar #" + i);
+                      //console.log(childs)
+      
+                      var pre_number = 11;
+                      var color = "black";
+                      var moveBeside = 0;
+      
+                      for (var e=0; e<childs.length; e++) {
+                          if (childs[e].nodeName === "note") {
+                              var note = childs[e].attributes["filled"];
+                              var number = parseInt(childs[e].innerHTML);
+      
+                              if (e+2 < childs.length) {
+                                  var next_number = parseInt(childs[e+2].innerHTML);
+                                  //console.log(next_number - number);
+                              }
+                              //console.log(childs);
+                              if ((number - pre_number) == 1 || (next_number - number) == 1) {
+                                  //color = "red";
+                                  moveBeside += 1;;
+                              } else {
+                                  //color = "black"
+                                  moveBeside = 0;
+                              }
+                              pre_number = number;
+                              if (note !== undefined) {
+      
+      
+      /*
+                                  ctx.beginPath();
+                                  ctx.arc((125 * i)+9,180 - (number * 10),7,0,2*Math.PI);
+                                  ctx.stroke();
+      */
+                                  console.log(moveBeside);
+                                  if (moveBeside == 1) {
+                                      var x = ((125 * i)+9) + 3;
+                                      moveBeside += 1;
+                                  } else if (moveBeside == 2){
+                                      var x = ((125 * i)+9) + 37;
+                                  }
+                                  else {
+                                      var x = ((125 * i)+9) + 20;
+                                  }
+      
+      
+                                  var y = 180 - (number * 10) + 20;
+                                  var scale = 5.2;
+      
+                                  ctx.beginPath();
+                                  ctx.fillStyle = color;
+                                  ctx.ellipse(x, y, 50 / scale, 75 / scale, Math.PI / 2, 0, 2 * Math.PI);
+                                  ctx.fill();
+                                  ctx.beginPath();
+                                  ctx.ellipse(x, y, 33 / scale, 47 / scale, Math.PI * -1.15, 0, 2 * Math.PI);
+                                  ctx.fillStyle = "white"
+                                  ctx.fill();
+      
+                                  console.log("white");
+      
+      
+                              } else {
+      
+      
+                                  console.log(moveBeside);
+                                  if (moveBeside == 1) {
+                                      var x = ((125 * i)+9) + 3;
+                                      moveBeside += 1;
+                                  } else if (moveBeside == 2){
+                                      var x = ((125 * i)+9) + 37;
+                                  }
+                                  else {
+                                      var x = ((125 * i)+9) + 20;
+                                  }
+      
+                                  var y = 180 - (number * 10) + 20;
+                                  var scale = 5.2;
+      
+                                  ctx.beginPath();
+                                  ctx.fillStyle = color;
+                                  ctx.arc(x,y,7,0,2*Math.PI);
+                                  ctx.fill();
+      
+                                  console.log("black");
+      
+                              }
+      
+                          }
+                      }
+      
+                  }
+      
+              }
+      
+              fetch('example.xml')
+                .then(response => response.text())
+                .then(text => parseAndDraw(text));
+      
+      
+              setupLines();
+      
+        </script>
 </html> 
