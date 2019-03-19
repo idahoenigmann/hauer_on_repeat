@@ -220,20 +220,13 @@
                               //console.log(childs);
                               if ((number - pre_number) == 1 || (next_number - number) == 1) {
                                   //color = "red";
-                                  moveBeside += 1;;
+                                  moveBeside += 1;
                               } else {
                                   //color = "black"
                                   moveBeside = 0;
                               }
                               pre_number = number;
                               if (note !== undefined) {
-      
-      
-      /*
-                                  ctx.beginPath();
-                                  ctx.arc((125 * i)+9,180 - (number * 10),7,0,2*Math.PI);
-                                  ctx.stroke();
-      */
                                   console.log(moveBeside);
                                   if (moveBeside == 1) {
                                       var x = ((125 * i)+9) + 3;
@@ -246,7 +239,7 @@
                                   }
       
       
-                                  var y = 180 - (number * 10) + 10;
+                                  var y = 180 - (number * 10) + 40;
                                   var scale = 5.2;
       
                                   ctx.beginPath();
@@ -255,10 +248,9 @@
                                   ctx.fill();
                                   ctx.beginPath();
                                   ctx.ellipse(x, y, 33 / scale, 47 / scale, Math.PI * -1.15, 0, 2 * Math.PI);
-                                  ctx.fillStyle = "white"
+                                  ctx.fillStyle = "white";
                                   ctx.fill();
-      
-                                  console.log("white");
+
       
       
                               } else {
@@ -275,15 +267,13 @@
                                       var x = ((125 * i)+9) + 20;
                                   }
       
-                                  var y = 180 - (number * 10) + 20;
+                                  var y = 180 - (number * 10) + 40;
                                   var scale = 5.2;
       
                                   ctx.beginPath();
                                   ctx.fillStyle = color;
                                   ctx.arc(x,y,7,0,2*Math.PI);
                                   ctx.fill();
-      
-                                  console.log("black");
       
                               }
       
