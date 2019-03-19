@@ -1,0 +1,95 @@
+@font-face {
+    font-family: myFirstFontRegular;
+    src: url(gt-pressura-regular.woff);
+}
+
+@font-face {
+    font-family: myFirstFontBold;
+    src: url(gt-pressura-bold.woff);
+}
+
+@font-face {
+    font-family: myFirstFontLight;
+    src: url(gt-pressura-light.woff);
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+body {
+    text-align: center;
+}
+
+h1 {
+    font-size: 100px;
+    /*text-shadow: 2px 2px #ff0000;*/
+    font-family: myFirstFontLight;
+    margin-bottom: -50px;
+}
+
+h2 {
+    font-size: 60px;
+    /*text-shadow: 2px 2px #ff0000;*/
+    font-family: myFirstFontLight;
+}
+
+p {
+    font-size: 30px;
+    font-family: myFirstFontRegular;
+}
+
+.Bottom {
+    position: absolute;
+    bottom: 100px;
+}
+
+#htllogo {
+    left: 100px;
+}
+
+#musikschulelogo {
+    right: 100px;
+}
+
+.logo{
+    position: absolute;
+    bottom: 100px;
+    width: 300px;
+}
+
+#klaviatur {
+    z-index: 0;
+    position: absolute;
+    left: 1470px;
+    top: 460px;
+
+    height: 150px;
+}
+
+#notenschrift {
+    position: absolute;
+    left: 200px;
+    top: 370px;
+}
+
+#Header {
+    font-size: 100px;
+    /*text-shadow: 2px 2px #ff0000;*/
+    font-family: myFirstFontLight;
+    margin-bottom: -20px;
+}
+
+.Content {
+    margin-left: 25%;
+    width: 50%;
+    text-align: center;
+
+}
+
+#ContentText {
+    font-size: 30px;
+    font-family: myFirstFontRegular;
+}
