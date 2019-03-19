@@ -1,74 +1,74 @@
 <torus>
 <bar>
 <note>0</note>
-<note filled="filled">4</note>
+<note>4</note>
+<note filled="filled">7</note>
+<note>11</note>
+</bar>
+<bar>
+<note filled="filled">1</note>
+<note>4</note>
 <note>7</note>
 <note>11</note>
 </bar>
 <bar>
-<note>0</note>
+<note>1</note>
 <note>4</note>
 <note>7</note>
 <note filled="filled">10</note>
 </bar>
 <bar>
-<note>0</note>
+<note>1</note>
 <note>4</note>
-<note filled="filled">8</note>
-<note>10</note>
-</bar>
-<bar>
-<note>0</note>
-<note>4</note>
-<note>8</note>
+<note>7</note>
 <note filled="filled">9</note>
 </bar>
 <bar>
-<note>0</note>
-<note>4</note>
-<note filled="filled">6</note>
+<note>1</note>
+<note filled="filled">5</note>
+<note>7</note>
+<note>9</note>
+</bar>
+<bar>
+<note>1</note>
+<note filled="filled">3</note>
+<note>7</note>
+<note>9</note>
+</bar>
+<bar>
+<note>1</note>
+<note filled="filled">4</note>
+<note>7</note>
 <note>9</note>
 </bar>
 <bar>
 <note filled="filled">2</note>
 <note>4</note>
-<note>6</note>
+<note>7</note>
 <note>9</note>
 </bar>
 <bar>
-<note filled="filled">1</note>
+<note>2</note>
 <note>4</note>
-<note>6</note>
-<note>9</note>
+<note>7</note>
+<note filled="filled">11</note>
+</bar>
+<bar>
+<note>2</note>
+<note>4</note>
+<note filled="filled">8</note>
+<note>11</note>
 </bar>
 <bar>
 <note filled="filled">0</note>
 <note>4</note>
-<note>6</note>
-<note>9</note>
-</bar>
-<bar>
-<note>0</note>
-<note filled="filled">5</note>
-<note>6</note>
-<note>9</note>
-</bar>
-<bar>
-<note>0</note>
-<note>5</note>
-<note>6</note>
-<note filled="filled">11</note>
-</bar>
-<bar>
-<note>0</note>
-<note>5</note>
-<note filled="filled">7</note>
+<note>8</note>
 <note>11</note>
 </bar>
 <bar>
 <note>0</note>
-<note filled="filled">3</note>
-<note>7</note>
+<note>4</note>
+<note filled="filled">6</note>
 <note>11</note>
 </bar>
 </torus>
