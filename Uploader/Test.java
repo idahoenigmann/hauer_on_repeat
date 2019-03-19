@@ -84,7 +84,7 @@ public class Test {
         System.out.println(link);
 
 
-        Process proc = Runtime.getRuntime().exec("qrencode -t UTF8 " + link);
+        Process proc = Runtime.getRuntime().exec("qrencode " + link + " -o qrcode.png");
         BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         String result="";
         String line = "";
