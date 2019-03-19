@@ -110,15 +110,16 @@
         --
         */
                 //setTimeout(fadew, 15000);
-                setTimeout(cl, 15500);
-        
-                function cl() {
-                    window.open('','_self').focus();
-                    window.close();
-                }
-        
+                setTimeout(fadew, 15500);
+                setTimeout(change_page_to, 16000);
+
+                function change_page_to() {
+                    window.location.href = "nr4.html";
+                } 
+            
+            
                 function fadew() {
-                    document.getElementsByTagName("html").item(0).fadeOut();
+                    $("body").fadeOut();
                 }
         
                 function setupLines() {
