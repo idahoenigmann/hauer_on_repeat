@@ -8,7 +8,7 @@
 
 cd /home/pi/hauer_on_repeat/build
 
-while [! -d "/sys/class/gipo/export" ]
+while [! -d "/sys/class/gpio/gpio21" ]
 do
 
 
