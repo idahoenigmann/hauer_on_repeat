@@ -8,6 +8,10 @@
 
 cd /home/pi/hauer_on_repeat/build
 
+while [! -d "/sys/class/gipo/export" ]
+do
+
+
 ### export GPIO ###
 #button GPIO
 echo "2" > /sys/class/gpio/export
@@ -65,7 +69,7 @@ echo "out" > /sys/class/gpio/gpio16/direction
 echo "out" > /sys/class/gpio/gpio20/direction
 echo "out" > /sys/class/gpio/gpio21/direction
 
-
+done
 
 while true
 do
