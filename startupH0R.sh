@@ -6,6 +6,8 @@
 ### 	1) sudo crontab -e
 ###	2) add line "@reboot <path-to-dir>/startupH0R.sh
 
+cd /home/pi/hauer_on_repeat/build
+
 ### export GPIO ###
 #button GPIO
 echo "2" > /sys/class/gpio/export
