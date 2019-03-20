@@ -73,6 +73,7 @@ void input(int* nums) {
         //OUTPUT
         button[1].export_gpio();
         button[1].setdir_gpio("out");
+        usleep(100000);
         button[1].setval_gpio("1");
     }
 
