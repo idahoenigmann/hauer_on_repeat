@@ -69,7 +69,7 @@ vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
     Notes notes = create_monophonie(start, shift);
     input += notes.input;
 
-    input += "}>>}\\midi {}\\layout{}\n}";
+    input += "}>>}\\midi {}\n}";
 
     File file = File("monophonie");
     file.write(input, "ly");
@@ -97,7 +97,7 @@ void monophonie_and_chords(Node* start, int shift, bool midi) {
     input += create_monophonie(start, shift+12).input;
     input += "}\n\\new Staff {\n\\clef bass\n";
     input += create_chords(start, shift).input;
-    input += "}>>}\\midi {}\\layout{}\n}";
+    input += "}>>}\\midi {}\n}";
 
     File file = File("monophonie_and_chords");
     file.write(input, "ly");

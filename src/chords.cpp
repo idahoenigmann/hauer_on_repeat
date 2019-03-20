@@ -28,7 +28,7 @@ vector<vector<int>> chords(Node* start, int shift, bool midi) {
     Notes notes = create_chords(start, shift);
 
     input += notes.input;
-    input += "}>>}\\midi {}\\layout{}\n}";
+    input += "}>>}\\midi {}\n}";
 
     if (midi) {
         File file = File("chords");
@@ -92,7 +92,7 @@ vector<vector<int>> notes(Node* start, int shift, bool midi) {
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {\n";
     Notes notes = create_notes(start, shift);
     input += notes.input;
-    input += "}>>}\\midi {}\\layout{}\n}";
+    input += "}>>}\\midi {}\n}";
 
     if (midi) {
         File file = File("notes");
