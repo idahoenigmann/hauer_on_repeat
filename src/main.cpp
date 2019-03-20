@@ -20,7 +20,7 @@ using namespace std;
 
 bool in(int num, int* d) {
     for (int i{0}; i < 12; i++) {
-        if (d[i] == num) return true; 
+        if (d[i] == num) return true;
     }
     return false;
 }
@@ -80,13 +80,15 @@ void input(int* nums) {
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
     //  WAIT FOR INPUT
     //vector<string> pressed {};
+    int index = 0;
     while (in(-1, nums)) {
         for (int idx{0}; idx < 12; idx++) {
             for (int i{0}; i < buttons.size(); i++) {
 //              if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
                 if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
                     buttons[i][1].setval_gpio("0");
-                    nums[idx] = i;
+                    nums[index] = i;
+                    index++;
                     cout << "Button " << i << " pressed!" << endl;
                 }
             }
@@ -131,16 +133,16 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        //input(numbers);
+        input(numbers);
 
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
 
         //use terminal to input numbers
-        for (int i{0}; i < 12; i++) {
-            cin >> numbers[i];
-            cntfile.write(std::to_string(11 - i), "txt");
-        }
+        // for (int i{0}; i < 12; i++) {
+        //     cin >> numbers[i];
+        //     cntfile.write(std::to_string(11 - i), "txt");
+        // }
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
