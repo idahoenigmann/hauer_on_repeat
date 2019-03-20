@@ -80,6 +80,9 @@ void input(int* nums) {
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
     //  WAIT FOR INPUT
     //vector<string> pressed {};
+    File cntfile = File("../web/cnt");
+    cntfile.write(std::to_string(12), "txt");
+
     int index = 0;
     while (in(-1, nums)) {
         for (int idx{0}; idx < 12; idx++) {
@@ -90,6 +93,7 @@ void input(int* nums) {
                     nums[index] = i;
                     index++;
                     cout << "Button " << i << " pressed!" << endl;
+                    cntfile.write(std::to_string(11 - i), "txt");
                 }
             }
         }
@@ -135,8 +139,8 @@ int main(int argc, char* argv[]) {
 
         input(numbers);
 
-        File cntfile = File("../web/cnt");
-        cntfile.write(std::to_string(12), "txt");
+        //File cntfile = File("../web/cnt");
+        //cntfile.write(std::to_string(12), "txt");
 
         //use terminal to input numbers
          //for (int i{0}; i < 12; i++) {
