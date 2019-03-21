@@ -8,10 +8,6 @@
 
 cd /home/pi/hauer_on_repeat/build
 
-while [! -d "/sys/class/gpio/gpio21" ]
-do
-
-
 ### export GPIO ###
 #button GPIO
 gpio export 2 in
@@ -54,9 +50,6 @@ gpio -g write 12 1
 gpio -g write 16 1
 gpio -g write 20 1
 gpio -g write 21 1
-
-
-done
 
 #while true
 #do
