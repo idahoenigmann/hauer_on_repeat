@@ -27,19 +27,36 @@ echo "5" > /sys/class/gpio/export
 echo "6" > /sys/class/gpio/export
 echo "13" > /sys/class/gpio/export
 
+
 #led GPIO
-echo "19" > /sys/class/gpio/export
-echo "26" > /sys/class/gpio/export
-echo "18" > /sys/class/gpio/export
-echo "23" > /sys/class/gpio/export
-echo "24" > /sys/class/gpio/export
-echo "25" > /sys/class/gpio/export
-echo "8" > /sys/class/gpio/export
-echo "7" > /sys/class/gpio/export
-echo "12" > /sys/class/gpio/export
-echo "16" > /sys/class/gpio/export
-echo "20" > /sys/class/gpio/export
-echo "21" > /sys/class/gpio/export
+
+#echo "19" > /sys/class/gpio/export
+#echo "26" > /sys/class/gpio/export
+#echo "18" > /sys/class/gpio/export
+#echo "23" > /sys/class/gpio/export
+#echo "24" > /sys/class/gpio/export
+#echo "25" > /sys/class/gpio/export
+#echo "8" > /sys/class/gpio/export
+#echo "7" > /sys/class/gpio/export
+#echo "12" > /sys/class/gpio/export
+#echo "16" > /sys/class/gpio/export
+#echo "20" > /sys/class/gpio/export
+#echo "21" > /sys/class/gpio/export
+
+gpio export 19 out
+gpio export 26 out
+gpio export 18 out
+gpio export 23 out
+gpio export 24 out
+gpio export 25 out
+gpio export 8 out
+gpio export 7 out
+gpio export 12 out
+gpio export 16 out
+gpio export 20 out
+gpio export 21 out
+
+
 
 #direction button
 echo "in" > /sys/class/gpio/gpio2/direction
@@ -56,18 +73,18 @@ echo "in" > /sys/class/gpio/gpio6/direction
 echo "in" > /sys/class/gpio/gpio13/direction
 
 #direction led
-echo "out" > /sys/class/gpio/gpio19/direction
-echo "out" > /sys/class/gpio/gpio26/direction
-echo "out" > /sys/class/gpio/gpio18/direction
-echo "out" > /sys/class/gpio/gpio23/direction
-echo "out" > /sys/class/gpio/gpio24/direction
-echo "out" > /sys/class/gpio/gpio25/direction
-echo "out" > /sys/class/gpio/gpio8/direction
-echo "out" > /sys/class/gpio/gpio7/direction
-echo "out" > /sys/class/gpio/gpio12/direction
-echo "out" > /sys/class/gpio/gpio16/direction
-echo "out" > /sys/class/gpio/gpio20/direction
-echo "out" > /sys/class/gpio/gpio21/direction
+#echo "out" > /sys/class/gpio/gpio19/direction
+#echo "out" > /sys/class/gpio/gpio26/direction
+#echo "out" > /sys/class/gpio/gpio18/direction
+#echo "out" > /sys/class/gpio/gpio23/direction
+#echo "out" > /sys/class/gpio/gpio24/direction
+#echo "out" > /sys/class/gpio/gpio25/direction
+#echo "out" > /sys/class/gpio/gpio8/direction
+#echo "out" > /sys/class/gpio/gpio7/direction
+#echo "out" > /sys/class/gpio/gpio12/direction
+#echo "out" > /sys/class/gpio/gpio16/direction
+#echo "out" > /sys/class/gpio/gpio20/direction
+#echo "out" > /sys/class/gpio/gpio21/direction
 
 done
 
