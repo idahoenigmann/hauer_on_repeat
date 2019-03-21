@@ -37,10 +37,10 @@ void input(int* nums) {
     GPIOClass val3 = GPIOClass("17");
     GPIOClass val4 = GPIOClass("27");
     GPIOClass val5 = GPIOClass("22");
-    GPIOClass val6 = GPIOClass("10");
+    GPIOClass val6 = GPIOClass("5"); //10
     GPIOClass val7 = GPIOClass("9");
     GPIOClass val8 = GPIOClass("11");
-    GPIOClass val9 = GPIOClass("5");
+    GPIOClass val9 = GPIOClass("10"); //5
     GPIOClass val10 = GPIOClass("6");
     GPIOClass val11 = GPIOClass("13");
 
@@ -51,10 +51,10 @@ void input(int* nums) {
     GPIOClass led3 = GPIOClass("23");
     GPIOClass led4 = GPIOClass("24");
     GPIOClass led5 = GPIOClass("25");
-    GPIOClass led6 = GPIOClass("8");
+    GPIOClass led6 = GPIOClass("16"); //8
     GPIOClass led7 = GPIOClass("7");
     GPIOClass led8 = GPIOClass("12");
-    GPIOClass led9 = GPIOClass("16");
+    GPIOClass led9 = GPIOClass("8"); //16
     GPIOClass led10 = GPIOClass("20");
     GPIOClass led11 = GPIOClass("21");
 
