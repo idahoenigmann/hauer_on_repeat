@@ -88,8 +88,8 @@ echo "in" > /sys/class/gpio/gpio13/direction
 
 done
 
-while true
-do
-firefox ~/hauer_on_repeat/web/nr0.html &
-~/hauer_on_repeat/build/hauer_on_repeat
-done
+#while true
+#do
+firefox /home/pi/hauer_on_repeat/web/nr0.html &
+/home/pi/hauer_on_repeat/build/hauer_on_repeat
+#done
