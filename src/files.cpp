@@ -23,7 +23,7 @@ void File::write(std::string input, std::string filetype) {
     std::string temp = filename + "." + filetype;
     file.open(temp);
 
-    file << input;
+    file << input << std::endl;
 
     file.close();
 }

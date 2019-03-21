@@ -88,18 +88,18 @@ void input(int* nums) {
     while (in(-1, nums)) {
         for (int i{0}; i < buttons.size(); i++) {
             if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
-                cout << "in if" << endl;
+                //cout << "in if" << endl;
                 buttons[i][1].setval_gpio("0");
                 nums[index] = i;
 
-                for (int idx {0}; idx < 12; idx++) {
+                /*for (int idx {0}; idx < 12; idx++) {
                     cout << nums[idx] << ", ";
                 }
-                cout << endl;
+                cout << endl;*/
 
                 cntfile.write(std::to_string(11 - index), "txt");
                 index++;
-                cout << "Button " << i << " at index " + std::to_string(index) + " pressed!" << endl;
+                //cout << "Button " << i << " at index " + std::to_string(index) + " pressed!" << endl;
             }
         }
     }
