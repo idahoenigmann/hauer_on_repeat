@@ -94,7 +94,7 @@ void input(int* nums) {
                     nums[index] = i;
                     index++;
                     cout << "Button " << i << " pressed!" << endl;
-                    cntfile.write(std::to_string(11 - i), "txt");
+                    cntfile.write(std::to_string(11 - index), "txt");
                 }
             }
         }
