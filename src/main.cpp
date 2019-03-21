@@ -114,16 +114,16 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        //input(numbers);
+        input(numbers);
 
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
 
         //use terminal to input numbers
-         for (int i{0}; i < 12; i++) {
+         /*for (int i{0}; i < 12; i++) {
              cin >> numbers[i];
              cntfile.write(std::to_string(11 - i), "txt");
-         }
+         }*/
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
