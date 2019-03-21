@@ -86,47 +86,23 @@ void input(int* nums) {
 
     int index = 0;
     while (in(-1, nums)) {
-        for (int idx{0}; idx < 12; idx++) {
-            for (int i{0}; i < buttons.size(); i++) {
-//              if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
-                if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
-                    buttons[i][1].setval_gpio("0");
-                    nums[index] = i;
-                    index++;
-                    cout << "Button " << i << " pressed!" << endl;
-                    cntfile.write(std::to_string(11 - index), "txt");
+        for (int i{0}; i < buttons.size(); i++) {
+            if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
+                //cout << "in if" << endl;
+                buttons[i][1].setval_gpio("0");
+                nums[index] = i;
+
+                /*for (int idx {0}; idx < 12; idx++) {
+                    cout << nums[idx] << ", ";
                 }
+                cout << endl;*/
+
+                cntfile.write(std::to_string(11 - index), "txt");
+                index++;
+                //cout << "Button " << i << " at index " + std::to_string(index) + " pressed!" << endl;
             }
         }
     }
-
-/*
-    // UNEXPORT EVERYTHING
-    val0.unexport_gpio();
-    val1.unexport_gpio();
-    val2.unexport_gpio();
-    val3.unexport_gpio();
-    val4.unexport_gpio();
-    val5.unexport_gpio();
-    val6.unexport_gpio();
-    val7.unexport_gpio();
-    val8.unexport_gpio();
-    val9.unexport_gpio();
-    val10.unexport_gpio();
-    val11.unexport_gpio();
-
-    led0.unexport_gpio();
-    led1.unexport_gpio();
-    led2.unexport_gpio();
-    led3.unexport_gpio();
-    led4.unexport_gpio();
-    led5.unexport_gpio();
-    led6.unexport_gpio();
-    led7.unexport_gpio();
-    led8.unexport_gpio();
-    led9.unexport_gpio();
-    led10.unexport_gpio();
-    led11.unexport_gpio();*/
 }
 
 int main(int argc, char* argv[]) {
