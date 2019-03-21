@@ -145,7 +145,7 @@ int main(int argc, char* argv[]) {
         notes(torus.start, torus.shift);
         chords(torus.start, torus.shift);
         monophonie_and_chords(torus.start, torus.shift);
-
+        usleep(63000000);
 
     }
 #pragma clang diagnostic pop
