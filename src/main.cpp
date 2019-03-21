@@ -86,16 +86,22 @@ void input(int* nums) {
 
     int index = 0;
     while (in(-1, nums)) {
-        for (int idx{0}; idx < 12; idx++) {
-            for (int i{0}; i < buttons.size(); i++) {
-//              if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
-                if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
-                    buttons[i][1].setval_gpio("0");
-                    nums[index] = i;
-                    index++;
-                    cout << "Button " << i << " pressed!" << endl;
-                    cntfile.write(std::to_string(11 - index), "txt");
+        for (int i{0}; i < buttons.size(); i++) {
+            cout << buttons[i][0].getval_gpio() << " " << !in(i, nums) << endl;
+            if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
+                cout << "in if" << endl;
+                buttons[i][1].setval_gpio("0");
+                nums[index] = i;
+
+                for (int idx {0}; idx < 12; idx++) {
+                    cout << nums[idx] << ", ";
                 }
+                cout << endl;
+
+                cntfile.write(std::to_string(11 - index), "txt");
+                cout << index << endl;
+                index++;
+                cout << "Button " << i << " pressed!" << endl;
             }
         }
     }

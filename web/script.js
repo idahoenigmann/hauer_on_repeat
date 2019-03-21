@@ -2,7 +2,7 @@ fetch('cnt.txt')
     .then(response => response.text())
     .then(text => {
         if (text === "") {
-            document.getElementById("cntButtons").innerHTML = "Es muss noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons still to be pressed."
+            document.getElementById("cntButtons").innerHTML = "Es müssen noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons still to be pressed."
         } else if (text == "1") {
             document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " out of 12 button still to be pressed."
         } else {
