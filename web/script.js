@@ -6,7 +6,7 @@ fetch('cnt.txt')
         } else if (text === "1") {
             document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " out of 12 button left to be pressed.";
         } else if (text === "0") {
-            document.getElementById("cntButtons").innerHTML = "Bitte warten - Ihr Zwölftonspiel wird erstellt ... <br> Please wait - your twelve-tone piece is being generated ...";
+            document.getElementById("cntButtons").innerHTML = "Bitte warten - Ihr Zwölftonspiel wird erstellt ... <br> Please wait - your twelve-tone piece is being generated ... <br> Bitte halten Sie den Hörer an ihr Ohr.  <br> Please hold the listener to your ear.";
         } else {
             document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
         }});
