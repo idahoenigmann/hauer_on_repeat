@@ -31,13 +31,14 @@ h1 {
     font-size: 100px;
     /*text-shadow: 2px 2px #ff0000;*/
     font-family: myFirstFontLight;
-    margin-bottom: -50px;
+    margin-bottom: 0px;
 }
 
 h2 {
     font-size: 60px;
     /*text-shadow: 2px 2px #ff0000;*/
     font-family: myFirstFontLight;
+    margin-top: 0px;
 }
 
 p {
