@@ -27,7 +27,7 @@ bool in(int num, int* d) {
 }
 
 bool checkTime(time_t begin, double timespan) {
-    if (begin != NULL) {
+    if (begin) {
         if (time(NULL) - begin >= timespan)
             return true;
     } else {
@@ -88,7 +88,7 @@ void input(int* nums) {
 
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
 
-    time_t time_lpress {NULL};
+    time_t time_lpress {};
 
     //  WAIT FOR INPUT
     //vector<string> pressed {};
@@ -100,7 +100,7 @@ void input(int* nums) {
                     buttons[i][1].setval_gpio("0");
                     nums[idx] = i;
                     cout << "Button " << i << " pressed!" << endl;
-                    time_lpress = time(NULL);
+                    time(&time_lpress);
                 }
             }
         }
