@@ -123,3 +123,22 @@ p {
     font-size: 30px;
     font-family: myFirstFontRegular;
 }
+
+@keyframes notenschrift_animation {
+    from {left: 200px}
+    to {left: -1300px}
+}
+
+#coverDiv {
+    position: absolute;
+    width: 1500px;
+    height: 300px;
+    left: 200px;
+    top: 325px;
+    background-color: white;
+    animation-name: notenschrift_animation;
+    animation-delay: 1.5s;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
