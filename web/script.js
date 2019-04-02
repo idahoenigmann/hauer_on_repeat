@@ -1,15 +1,18 @@
-fetch('cnt.txt')
-    .then(response => response.text())
-    .then(text => {
-        if (text === "") {
-            document.getElementById("cntButtons").innerHTML = "Es müssen noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
-        } else if (text === "1") {
-            document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " out of 12 button left to be pressed.";
-        } else if (text === "0") {
-            document.getElementById("cntButtons").innerHTML = "Bitte warten - Ihr Zwölftonspiel wird erstellt ... <br> Please wait - your twelve-tone piece is being generated ... <br> Bitte halten Sie den Höhrer ans Ohr.<br>Please hold the earphone to your ear.";
-        } else {
-            document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
-        }});
+function getBtnCnt() {
+    fetch('cnt.txt')
+        .then(response => response.text())
+        .then(text => {
+            if (text === "") {
+                document.getElementById("cntButtons").innerHTML = "Es müssen noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
+            } else if (text === "1") {
+                document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " out of 12 button left to be pressed.";
+            } else if (text === "0") {
+                document.getElementById("cntButtons").innerHTML = "Bitte warten - Ihr Zwölftonspiel wird erstellt ... <br> Please wait - your twelve-tone piece is being generated ... <br> Bitte halten Sie den Höhrer ans Ohr.<br>Please hold the earphone to your ear.";
+            } else {
+                document.getElementById("cntButtons").innerHTML = "Es müssen noch " + text + " von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
+            }
+        });
+}
 
 function fadew() {
     $("body").fadeOut();
