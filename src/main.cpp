@@ -30,9 +30,8 @@ bool checkTime(time_t begin, double timespan) {
     if (begin) {
         if (time(NULL) - begin >= timespan)
             return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 void input(int* nums) {
