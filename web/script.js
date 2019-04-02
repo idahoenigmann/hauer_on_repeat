@@ -2,8 +2,8 @@ function getBtnCnt() {
     fetch('cnt.txt')
         .then(response => response.text())
         .then(text => {
-            if (text === "") {
-                document.getElementById("cntButtons").innerHTML = "Es müssen noch 12 von 12 Tastern gedrückt werden. <br> " + text + " out of 12 buttons left to be pressed.";
+            if (text === "" || text === "12") {
+                document.getElementById("cntButtons").innerHTML = "Bitte drücken Sie die Taster in einer zufälligen Reihenfolge.<br>Please press the buttons in a random order.";
             } else if (text === "1") {
                 document.getElementById("cntButtons").innerHTML = "Es muss noch " + text + " von 12 Tastern gedrückt werden. <br>" + text + " out of 12 button left to be pressed.";
             } else if (text === "0") {
