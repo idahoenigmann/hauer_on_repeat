@@ -9,6 +9,7 @@
 #include <vector>
 #include <limits.h>
 #include <unistd.h>
+#include <time.h>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
@@ -20,11 +21,19 @@ using namespace std;
 
 bool in(int num, int* d) {
     for (int i{0}; i < 12; i++) {
-        if (d[i] == num) return true;
+        if (d[i] == num) return true; 
     }
     return false;
 }
 
+bool checkTime(time_t begin, double timespan) {
+    if (begin != NULL) {
+        if (time(NULL) - begin >= timespan)
+            return true;
+    } else {
+        return false;
+    }
+}
 
 void input(int* nums) {
     cout << "GPIO Setup" << endl;
@@ -37,10 +46,10 @@ void input(int* nums) {
     GPIOClass val3 = GPIOClass("17");
     GPIOClass val4 = GPIOClass("27");
     GPIOClass val5 = GPIOClass("22");
-    GPIOClass val6 = GPIOClass("5"); //10
+    GPIOClass val6 = GPIOClass("10");
     GPIOClass val7 = GPIOClass("9");
     GPIOClass val8 = GPIOClass("11");
-    GPIOClass val9 = GPIOClass("10"); //5
+    GPIOClass val9 = GPIOClass("5");
     GPIOClass val10 = GPIOClass("6");
     GPIOClass val11 = GPIOClass("13");
 
@@ -51,10 +60,10 @@ void input(int* nums) {
     GPIOClass led3 = GPIOClass("23");
     GPIOClass led4 = GPIOClass("24");
     GPIOClass led5 = GPIOClass("25");
-    GPIOClass led6 = GPIOClass("16"); //8
+    GPIOClass led6 = GPIOClass("8");
     GPIOClass led7 = GPIOClass("7");
     GPIOClass led8 = GPIOClass("12");
-    GPIOClass led9 = GPIOClass("8"); //16
+    GPIOClass led9 = GPIOClass("16");
     GPIOClass led10 = GPIOClass("20");
     GPIOClass led11 = GPIOClass("21");
 
@@ -73,36 +82,59 @@ void input(int* nums) {
         //OUTPUT
         button[1].export_gpio();
         button[1].setdir_gpio("out");
-        usleep(100000);
         button[1].setval_gpio("1");
     }
 
 
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
+
+    time_t time_lpress {NULL};
+
     //  WAIT FOR INPUT
     //vector<string> pressed {};
-    File cntfile = File("../web/cnt");
-    cntfile.write(std::to_string(12), "txt");
-
-    int index = 0;
     while (in(-1, nums)) {
-        for (int i{0}; i < buttons.size(); i++) {
-            if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
-                //cout << "in if" << endl;
-                buttons[i][1].setval_gpio("0");
-                nums[index] = i;
-
-                /*for (int idx {0}; idx < 12; idx++) {
-                    cout << nums[idx] << ", ";
+        for (int idx{0}; idx < 12; idx++) {
+            for (int i{0}; i < buttons.size(); i++) {
+//              if (buttons[i][0].getval_gpio() == "1" && !in(stoi(buttons[i][0].get_gpionum()), nums)) {
+                if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
+                    buttons[i][1].setval_gpio("0");
+                    nums[idx] = i;
+                    cout << "Button " << i << " pressed!" << endl;
+                    time_lpress = time(NULL);
                 }
-                cout << endl;*/
-
-                cntfile.write(std::to_string(11 - index), "txt");
-                index++;
-                //cout << "Button " << i << " at index " + std::to_string(index) + " pressed!" << endl;
             }
         }
+
+        if (checkTime(time_lpress, 60000)) return;
     }
+
+/*
+    // UNEXPORT EVERYTHING
+    val0.unexport_gpio();
+    val1.unexport_gpio();
+    val2.unexport_gpio();
+    val3.unexport_gpio();
+    val4.unexport_gpio();
+    val5.unexport_gpio();
+    val6.unexport_gpio();
+    val7.unexport_gpio();
+    val8.unexport_gpio();
+    val9.unexport_gpio();
+    val10.unexport_gpio();
+    val11.unexport_gpio();
+
+    led0.unexport_gpio();
+    led1.unexport_gpio();
+    led2.unexport_gpio();
+    led3.unexport_gpio();
+    led4.unexport_gpio();
+    led5.unexport_gpio();
+    led6.unexport_gpio();
+    led7.unexport_gpio();
+    led8.unexport_gpio();
+    led9.unexport_gpio();
+    led10.unexport_gpio();
+    led11.unexport_gpio();*/
 }
 
 int main(int argc, char* argv[]) {
@@ -114,16 +146,20 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
+        //input(numbers);
+
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
 
-        input(numbers);
-
         //use terminal to input numbers
-         /*for (int i{0}; i < 12; i++) {
-             cin >> numbers[i];
-             cntfile.write(std::to_string(11 - i), "txt");
-         }*/
+        for (int i{0}; i < 12; i++) {
+            cin >> numbers[i];
+            cntfile.write(std::to_string(11 - i), "txt");
+        }
+
+        //reset after timeout
+        if (in(-1, numbers)) continue;
+
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
@@ -145,7 +181,7 @@ int main(int argc, char* argv[]) {
         notes(torus.start, torus.shift);
         chords(torus.start, torus.shift);
         monophonie_and_chords(torus.start, torus.shift);
-        usleep(63000000);
+
 
     }
 #pragma clang diagnostic pop
