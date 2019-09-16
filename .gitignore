@@ -31,8 +31,9 @@
 *.out
 *.app
 
-.idea/*
+.idea/
 build
+buiild/
 test/exec
 *.cmake
 documentation/html
