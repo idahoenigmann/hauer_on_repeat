@@ -9,6 +9,7 @@
 #include <vector>
 #include <limits.h>
 #include <unistd.h>
+#include <time.h>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
@@ -20,11 +21,18 @@ using namespace std;
 
 bool in(int num, int* d) {
     for (int i{0}; i < 12; i++) {
-        if (d[i] == num) return true;
+        if (d[i] == num) return true; 
     }
     return false;
 }
 
+bool checkTime(time_t begin, double timespan) {
+    if (begin) {
+        if (time(NULL) - begin >= timespan)
+            return true;
+    }
+    return false;
+}
 
 void input(int* nums) {
     cout << "GPIO Setup" << endl;
@@ -79,6 +87,9 @@ void input(int* nums) {
 
 
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
+
+    time_t time_lpress {};
+
     //  WAIT FOR INPUT
     //vector<string> pressed {};
     File cntfile = File("../web/cnt");
@@ -88,20 +99,16 @@ void input(int* nums) {
     while (in(-1, nums)) {
         for (int i{0}; i < buttons.size(); i++) {
             if (buttons[i][0].getval_gpio() == "1" && !in(i, nums)) {
-                //cout << "in if" << endl;
                 buttons[i][1].setval_gpio("0");
                 nums[index] = i;
-
-                /*for (int idx {0}; idx < 12; idx++) {
-                    cout << nums[idx] << ", ";
-                }
-                cout << endl;*/
-
+                cout << "Button " << i << " pressed!" << endl;
+                time(&time_lpress);
                 cntfile.write(std::to_string(11 - index), "txt");
                 index++;
-                //cout << "Button " << i << " at index " + std::to_string(index) + " pressed!" << endl;
             }
         }
+
+        if (checkTime(time_lpress, 60000)) return;
     }
 }
 
@@ -114,16 +121,20 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
+        input(numbers);
+
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
 
-        input(numbers);
-
         //use terminal to input numbers
-         /*for (int i{0}; i < 12; i++) {
-             cin >> numbers[i];
-             cntfile.write(std::to_string(11 - i), "txt");
-         }*/
+        /*for (int i{0}; i < 12; i++) {
+            cin >> numbers[i];
+            cntfile.write(std::to_string(11 - i), "txt");
+        }*/
+
+        //reset after timeout
+        if (in(-1, numbers)) continue;
+
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
