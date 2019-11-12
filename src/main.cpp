@@ -143,7 +143,8 @@ int main(int argc, char* argv[]) {
         }
 
 
-        string writer = "../database/DBWriter/build/bin/dbwriter " + dbwriter;
+        string writer = "sqlite3 -line ../database.db \"insert into saves values (datetime(), '" + dbwriter + "')\"";
+	cout << writer << endl;
         system(writer.c_str());
 
         Torus torus = Torus(numbers);
