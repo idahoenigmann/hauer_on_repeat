@@ -17,7 +17,7 @@
  * @param midi false if chords should not be displayed and played; true otherwise
  * @return vector representation of music piece
  */
-std::vector<std::vector<int>> chords(Node* start, int shift, bool midi=true);
+std::vector<std::vector<int>> chords(Node* start, int shift, int delta=0, bool midi=true);
 
 //! converts chords into a string in lilypond syntax
 /*!
@@ -26,7 +26,7 @@ std::vector<std::vector<int>> chords(Node* start, int shift, bool midi=true);
  * @param anschlussklang true if anschlussklang is needed; false otherwise
  * @return notes storing a string in lilypond syntax
  */
-Notes create_chords(Node* start, int shift);
+Notes create_chords(Node* start, int shift, int delta=0);
 
 //! creates notes, displays and plays them
 /*!

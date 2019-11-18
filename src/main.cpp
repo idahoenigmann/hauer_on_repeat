@@ -129,34 +129,43 @@ int main(int argc, char* argv[]) {
         //use terminal to input numbers
         for (int i{0}; i < 12; i++) {   // TODO
             cin >> numbers[i];
-            cntfile.write(std::to_string(11 - i), "txt");
+            // cntfile.write(std::to_string(11 - i), "txt");        // TODO
         }   // TODO
 
         //reset after timeout
         if (in(-1, numbers)) continue;
 
-
+/*
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
         for (int i{1}; i < 12; i++) {
             dbwriter += "," + to_string(numbers[i]);
-        }
+        }*/
 
-
+/*
         string writer = "sqlite3 -line ../database.db \"insert into saves values (datetime(), '" + dbwriter + "')\"";
-	cout << writer << endl;
-        system(writer.c_str());
+	    cout << writer << endl;
+        system(writer.c_str());*/
 
         Torus torus = Torus(numbers);
-        torus.move_start();
+        int delta = torus.move_start();
+        cout << "delta: " << delta << endl;
 
-        File file = File("../web/example");
-        file.write(torus.to_string(), "xml");
+        /*File file = File("../web/example");
+        file.write(torus.to_string(), "xml");*/
 
         //monophonie(torus.start, torus.shift);
-        notes(torus.start, torus.shift);
-        chords(torus.start, torus.shift);
-        monophonie_and_chords(torus.start, torus.shift);
+        //notes(torus.start, torus.shift);
+        vector<vector<int>> res = chords(torus.start, torus.shift, delta, true);
+
+        for (auto r : res) {
+            for (auto e : r) {
+                cout << e << " ";
+            }
+            cout << endl;
+        }
+
+        //monophonie_and_chords(torus.start, torus.shift, delta);
         usleep(63000000);
 
     }

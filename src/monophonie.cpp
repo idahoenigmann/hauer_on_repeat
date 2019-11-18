@@ -50,7 +50,7 @@ string convert_notes_to_string(vector<int> l) {
     return res;
 }
 
-vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
+vector<vector<int>> monophonie(Node* start, int shift, int delta, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _      \n"
                      " |  \\/  |                       | |               (_)     \n"
@@ -66,7 +66,7 @@ vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
 
-    Notes notes = create_monophonie(start, shift);
+    Notes notes = create_monophonie(start, shift, delta);
     input += notes.input;
 
     input += "}>>}\\midi {}\n}";
@@ -78,7 +78,7 @@ vector<vector<int>> monophonie(Node* start, int shift, bool midi) {
     return notes.list;
 }
 
-void monophonie_and_chords(Node* start, int shift, bool midi) {
+void monophonie_and_chords(Node* start, int shift, int delta, bool midi) {
     if (midi) {
         cout << "  __  __                         _                 _                        _    _____ _                   _     \n"
                 " |  \\/  |                       | |               (_)                      | |  / ____| |                 | |    \n"
@@ -94,9 +94,9 @@ void monophonie_and_chords(Node* start, int shift, bool midi) {
 
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {";
 
-    input += create_monophonie(start, shift+12).input;
+    input += create_monophonie(start, shift+12, delta).input;
     input += "}\n\\new Staff {\n\\clef bass\n";
-    input += create_chords(start, shift).input;
+    input += create_chords(start, shift, delta).input;
     input += "}>>}\\midi {}\n}";
 
     File file = File("monophonie_and_chords");
@@ -105,7 +105,7 @@ void monophonie_and_chords(Node* start, int shift, bool midi) {
         file.create_midi_pdf();
 }
 
-Notes create_monophonie(Node* start, int shift) {
+Notes create_monophonie(Node* start, int shift, int delta) {
     string input;
     Node *curr = start;
     int voice = 0;
@@ -114,6 +114,10 @@ Notes create_monophonie(Node* start, int shift) {
     std::vector<std::vector<int>> ret{};
     vector<int> l;
     Node *original_node;
+
+    if (delta > 0) {
+        curr = curr->right;
+    }
 
     while (!curr->is_twelve_tone) {
         curr = curr->up;

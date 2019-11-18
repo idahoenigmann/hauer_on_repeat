@@ -34,7 +34,7 @@ struct Notes {
  * @param midi false if chords should not be displayed and played; true otherwise
  * @return vector representation of music piece
  */
-std::vector<std::vector<int>> monophonie(Node* start, int shift, bool midi=true);
+std::vector<std::vector<int>> monophonie(Node* start, int shift, int delta=0, bool midi=true);
 
 //! converts monophonie into a string in lilypond syntax
 /*!
@@ -43,7 +43,7 @@ std::vector<std::vector<int>> monophonie(Node* start, int shift, bool midi=true)
  * @param anschlussklang true if anschlussklang is needed; false otherwise
  * @return notes storing a string in lilypond syntax
  */
-Notes create_monophonie(Node* start, int shift);
+Notes create_monophonie(Node* start, int shift, int delta=0);
 
 //! playes monphonie and chords simultaneously
 /*!
@@ -52,6 +52,6 @@ Notes create_monophonie(Node* start, int shift);
  * @param anschlussklang true if anschlussklang is needed; false otherwise
  * @param midi false if chords should not be displayed and played; true otherwise
  */
-void monophonie_and_chords(Node* start, int shift, bool midi=true);
+void monophonie_and_chords(Node* start, int shift, int delta=0, bool midi=true);
 
 #endif //HAUER_ON_REPEAT_MONOPHONIE_H

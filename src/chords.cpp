@@ -12,7 +12,7 @@
 
 using namespace std;
 
-vector<vector<int>> chords(Node* start, int shift, bool midi) {
+vector<vector<int>> chords(Node* start, int shift, int delta, bool midi) {
     if (midi) {
         cout << "   _____ _                   _     \n"
                 "  / ____| |                 | |    \n"
@@ -25,7 +25,7 @@ vector<vector<int>> chords(Node* start, int shift, bool midi) {
 
     string input;
     input += "\\version \"2.18.2\"\n\\score {\n\\absolute {\n\\time 4/4\n<< \\new Staff {\n\\clef bass\n";
-    Notes notes = create_chords(start, shift);
+    Notes notes = create_chords(start, shift, delta);
 
     input += notes.input;
     input += "}>>}\\midi {}\n}";
@@ -38,12 +38,16 @@ vector<vector<int>> chords(Node* start, int shift, bool midi) {
     return notes.list;
 }
 
-Notes create_chords(Node* start, int shift) {
+Notes create_chords(Node* start, int shift, int delta) {
     string input;
     Node* curr = start;
     int arr[4] = {};
     vector<vector<int>> ret {};
     vector<int> l {};
+
+    if (delta > 0) {
+        curr = curr->right;
+    }
 
     for (int bar=0; bar < 12; bar++) {
         get_four_chord(arr, curr);
@@ -58,6 +62,34 @@ Notes create_chords(Node* start, int shift) {
         ret.push_back(l);
         input += ">>\n";
         curr = curr->right; //go to next bar
+    }
+    curr = curr->left;
+
+    if (delta == 2) {
+        l.clear();
+        arr[0] = 0;
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 2;
+
+        int last_chord_arr[4] = {};
+        get_four_chord(last_chord_arr, curr);
+
+        for (int i{}; i < 4; i++) {
+            if (arr[i] != last_chord_arr[i]) {
+                last_chord_arr[i] = arr[i];
+                break;
+            }
+        }
+
+        input += "<<";
+        for (int i=0; i<4; i++) {
+            input += convert_int_to_note(last_chord_arr[i] + 3 * i + shift) + "2 ";
+            l.push_back(last_chord_arr[i] + 3 * i + shift);
+        }
+        ret.push_back(l);
+        input += ">>\n";
+
     }
 
     l.clear();
