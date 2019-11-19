@@ -151,21 +151,21 @@ int main(int argc, char* argv[]) {
         int delta = torus.move_start();
         cout << "delta: " << delta << endl;
 
-        /*File file = File("../web/example");
-        file.write(torus.to_string(), "xml");*/
+        File file = File("../web/example");
+        file.write(torus.to_string(), "xml");
 
-        //monophonie(torus.start, torus.shift);
-        //notes(torus.start, torus.shift);
-        vector<vector<int>> res = chords(torus.start, torus.shift, delta, true);
+        monophonie(torus.start, torus.shift);
+        notes(torus.start, torus.shift);
+        vector<vector<int>> res = chords(torus.start, torus.shift, delta);
 
-        for (auto r : res) {
+        /*for (auto r : res) {
             for (auto e : r) {
                 cout << e << " ";
             }
             cout << endl;
-        }
+        }*/
 
-        //monophonie_and_chords(torus.start, torus.shift, delta);
+        monophonie_and_chords(torus.start, torus.shift, delta);
         usleep(63000000);
 
     }

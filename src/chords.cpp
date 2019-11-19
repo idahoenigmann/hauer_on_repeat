@@ -84,7 +84,7 @@ Notes create_chords(Node* start, int shift, int delta) {
 
         input += "<<";
         for (int i=0; i<4; i++) {
-            input += convert_int_to_note(last_chord_arr[i] + 3 * i + shift) + "2 ";
+            input += convert_int_to_note(last_chord_arr[i] + 3 * i + shift) + "4 ";
             l.push_back(last_chord_arr[i] + 3 * i + shift);
         }
         ret.push_back(l);
