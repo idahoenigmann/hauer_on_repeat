@@ -114,8 +114,8 @@ void input(int* nums) {
 
 int main(int argc, char* argv[]) {
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
 
         //save into new array (as integers)
