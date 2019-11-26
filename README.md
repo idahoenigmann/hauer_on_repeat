@@ -23,37 +23,26 @@ display the notes on a display, play the music and upload an mp3 of the
 music to a social media platform. Each tune will also be stored in a
 database.
 
-## Prerequisites ##
+## Prerequisites: ##
 
-* googletest (gtest)
-* lilypond
-* firefox
-* timidity++
-* vlc
+### firefox ###
 
-## Additional ##
+```shell
+sudo apt-get install firefox
+```
 
-### References ###
+To enable communication between the c++ code and the browser the following
+configuration has to be changed:
 
-#### GPIO Code from ####
-http://hertaville.com/introduction-to-accessing-the-raspberry-pis-gpio-in-c.html
+* open firefox and go to about:config
+* search for the privacy.file_unique_origin setting
+* change the value to be false
 
-### Installation guides: ###
-
-#### gtest ####
-Installation guide to gtest on Ubuntu [here](https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
-
-#### lilypond ####
+### lilypond ###
 
 LilyPond Download can be found [here](http://lilypond.org/unix.html)
 
-#### vlc ####
-
-```shell
-sudo apt-get install vlc
-```
-
-#### timidity++ ####
+### timidity++ ###
 
 If you are using Ubuntu:
 
@@ -82,3 +71,11 @@ soundfont FluidR3_GM.sf2
 The first path specifies where the SoundFont files (FluidR3_GM.sf2) are located.
 
 The second line specifies the SoundFont you want to use.
+
+### gtest ###
+Installation guide to gtest on Ubuntu [here](https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/)
+
+## References ##
+
+### GPIO Code from ###
+http://hertaville.com/introduction-to-accessing-the-raspberry-pis-gpio-in-c.html

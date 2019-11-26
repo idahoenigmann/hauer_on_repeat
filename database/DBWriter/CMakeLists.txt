@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.9)
 project(hello_java_jar LANGUAGES Java)
 # begin_of_changes: change as appropriate!
 set(TARGET_NAME "dbwriter") # name used for naming the jar-file and the executable
 set(TARGET_MAIN_CLASS "DBWriter") # name used for naming the main class
 # platform: windows32, windows64, linux32, linux64, or mac
-set(PLATFORM "linux64")
+set(PLATFORM "linux32")
 # will be used to create the directory "bin"
-    set(JDK_HOME "/usr/lib/jvm/java-8-openjdk-amd64")
+set(JDK_HOME "/usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt")
 find_package(Java 1.8 REQUIRED COMPONENTS Development)
 include(UseJava)
 file(GLOB EXTERN_JARS "extern/*.jar")
