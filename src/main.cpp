@@ -135,7 +135,6 @@ int main(int argc, char* argv[]) {
         //reset after timeout
         if (in(-1, numbers)) continue;
 
-/*
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
         for (int i{1}; i < 12; i++) {
@@ -144,7 +143,7 @@ int main(int argc, char* argv[]) {
 
         string writer = "sqlite3 -line ../database.db \"insert into saves values (datetime(), '" + dbwriter + "')\"";
 	    cout << writer << endl;
-        system(writer.c_str());*/
+        system(writer.c_str());
 
         Torus torus = Torus(numbers);
         int delta = torus.move_start();
