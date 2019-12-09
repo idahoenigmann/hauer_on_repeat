@@ -74,7 +74,7 @@ vector<vector<int>> monophonie(Node* start, int shift, int delta, bool midi) {
     File file = File("monophonie");
     file.write(input, "ly");
     if (midi)
-        file.create_midi_pdf();
+        file.create_midi_pdf(false);
     return notes.list;
 }
 

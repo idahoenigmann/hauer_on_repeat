@@ -1,16 +1,19 @@
 @font-face {
     font-family: myFirstFontRegular;
-    src: url(gt-pressura-regular.woff);
+    /*src: url(gt-pressura-regular.woff);*/
+    src: url("/usr/share/fonts/OTF/MetaSerifPro-Book.otf") format("opentype");
 }
 
 @font-face {
     font-family: myFirstFontBold;
-    src: url(gt-pressura-bold.woff);
+    /*src: url(gt-pressura-bold.woff);*/
+    src: url("/usr/share/fonts/OTF/MetaSerifPro-Bold.otf") format("opentype");
 }
 
 @font-face {
     font-family: myFirstFontLight;
-    src: url(gt-pressura-light.woff);
+    /*src: url(gt-pressura-light.woff);*/
+    src: url("/usr/share/fonts/OTF/MetaSerifPro-Light.otf") format("opentype");
 }
 
 * {

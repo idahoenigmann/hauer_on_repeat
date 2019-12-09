@@ -129,8 +129,8 @@ int main(int argc, char* argv[]) {
         //use terminal to input numbers
         for (int i{0}; i < 12; i++) {   // TODO
             cin >> numbers[i];
-            // cntfile.write(std::to_string(11 - i), "txt");        // TODO
-        }   // TODO
+            cntfile.write(std::to_string(11 - i), "txt");
+        }
 
         //reset after timeout
         if (in(-1, numbers)) continue;
@@ -140,9 +140,8 @@ int main(int argc, char* argv[]) {
         dbwriter = to_string(numbers[0]);
         for (int i{1}; i < 12; i++) {
             dbwriter += "," + to_string(numbers[i]);
-        }*/
+        }
 
-/*
         string writer = "sqlite3 -line ../database.db \"insert into saves values (datetime(), '" + dbwriter + "')\"";
 	    cout << writer << endl;
         system(writer.c_str());*/
@@ -154,17 +153,8 @@ int main(int argc, char* argv[]) {
         File file = File("../web/example");
         file.write(torus.to_string(), "xml");
 
-        monophonie(torus.start, torus.shift);
         notes(torus.start, torus.shift);
-        vector<vector<int>> res = chords(torus.start, torus.shift, delta);
-
-        /*for (auto r : res) {
-            for (auto e : r) {
-                cout << e << " ";
-            }
-            cout << endl;
-        }*/
-
+        chords(torus.start, torus.shift, delta);
         monophonie_and_chords(torus.start, torus.shift, delta);
         usleep(63000000);
 
