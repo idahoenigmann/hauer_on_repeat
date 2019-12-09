@@ -153,8 +153,27 @@ int main(int argc, char* argv[]) {
         file.write(torus.to_string(), "xml");
 
         notes(torus.start, torus.shift);
-        chords(torus.start, torus.shift, delta);
+        auto res_c = chords(torus.start, torus.shift, delta);
         monophonie_and_chords(torus.start, torus.shift, delta);
+
+        //auto res_m = monophonie(torus.start, torus.shift, delta, false);
+
+        /*cout << "chords" << endl;
+        for(auto r : res_c) {
+            for (auto e : r) {
+                cout << e << " ";
+            }
+            cout << endl;
+        }
+
+        cout << "monophonie" << endl;
+        for(auto r : res_m) {
+            for (auto e : r) {
+                cout << e << " ";
+            }
+            cout << endl;
+        }*/
+
         usleep(63000000);
 
     }
