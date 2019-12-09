@@ -55,7 +55,7 @@ void input(int* nums) {
     //  --- output
     GPIOClass led0 = GPIOClass("19");
     GPIOClass led1 = GPIOClass("26");
-    GPIOClass led2 = GPIOClass("18");
+    GPIOClass led2 = GPIOClass("18");   
     GPIOClass led3 = GPIOClass("23");
     GPIOClass led4 = GPIOClass("24");
     GPIOClass led5 = GPIOClass("25");
@@ -114,8 +114,8 @@ void input(int* nums) {
 
 int main(int argc, char* argv[]) {
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
 
         //save into new array (as integers)
