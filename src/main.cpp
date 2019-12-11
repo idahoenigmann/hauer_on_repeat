@@ -121,16 +121,16 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        //input(numbers);   // TODO
+        input(numbers);
 
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
 
         //use terminal to input numbers
-        for (int i{0}; i < 12; i++) {   // TODO
+        /*for (int i{0}; i < 12; i++) {
             cin >> numbers[i];
             cntfile.write(std::to_string(11 - i), "txt");
-        }
+        }*/
 
         //reset after timeout
         if (in(-1, numbers)) continue;
