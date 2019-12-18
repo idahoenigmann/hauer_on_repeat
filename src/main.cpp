@@ -107,7 +107,7 @@ void input(int* nums) {
                 index++;
             }
         }
-
+        cntfile.write(std::to_string(0), "txt");
         if (checkTime(time_lpress, 60000)) return;
     }
 }
@@ -121,10 +121,10 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        input(numbers);
-
         File cntfile = File("../web/cnt");
         cntfile.write(std::to_string(12), "txt");
+
+        input(numbers);
 
         //use terminal to input numbers
         /*for (int i{0}; i < 12; i++) {
