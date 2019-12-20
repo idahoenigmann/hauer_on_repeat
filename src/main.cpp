@@ -89,6 +89,7 @@ void input(int* nums) {
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
 
     time_t time_lpress {};
+    File cntfile = File("../web/cnt");
 
     int index = 0;
     while (in(-1, nums)) {
@@ -99,25 +100,31 @@ void input(int* nums) {
                 cout << "Button " << i << " pressed!" << endl;
                 time(&time_lpress);
                 cntfile.write(std::to_string(11 - index), "txt");
+                cout << std::to_string(11 - index) << endl;
                 index++;
             }
         }
-        cntfile.write(std::to_string(0), "txt");
-        if (checkTime(time_lpress, 60000)) return;
+        
+        if (checkTime(time_lpress, 60000)) {
+        break;
+        }
     }
+    cntfile.write(std::to_string(0), "txt");
+    cout << std::to_string(0) << endl;
 }
 
 int main(int argc, char* argv[]) {
 
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
+
+    File cntfile = File("../web/cnt");
+    cntfile.write(std::to_string(12), "txt");
+    cout << to_string(12) << endl;
     while (true) {
 
         //save into new array (as integers)
-        int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-
-        File cntfile = File("../web/cnt");
-        cntfile.write(std::to_string(12), "txt");
+        int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};        
 
         input(numbers);
 
@@ -125,6 +132,7 @@ int main(int argc, char* argv[]) {
         /*for (int i{0}; i < 12; i++) {
             cin >> numbers[i];
             cntfile.write(std::to_string(11 - i), "txt");
+            cout << to_string(11 - i) << endl;
         }*/
 
         //reset after timeout
