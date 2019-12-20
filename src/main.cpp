@@ -90,11 +90,6 @@ void input(int* nums) {
 
     time_t time_lpress {};
 
-    //  WAIT FOR INPUT
-    //vector<string> pressed {};
-    File cntfile = File("../web/cnt");
-    cntfile.write(std::to_string(12), "txt");
-
     int index = 0;
     while (in(-1, nums)) {
         for (int i{0}; i < buttons.size(); i++) {
