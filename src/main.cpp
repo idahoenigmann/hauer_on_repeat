@@ -89,6 +89,7 @@ void input(int* nums) {
     cout << "GPIO Setup complete!" << endl << "Wait for Input" << endl;
 
     time_t time_lpress {};
+    File cntfile = File("../web/cnt");
 
     int index = 0;
     while (in(-1, nums)) {
@@ -117,7 +118,7 @@ int main(int argc, char* argv[]) {
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
         File cntfile = File("../web/cnt");
-        cntfile.write(std::to_string(12), "txt");
+        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
 
         input(numbers);
 
