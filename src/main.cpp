@@ -103,7 +103,6 @@ void input(int* nums) {
                 index++;
             }
         }
-        cntfile.write(std::to_string(0), "txt");
         if (checkTime(time_lpress, 60000)) return;
     }
 }
@@ -112,13 +111,13 @@ int main(int argc, char* argv[]) {
 
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
+
+    File cntfile = File("../web/cnt");
     while (true) {
+        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
 
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-
-        File cntfile = File("../web/cnt");
-        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
 
         input(numbers);
 
@@ -127,6 +126,8 @@ int main(int argc, char* argv[]) {
             cin >> numbers[i];
             cntfile.write(std::to_string(11 - i), "txt");
         }*/
+
+        cntfile.write(std::to_string(0), "txt");
 
         //reset after timeout
         if (in(-1, numbers)) continue;
