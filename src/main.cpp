@@ -52,6 +52,14 @@ void write_to_xml(string file_name, int* numbers) {
     file.write(xml_text, "xml");
 }
 
+void open_nr02() {
+    std::string path = getexepath();
+    path.erase(path.rfind('/'));
+
+    std::string str = "firefox file://" + path + "/../web/nr02.html";
+    system(str.c_str());
+}
+
 void input(int* nums) {
     cout << "GPIO Setup" << endl;
 
@@ -119,6 +127,10 @@ void input(int* nums) {
                 time(&time_lpress);
                 cntfile.write(std::to_string(11 - index), "txt");
                 write_to_xml("../web/example", nums);
+                if (nums[1] == -1) {
+                    open_nr02();
+                }
+
                 index++;
             }
         }
@@ -145,6 +157,9 @@ int main(int argc, char* argv[]) {
             cin >> numbers[i];
             cntfile.write(std::to_string(11 - i), "txt");
             write_to_xml("../web/example", numbers);
+            if (numbers[1] == -1) {
+                open_nr02();
+            }
         }
 
         cntfile.write(std::to_string(0), "txt");
