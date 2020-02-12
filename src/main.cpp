@@ -10,6 +10,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include <time.h>
+#include <string>
 #include "torus.h"
 #include "monophonie.h"
 #include "chords.h"
@@ -32,6 +33,23 @@ bool checkTime(time_t begin, double timespan) {
             return true;
     }
     return false;
+}
+
+void write_to_xml(string file_name, int* numbers) {
+    File file = File(file_name);
+    string xml_text{"<torus>\n"};
+
+    for (int i{}; i < 12; i++) {
+        if (numbers[i] == -1) {
+            break;
+        }
+
+        xml_text += "<bar>\n<note filled=\"filled\">" + to_string(numbers[i]) + "</note>\n</bar>\n";
+    }
+
+    xml_text += "</torus>";
+
+    file.write(xml_text, "xml");
 }
 
 void input(int* nums) {
@@ -100,6 +118,7 @@ void input(int* nums) {
                 cout << "Button " << i << " pressed!" << endl;
                 time(&time_lpress);
                 cntfile.write(std::to_string(11 - index), "txt");
+                write_to_xml("../web/example", nums);
                 index++;
             }
         }
@@ -119,13 +138,14 @@ int main(int argc, char* argv[]) {
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        input(numbers);
+        //input(numbers);
 
         //use terminal to input numbers
-        /*for (int i{0}; i < 12; i++) {
+        for (int i{0}; i < 12; i++) {
             cin >> numbers[i];
             cntfile.write(std::to_string(11 - i), "txt");
-        }*/
+            write_to_xml("../web/example", numbers);
+        }
 
         cntfile.write(std::to_string(0), "txt");
 
