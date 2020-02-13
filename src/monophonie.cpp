@@ -73,8 +73,9 @@ vector<vector<int>> monophonie(Node* start, int shift, int delta, bool midi) {
 
     File file = File("monophonie");
     file.write(input, "ly");
-    //if (midi)
-      //  file.create_midi_pdf();
+
+    if (midi)
+        file.create_midi_pdf(false);
     return notes.list;
 }
 
@@ -114,6 +115,7 @@ Notes create_monophonie(Node* start, int shift, int delta) {
     std::vector<std::vector<int>> ret{};
     vector<int> l;
     Node *original_node;
+    int arr[4] = {};
 
     if (delta > 0) {
         curr = curr->right;
@@ -169,9 +171,51 @@ Notes create_monophonie(Node* start, int shift, int delta) {
         curr = curr->right; //go to next bar
 
     }
+    curr = start;
+    l.clear();
 
-    ret.push_back(std::vector<int>{curr->get_int_representation(voice, shift)});
-    input += convert_int_to_note(curr->get_int_representation(voice, shift)) + " 2 ";
+    if (delta == 2) {
+        l.clear();
+        arr[0] = 0;
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 2;
+
+        int last_chord_arr[4] = {};
+        get_four_chord(last_chord_arr, curr);
+
+        for (int i{}; i < 4; i++) {
+            if (arr[i] != last_chord_arr[i]) {
+                last_chord_arr[i] = arr[i];
+                break;
+            }
+        }
+
+        input += "<<";
+        for (int i=0; i<4; i++) {
+            input += convert_int_to_note(last_chord_arr[i] + 3 * i + shift) + "4 ";
+            l.push_back(last_chord_arr[i] + 3 * i + shift);
+        }
+        ret.push_back(l);
+        input += ">>\n";
+
+    }
+
+    l.clear();
+
+    arr[0] = 0;
+    arr[1] = 1;
+    arr[2] = 1;
+    arr[3] = 2;
+
+    input += "<<";
+    for (int i=0; i<4; i++) {
+        input += convert_int_to_note(arr[i] + 3 * i + shift) + "2 ";
+        l.push_back(arr[i] + 3 * i + shift);
+    }
+    ret.push_back(l);
+    input += ">>\n";
+
 
     return Notes(input, ret);
 }

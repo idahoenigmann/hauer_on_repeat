@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hauer On Repeat</title>
+  <meta charset="utf-8" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" type="application/javascript"></script>
+
+  <script>
+  setTimeout(cl, 50000);
+  </script>
+</head>
+<body>
+    <div>
+    <div class="Content">
+        <h1>Zwölftonspiel</h1><h2>nach Josef Matthias Hauer</h2>
+        <canvas id="notenschrift" width="1500px" height="300px"></canvas>
+
+    </div>
+        <p id="ContentText" style="top: 650px">
+            Erstellen Sie Ihr individuelles Zwölftonspiel.
+            <br>
+            Compose your own twelve-tone piece.
+        </p>
+
+        <img class="logo" id="htllogo" src="htllogo.png" alt="htl logo">
+        <img class="logo" id="musikschulelogo" src="musischullogo.png" alt="musikschule logo"> 
+        <div class="Bottom Content">
+            <p id="cntButtons">
+                Bitte drücken Sie die Taster in einer zufälligen Reihenfolge.
+                <br>
+                Please press the buttons in a random order.
+            </p>
+            
+        </div>
+</div>
+
+</body>
+<script>
+    function parseAndDraw(XMLContent) {
+
+        var c = document.getElementById("notenschrift");
+        var ctx = c.getContext("2d");
+
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(XMLContent,"text/xml");
+
+        var erg = xmlDoc.getElementsByTagName("bar");
+
+        if (erg.length === 12) {
+            // clear canvas
+            const c = document.getElementById("notenschrift");
+            const context = c.getContext('2d');
+            context.clearRect(0, 0, c.width, c.height);
+
+            // draw lines
+            setupLines();
+        }
+
+        for (var i=0; i<erg.length; i++) {
+            var childs = erg[i].childNodes;
+
+            console.log("Bar #" + i);
+
+            for (var e=0; e<childs.length; e++) {
+                if (childs[e].nodeName === "note") {
+                    var note = childs[e].attributes["filled"];
+                    var number = parseInt(childs[e].innerHTML);
+                    if (note !== undefined) {
+                        var x = ((125 * i)+9) + 20;
+                        var y = 180 - (number * 10) + 40;
+                        var scale = 5.2;
+
+                        ctx.beginPath();
+                        ctx.fillStyle = "black";
+                        ctx.ellipse(x, y, 50 / scale, 75 / scale, Math.PI / 2, 0, 2 * Math.PI);
+                        ctx.fill();
+                        ctx.beginPath();
+                        ctx.ellipse(x, y, 33 / scale, 47 / scale, Math.PI * -1.15, 0, 2 * Math.PI);
+                        ctx.fillStyle = "white";
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+    }
+
+    function draw() {
+        // draw notes
+        fetch('example.xml')
+            .then(response => response.text())
+            .then(text => parseAndDraw(text));
+    }
+
+    setupLines();
+
+    fetch('example.xml')
+        .then(response => response.text())
+        .then(text => parseAndDraw(text));
+
+    setInterval(draw, 100);
+    setInterval(getBtnCnt, 100);
+</script>
+</html> 

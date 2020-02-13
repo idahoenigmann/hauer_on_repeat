@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 
+std::string getexepath();
 
 //!  A class for file operations. 
 /*!

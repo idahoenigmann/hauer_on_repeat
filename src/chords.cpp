@@ -157,7 +157,6 @@ Notes create_notes(Node* start, int shift) {
     }
     l.clear();
 
-
     curr = lowerst_node;
     for (int i{0}; i<4; i++) {
         if (curr->is_twelve_tone) {

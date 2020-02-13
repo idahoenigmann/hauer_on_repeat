@@ -9,7 +9,7 @@
     <script src="script.js" type="application/javascript"></script>
 
   <script>
-      setTimeout(cl, 15500);
+      setTimeout(cl, 25500);
   </script>
 </head>
 <body>
@@ -23,11 +23,16 @@
         </p>
         <img id="qrcode" height="300px" src="../build/qrcode.png" alt="Qrcode">
         <div id="loader" class="loader"></div>
-        <p style="margin-top: 0px">
+        <p id="loader_text" style="margin-top: 0px">
+            Bitte bereiten Sie ihren QRCode-Scanner vor.
+            <br>
+            Please prepare your QRCode-Scanner.
+        </p>
+        <p>
            <b> Realisierung:</b> Ida Hönigmann, Mathias Eitler, Manuel Eiwen, Manuel Kubu, Bernhard Weidinger
             <br>
            <b> Betreuender Lehrer:</b> Mag. Markus Reis - <i>HTL Wiener Neustadt</i>
-<br>
+            <br>
            <b> Konzeption:</b> Robert Michael Weiß -<i> Josef Matthias Hauer Musikschule</i>
            
         </p>
@@ -46,6 +51,7 @@
 
     setTimeout(function() {
        $("#loader").hide();
+        $("#loader_text").hide();
        $("#qrcode").attr("src","../build/qrcode.png");
        $("#qrcode").show();
    }, 12000);
