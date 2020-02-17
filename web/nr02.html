@@ -94,10 +94,17 @@
             .then(text => parseAndDraw(text));
     }
 
+    function closeIfEmpty(text) {
+        if (text === "<torus>\n</torus>") {
+            cl();
+        }
+    }
+
     setupLines();
 
     fetch('example.xml')
         .then(response => response.text())
+        .then(text => closeIfEmpty(text))
         .then(text => parseAndDraw(text));
 
     setInterval(draw, 100);

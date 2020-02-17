@@ -29,7 +29,9 @@ bool in(int num, int* d) {
 
 bool checkTime(time_t begin, double timespan) {
     if (begin) {
-        if (time(NULL) - begin >= timespan)
+        time_t time_lpress{};
+        time(&time_lpress);
+        if (time_lpress - begin >= timespan)
             return true;
     }
     return false;
@@ -134,7 +136,7 @@ void input(int* nums) {
                 index++;
             }
         }
-        if (checkTime(time_lpress, 60000)) return;
+        if (checkTime(time_lpress, 5)) return;
     }
 }
 
@@ -145,16 +147,22 @@ int main(int argc, char* argv[]) {
 
     File cntfile = File("../web/cnt");
     while (true) {
-        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
-
         //save into new array (as integers)
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
+        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
+        write_to_xml("../web/example", numbers);
 
         //input(numbers);
 
         //use terminal to input numbers
+        time_t time_lpress {};
+        time(&time_lpress);
+
         for (int i{0}; i < 12; i++) {
+            if (checkTime(time_lpress, 5)) break;
             cin >> numbers[i];
+            if (checkTime(time_lpress, 5)) break;
             cntfile.write(std::to_string(11 - i), "txt");
             write_to_xml("../web/example", numbers);
             if (numbers[1] == -1) {
@@ -162,10 +170,13 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        cntfile.write(std::to_string(0), "txt");
-
         //reset after timeout
-        if (in(-1, numbers)) continue;
+        if (in(-1, numbers)) {
+            cout << "resetting numbers" << endl;
+            continue;
+        }
+
+        cntfile.write(std::to_string(0), "txt");
 
         string dbwriter = "";
         dbwriter = to_string(numbers[0]);
