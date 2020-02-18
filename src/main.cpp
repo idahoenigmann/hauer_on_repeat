@@ -136,7 +136,7 @@ void input(int* nums) {
                 index++;
             }
         }
-        if (checkTime(time_lpress, 5)) return;
+        if (checkTime(time_lpress, 60)) return;
     }
 }
 
@@ -146,27 +146,44 @@ int main(int argc, char* argv[]) {
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
     File cntfile = File("../web/cnt");
+    int _first_num{-1};     //only needed for terminal input
+
     while (true) {
-        //save into new array (as integers)
+        //create array of input numbers
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-        cntfile.write("", "txt");       // todo: check if raspi is set up correctly (might be 0 instead of "")
+        cntfile.write("", "txt");
         write_to_xml("../web/example", numbers);
 
+        //input using buttons:
         //input(numbers);
 
-        //use terminal to input numbers
-        time_t time_lpress {};
-        time(&time_lpress);
+        //use terminal to input numbers:
+        {
+            time_t time_lpress{};
+            time(&time_lpress);
 
-        for (int i{0}; i < 12; i++) {
-            if (checkTime(time_lpress, 5)) break;
-            cin >> numbers[i];
-            if (checkTime(time_lpress, 5)) break;
-            cntfile.write(std::to_string(11 - i), "txt");
-            write_to_xml("../web/example", numbers);
-            if (numbers[1] == -1) {
+            int start_i{};
+            if (_first_num != -1) {
+                numbers[0] = _first_num;
+                cntfile.write(std::to_string(11), "txt");
+                write_to_xml("../web/example", numbers);
                 open_nr02();
+                _first_num = -1;
+                start_i = 1;
+            }
+
+            for (int i{start_i}; i < 12; i++) {
+                cin >> numbers[i];
+                if (checkTime(time_lpress, 60)) {
+                    _first_num = numbers[i];        // since timeout can not occur inside cin this is needed
+                    break;
+                }
+                cntfile.write(std::to_string(11 - i), "txt");
+                write_to_xml("../web/example", numbers);
+                if (numbers[1] == -1) {
+                    open_nr02();
+                }
             }
         }
 
@@ -190,7 +207,6 @@ int main(int argc, char* argv[]) {
 
         Torus torus = Torus(numbers);
         int delta = torus.move_start();
-        cout << "delta: " << delta << endl;
 
         File file = File("../web/example");
         file.write(torus.to_string(), "xml");
@@ -199,26 +215,7 @@ int main(int argc, char* argv[]) {
         auto res_c = chords(torus.start, torus.shift, delta);
         monophonie_and_chords(torus.start, torus.shift, delta);
 
-        //auto res_m = monophonie(torus.start, torus.shift, delta, false);
-
-        /*cout << "chords" << endl;
-        for(auto r : res_c) {
-            for (auto e : r) {
-                cout << e << " ";
-            }
-            cout << endl;
-        }
-
-        cout << "monophonie" << endl;
-        for(auto r : res_m) {
-            for (auto e : r) {
-                cout << e << " ";
-            }
-            cout << endl;
-        }*/
-
-        usleep(63000000);
-
+        usleep(63000000);   // wait for output to finish
     }
 #pragma clang diagnostic pop
 
