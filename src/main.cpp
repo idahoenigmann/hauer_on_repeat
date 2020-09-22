@@ -148,6 +148,8 @@ int main(int argc, char* argv[]) {
     File cntfile = File("../web/cnt");
     int _first_num{-1};     //only needed for terminal input
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
     while (true) {
         //create array of input numbers
         int numbers[12]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
@@ -195,7 +197,8 @@ int main(int argc, char* argv[]) {
 
         cntfile.write(std::to_string(0), "txt");
 
-        string dbwriter = "";
+        // write selected numbers to database
+        /*string dbwriter = "";
         dbwriter = to_string(numbers[0]);
         for (int i{1}; i < 12; i++) {
             dbwriter += "," + to_string(numbers[i]);
@@ -203,7 +206,7 @@ int main(int argc, char* argv[]) {
 
         string writer = "sqlite3 -line ../database.db \"insert into saves values (datetime(), '" + dbwriter + "')\"";
 	    cout << writer << endl;
-        system(writer.c_str());
+        system(writer.c_str());*/
 
         Torus torus = Torus(numbers);
         int delta = torus.move_start();
@@ -217,6 +220,7 @@ int main(int argc, char* argv[]) {
 
         usleep(63000000);   // wait for output to finish
     }
+#pragma clang diagnostic pop
 #pragma clang diagnostic pop
 
 }
